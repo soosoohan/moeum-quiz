@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>중성 게임</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+    body {
+        font-family: 'Malgun Gothic', sans-serif;
+        background: linear-gradient(to bottom, #eff6ff, #ffffff);
+        min-height: 100vh;
+        padding: 20px;
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .title {
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #1e40af;
+        margin-bottom: 10px;
+    }
+    
+    .subtitle {
+        color: #6b7280;
+        font-size: 1.1em;
+    }
+    
+    .game-board {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin-bottom: 20px;
+    }
+    
+    .sentence-display {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .sentence-area {
+        font-size: 3em;
+        background: #f3f4f6;
+        padding: 30px;
+        border-radius: 8px;
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        line-height: 1.2;
+    }
+    
+    .hangul-char {
+        display: inline-block;
+        min-width: 1em;
+        height: 1.2em;
+        text-align: center;
+        vertical-align: baseline;
+        font-family: 'Malgun Gothic', sans-serif;
+    }
+    
+    .incomplete-char {
+        background: #e5e7eb;
+        color: #9ca3af;
+        border-radius: 4px;
+        border: 2px dashed #d1d5db;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 1em;
+        height: 1.2em;
+    }
+    
+    .complete-char {
+        color: #1f2937;
+        font-weight: bold;
+    }
+    
+    .space {
+        width: 0.5em;
+    }
+    
+    .win-message {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .win-alert {
+        background: #dcfce7;
+        border: 1px solid #16a34a;
+        color: #166534;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 1.2em;
+    }
+    
+    .lose-message {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .lose-alert {
+        background: #fef2f2;
+        border: 1px solid #dc2626;
+        color: #991b1b;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 1.2em;
+    }
+    
+    .wrong-attempts {
+        background: #fef2f2;
+        color: #dc2626;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+    
+    .hint-section {
+        background: #fef3c7;
+        border: 1px solid #f59e0b;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .hint-title {
+        font-size: 0.9em;
+        color: #92400e;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    
+    .hint-text {
+        font-size: 1.1em;
+        color: #b45309;
+        font-weight: bold;
+    }
+    
+    .consonant-section {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin-bottom: 20px;
+    }
+    
+    .consonant-title {
+        font-size: 1.2em;
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .consonant-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 10px;
+    }
+    
+    .consonant-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 1.2em;
+        font-weight: bold;
+        border-radius: 8px;
+        border: 2px solid;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .consonant-btn.available {
+        background: #dbeafe;
+        color: #1e40af;
+        border-color: #93c5fd;
+    }
+    
+    .consonant-btn.available:hover {
+        background: #bfdbfe;
+    }
+    
+    .consonant-btn.correct {
+        background: #10b981;
+        color: white;
+        border-color: #059669;
+    }
+    
+    .consonant-btn.wrong {
+        background: #9ca3af;
+        color: #6b7280;
+        border-color: #6b7280;
+        cursor: not-allowed;
+    }
+    
+    .game-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .stats {
+        font-size: 0.9em;
+        color: #6b7280;
+    }
+    
+    .new-game-btn {
+        background: #2563eb;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background 0.2s;
+    }
+    
+    .new-game-btn:hover {
+        background: #1d4ed8;
+    }
+    
+    .game-description {
+        text-align: center;
+        font-size: 0.9em;
+        color: #9ca3af;
+        margin-top: 20px;
+    }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">한글 운명의 수레바퀴</h1>
+            <p class="subtitle">모음은 공개! 자음을 맞춰서 완전한 글자를 만드세요!</p>
+        </div>
+
+
+    <div class="game-board">
+        <div class="hint-section">
+            <div class="hint-title">💡 힌트</div>
+            <div class="hint-text" id="hintText">게임을 시작하세요!</div>
+        </div>
+        
+        <div class="sentence-display">
+            <div class="sentence-area" id="sentenceArea">
+                게임을 시작하세요!
+            </div>
+        </div>
+        
+        <div id="winMessage" class="win-message" style="display: none;">
+            <div class="win-alert">
+                🎉 축하합니다! 정답을 맞추셨습니다! 🎉
+            </div>
+        </div>
+        
+        <div id="loseMessage" class="lose-message" style="display: none;">
+            <div class="lose-alert">
+                😔 게임 오버! 정답을 확인하세요.
+            </div>
+        </div>
+    </div>
+
+    <div class="consonant-section">
+        <h3 class="consonant-title">자음을 선택하세요</h3>
+        <div class="consonant-grid" id="consonantGrid">
+            <!-- 자음 버튼들이 여기에 생성됩니다 -->
+        </div>
+    </div>
+
+    <div class="game-info">
+        <div class="stats" id="gameStats">
+            맞춘 자음: 0개 | 틀린 자음: 0개
+        </div>
+        <button class="new-game-btn" onclick="startNewGame()">새 게임</button>
+    </div>
+
+    <div class="game-description">
+        <p>💡 모든 모음은 처음부터 공개됩니다. 자음을 맞춰서 완전한 글자를 완성하세요!</p>
+    </div>
+</div>
+
+<script>
+    // 게임 데이터 (힌트 포함)
+    const sentences = [
+        
+  { text: "태극기에는 네 개의 괘가 있다", hint: "상징" },
+  { text: "곰은 겨울잠을 잔다", hint: "동물 " },
+  { text: "물은 100도에서 끓는다", hint: "과학 " },
+  { text: "달은 지구의 위성이다", hint: "우주 " },
+  { text: "한글날은 10월 9일이다", hint: "기념일 " },
+  { text: "세계에서 가장 긴 강은 나일강이다", hint: "지리" },
+  { text: "공기는 눈에 보이지 않는다", hint: "과학" },
+  { text: "봄 다음에는 여름이 온다", hint: "상식" },
+  { text: "김치는 발효 음식이다", hint: "음식 " },
+  { text: "하루는 24시간이다", hint: "시간 " },
+  { text: "감시 사회의 시작", hint: "조지 오웰 " },
+        { text: "게임을 즐겁게 플레이하세요", hint: "게임  " },
+        { text: "새로운 도전이 시작됩니다", hint: "게임" },
+        { text: "어벤져스 엔드게임", hint: "마블 " },
+        { text: "기생충", hint: "봉준호" },
+        { text: "타이타닉", hint: "영화" },
+        { text: "겨울왕국", hint: "디즈니" },
+        { text: "사랑해 사랑해 사랑해", hint: "김광석" },
+        { text: "그대는 모르실거야", hint: "김현성 " },
+        { text: "봄날은 간다", hint: "BTS" },
+  { text: "안녕하세요 반갑습니다", hint: "인사말" },
+  { text: "오늘 날씨가 정말 좋네요", hint: "날씨" },
+  { text: "한국어는 아름다운 언어입니다", hint: "언어" },
+
+  { text: "밥은 먹고 다니니", hint: "명대사" },
+  { text: "내일은 더 나은 하루가 되길", hint: "희망" },
+  { text: "별이 빛나는 밤에", hint: "라디오" },
+  { text: "행복은 멀리 있지 않아요", hint: "긍정적인 삶" },
+  { text: "너의 이름은", hint: "일본 애니메이션 " },
+  { text: "괜찮아 다 잘 될 거야", hint: "위로" },
+  { text: "서울은 오늘도 바쁘다", hint: "도시" },
+
+  { text: "마음이 따뜻해졌어요", hint: "감동" },
+  { text: "구름 사이 햇살이 비쳤다", hint: "날씨 " },
+  { text: "시간이 약이다", hint: "속담" },
+  { text: "사랑은 언제나 목마르다", hint: "드라마 " },
+  { text: "감기 조심하세요", hint: "인사말" },
+
+  { text: "바람이 선선해서 좋아요", hint: "가을 " },
+  { text: "우리 다시 만날 수 있을까요", hint: "이별 " },
+  { text: "꽃이 예쁘게 피었네요", hint: "봄날" },
+  { text: "커피 한 잔의 여유", hint: "행복" },
+  { text: "좋은 꿈 꾸세요", hint: "인사" },
+
+  { text: "햇살이 포근한 아침이에요", hint: "맑은 날" },
+  { text: "아무것도 하지 않아도 괜찮아", hint: "쉼" },
+  { text: "구름은 천천히 흘러갑니다", hint: "풍경" },
+  { text: "오늘은 왠지 기분이 좋아요", hint: "감정 " },
+  { text: "빗소리가 마음을 달래줘요", hint: "비 오는 날" },
+  
+  { text: "너는 나의 봄이다", hint: "드라마" },
+  { text: "길 잃은 고양이를 만났어요", hint: "이야기의 시작" },
+  { text: "하늘이 참 예뻐요", hint: "하늘" },
+  { text: "잠깐 멈춰도 괜찮아", hint: "위로" },
+  { text: "계절이 또 바뀌고 있어요", hint: "시간의 흐름" },
+
+  { text: "오늘도 수고 많으셨어요", hint: "인사" },
+  { text: "마음은 전해진다고 믿어요", hint: "진심" },
+  { text: "나무가 푸르게 자라고 있어요", hint: "관찰" },
+  { text: "고요한 밤이 찾아왔어요", hint: "시간" },
+  { text: "지금 이 순간을 느껴봐요", hint: "집중" },
+
+  { text: "비 온 뒤 무지개가 떴어요", hint: "희망" },
+  { text: "나는 너를 기억해요", hint: "감정" },
+  { text: "바람결이 상쾌하네요", hint: "느낌" },
+  { text: "새로운 길이 펼쳐지고 있어요", hint: "기대" },
+  { text: "모든 순간이 소중해요", hint: "삶의 철학" },
+{ text: "오아시스 내한공연", hint: "소원" },
+{ text: "내 아내가 결혼했다", hint: "영화" },
+  { text: "고개를 들고 세상을 당당하게 바라보세요", hint: "헬렌 켈러 " },
+  { text: "도전을 두려워하지 마세요", hint: "오프라 윈프리 " },
+  { text: "행동이 모든 성공의 시작입니다", hint: "피카소 " },
+  { text: "포기하지 않는 용기가 진짜 힘입니다", hint: "처칠 " },
+  { text: "어떤 순간에도 계속 걸어가세요", hint: "처칠 " },
+
+  { text: "오늘을 살아가고 내일을 꿈꾸세요", hint: "아인슈타인 " },
+  { text: "자신이 두려워하는 일을 하세요", hint: "에머슨 " },
+  { text: "잠깐의 고난은 당신을 성장시킵니다", hint: "조언" },
+  { text: "인생은 기다림이 아니라 나아감입니다", hint: "도전" },
+  { text: "두려움은 용기로 사라집니다", hint: "용기" },
+
+  { text: "빛은 어둠 속에서도 스스로를 드러냅니다", hint: "철학적인 명언" },
+  { text: "생각이 행동을 바꾸고, 행동이 운명을 바꿉니다", hint: "성장의 법칙" },
+  { text: "작은 시작이 큰 기적을 만듭니다", hint: "도전의 첫걸음" },
+  { text: "쉬어도 괜찮아요, 멈춘 게 아니니까요", hint: "위로" },
+  { text: "끝이 아니라 새로운 시작입니다", hint: "변화" },
+    { text: "행복은 선택입니다", hint: "좌우명" },
+    { text: "오늘도 최선을 다하자", hint: "다짐" },
+    { text: "포기하지 않으면 실패가 아닙니다", hint: "도전" },
+    { text: "말보다는 행동이 중요하다", hint: "실천" },
+    { text: "사람은 실수로 성장한다", hint: "성장" },
+    { text: "시간은 누구에게나 공평하다", hint: "좌우명" },
+    { text: "고민은 깊게, 선택은 단호하게", hint: "결단력" },
+  { text: "결혼은 미친 짓이다", hint: "책 제목" },
+  { text: "포기하지 않는 사람이 이깁니다", hint: "도전" },
+  { text: "오늘 걷지 않으면 내일은 뛰어야 한다", hint: "노력" },
+  { text: "행복은 비교하지 않을 때 찾아온다", hint: "삶" },
+  { text: "겸손은 배움의 첫걸음이다", hint: "태도" },
+  { text: "변화는 불편함에서 시작된다", hint: "성장" },
+  { text: "천천히 가도 괜찮다", hint: "속도보다 방향" },
+  { text: "스스로를 사랑하세요", hint: "자존감" },
+  { text: "고민은 깊게, 선택은 단호하게", hint: "결단력에 대한 철학" },
+  { text: "진심은 언젠가 통한다", hint: "관계" },
+
+  { text: "지금 이 순간에 집중하자", hint: "현재에 머무르기" },
+  { text: "쉬어도 괜찮아, 멈춘 게 아니니까", hint: "회복의 말" },
+  { text: "실수는 성장의 증거다", hint: "실수에 대한 관점" },
+  { text: "말보다는 행동이 중요하다", hint: "실천 강조" },
+  { text: "혼자서도 괜찮아", hint: "자립과 위로" },
+  { text: "될 때까지 해보자", hint: "집념의 말" },
+  { text: "시간은 누구에게나 공평하다", hint: "시간관리 조언" },
+  { text: "지금이 가장 빠른 때다", hint: "바로 시작하라는 뜻" },
+  { text: "감정은 흘려보내는 것", hint: "감정 조절 조언" },
+  { text: "무엇이든 시작이 반이다", hint: "격려와 도전" },
+  { text: "수고했어요, 오늘도", hint: "위로의 말" },
+  { text: "당신은 그대로도 소중해요", hint: "자존감" },
+  { text: "괜찮아요, 천천히 가도 돼요", hint: "격려" },
+  { text: "당신의 노력을 알고 있어요", hint: "인정" },
+  { text: "지금 이 순간이 충분해요", hint: "현재에 머무는 말" },
+  { text: "늘 고마워요", hint: "짧고 진심 어린 말" },
+  { text: "마음이 따뜻해졌어요", hint: "감동을 느낀 표현" },
+  { text: "사랑받기 위해 태어난 사람", hint: "노래 가사" },
+  { text: "함께라서 다행이에요", hint: "연대감의 표현" },
+  { text: "잘하고 있어요, 정말로요", hint: "작은 격려" },
+
+  { text: "당신의 하루가 평안하길", hint: "하루를 위한 기원" },
+  { text: "별일 없이 웃으며 살았으면", hint: "바람을 담은 말" },
+  { text: "작은 행복이 쌓여 큰 기쁨이 되기를", hint: "행복의 씨앗 같은 말" },
+  { text: "누군가의 말 한마디가 큰 위로가 돼요", hint: "말의 힘에 대한 문장" },
+  { text: "비 오는 날에도 꽃은 핍니다", hint: "희망의 말" },
+  { text: "울고 싶을 땐 울어도 괜찮아", hint: "감정 허용의 말" },
+  { text: "고요한 저녁이 당신을 안아주길", hint: "밤에 어울리는 따뜻한 문장" },
+  { text: "오늘도 당신 덕분에 웃었어요", hint: "감사의 표현" },
+  { text: "어떤 하루든 지나가요", hint: "지나감을 받아들이는 말" },
+  { text: "당신은 혼자가 아니에요", hint: "가장 큰 위로" },
+  { text: "호랑이 굴에 가야 호랑이를 잡는다", hint: "모험 없인 성과 없다" },
+  { text: "가는 말이 고와야 오는 말이 곱다", hint: "말조심에 대한 교훈" },
+  { text: "낫 놓고 기역자도 모른다", hint: "아주 무식한 상태" },
+  { text: "하늘이 무너져도 솟아날 구멍이 있다", hint: "희망의 속담" },
+  { text: "벼는 익을수록 고개를 숙인다", hint: "겸손의 교훈" },
+  { text: "등잔 밑이 어둡다", hint: "가까운 곳을 모름" },
+  { text: "똥 묻은 개가 겨 묻은 개 나무란다", hint: "내로남불 비판" },
+  { text: "우물 안 개구리", hint: "세상을 좁게 보는 사람" },
+  { text: "사공이 많으면 배가 산으로 간다", hint: "속담" },
+  { text: "공든 탑이 무너지랴", hint: "속담" },
+  { text: "무진기행", hint: "김승옥 단편 소설" },
+  { text: "운수 좋은 날", hint: "현진건 단편 소설" },
+  { text: "눈먼 자들의 도시", hint: "주제 사라마구 소설" },
+  { text: "달과 6펜스", hint: "서머싯 몸 장편 소설" },
+  { text: "침묵의 봄", hint: "레이첼 카슨 환경 관련 책" },
+  { text: "채식주의자", hint: "한강의 맨부커 수상작" },
+  { text: "나의 라임 오렌지나무", hint: "브라질 소년 제제 이야기" },
+  { text: "어린 왕자", hint: "생텍쥐페리의 감성 명작" },
+  { text: "엄마를 부탁해", hint: "신경숙 소설" },
+  { text: "고도를 기다리며", hint: "부조리극의 고전" },
+  { text: "82년생 김지영", hint: "조남주 소설" },
+  { text: "바늘 도둑이 소 도둑 된다", hint: "작은 잘못도 커진다" },
+  { text: "티끌 모아 태산", hint: "작은 것의 누적" },
+  { text: "호미로 막을 것을 가래로 막는다", hint: "초기 대응의 중요성" },
+  { text: "열 번 찍어 안 넘어가는 나무 없다", hint: "끈기의 교훈" },
+  { text: "가는 날이 장날이다", hint: "공교로운 타이밍" },
+  { text: "돌다리도 두들겨 보고 건너라", hint: "신중함의 상징" },
+  { text: "개구리 올챙이 적 생각 못 한다", hint: "겸손 잃은 자" },
+  { text: "백문이 불여일견", hint: "직접 보는 것이 확실" },
+  { text: "늦게 배운 도둑질 날 새는 줄 모른다", hint: "새로운 것에 빠짐" },
+  { text: "누워서 침 뱉기", hint: "자기 손해를 모르는 행동" },
+  { text: "지구는 태양 주위를 돈다", hint: "과학 상식" },
+  { text: "대한민국의 수도는 서울이다", hint: "지리 상식" },
+  { text: "물은 0도에서 얼고 100도에서 끓는다", hint: "과학 " },
+  { text: "한글은 세종대왕이 만들었다", hint: "역사 " },
+  { text: "올림픽은 4년에 한 번 열린다", hint: "스포츠 " },
+  { text: "금속은 전기를 잘 전달한다", hint: "과학 " },
+  { text: "세계에서 가장 긴 강은 나일강이다", hint: "지리" },
+  { text: "코끼리는 절대 점프하지 못한다", hint: "동물 " },
+  { text: "달은 지구의 위성이다", hint: "상식" },
+  { text: "남극에는 북극곰이 없다", hint: "상식" }
+
+
+];
+
+    const consonants = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+
+    let currentSentence = '';
+    let guessedConsonants = new Set();
+    let wrongConsonants = new Set();
+    let gameWon = false;
+    let gameLost = false;
+    const maxWrongAttempts = 3;
+    let charStates = []; // 각 글자의 상태를 저장
+    let currentHint = ''; // 현재 힌트
+
+    // 자음 포함 여부 확인
+    function containsConsonant(targetChar, consonant) {
+        const consonantMap = {
+            'ㄲ': 'ㄱ', 'ㄸ': 'ㄷ', 'ㅃ': 'ㅂ', 'ㅆ': 'ㅅ', 'ㅉ': 'ㅈ'
+        };
+        
+        const complexConsonantMap = {
+            'ㄳ': ['ㄱ', 'ㅅ'], 'ㄵ': ['ㄴ', 'ㅈ'], 'ㄶ': ['ㄴ', 'ㅎ'],
+            'ㄺ': ['ㄹ', 'ㄱ'], 'ㄻ': ['ㄹ', 'ㅁ'], 'ㄼ': ['ㄹ', 'ㅂ'],
+            'ㄽ': ['ㄹ', 'ㅅ'], 'ㄾ': ['ㄹ', 'ㅌ'], 'ㄿ': ['ㄹ', 'ㅍ'],
+            'ㅀ': ['ㄹ', 'ㅎ'], 'ㅄ': ['ㅂ', 'ㅅ']
+        };
+        
+        if (targetChar === consonant) return true;
+        if (consonantMap[targetChar] === consonant) return true;
+        if (complexConsonantMap[targetChar] && complexConsonantMap[targetChar].includes(consonant)) return true;
+        
+        return false;
+    }
+
+    // 한글 분해
+    function decomposeHangul(char) {
+        const code = char.charCodeAt(0) - 0xAC00;
+        if (code < 0 || code > 11171) return null;
+        
+        const jong = code % 28;
+        const jung = (code - jong) / 28 % 21;
+        const cho = ((code - jong) / 28 - jung) / 21;
+        
+        const choTable = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        const jungTable = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
+        const jongTable = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        
+        return {
+            cho: choTable[cho],
+            jung: jungTable[jung],
+            jong: jong === 0 ? '' : jongTable[jong]
+        };
+    }
+
+    // 한글 조합 (초성, 중성, 종성으로부터 완전한 글자 생성)
+    function composeHangul(cho, jung, jong = '') {
+        const choTable = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        const jungTable = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
+        const jongTable = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        
+        const choIndex = choTable.indexOf(cho);
+        const jungIndex = jungTable.indexOf(jung);
+        const jongIndex = jongTable.indexOf(jong);
+        
+        if (choIndex === -1 || jungIndex === -1 || jongIndex === -1) return null;
+        
+        const code = 0xAC00 + (choIndex * 21 + jungIndex) * 28 + jongIndex;
+        return String.fromCharCode(code);
+    }
+
+    // 글자 상태 확인 (모든 자음이 찾아졌는지)
+    function isCharComplete(charData) {
+        return charData.choFound && (!charData.jong || charData.jongFound);
+    }
+
+    // 자음 버튼 생성
+    function createConsonantButtons() {
+        const grid = document.getElementById('consonantGrid');
+        grid.innerHTML = '';
+        
+        consonants.forEach(consonant => {
+            const button = document.createElement('button');
+            button.className = 'consonant-btn available';
+            button.textContent = consonant;
+            button.onclick = () => handleConsonantClick(consonant);
+            button.id = `btn-${consonant}`;
+            grid.appendChild(button);
+        });
+    }
+
+    // 정답 공개
+    function showAnswer() {
+        const displayParts = [];
+        
+        charStates.forEach(charData => {
+            if (charData.isSpace) {
+                displayParts.push('<span class="space"></span>');
+            } else if (charData.isNonHangul) {
+                displayParts.push(`<span class="hangul-char complete-char">${charData.char}</span>`);
+            } else {
+                // 모든 글자를 완전한 형태로 표시
+                displayParts.push(`<span class="hangul-char complete-char">${charData.char}</span>`);
+            }
+        });
+        
+        document.getElementById('sentenceArea').innerHTML = displayParts.join('');
+    }
+    function updateDisplay() {
+        const displayParts = [];
+        
+        charStates.forEach(charData => {
+            if (charData.isSpace) {
+                displayParts.push('<span class="space"></span>');
+            } else if (charData.isNonHangul) {
+                displayParts.push(`<span class="hangul-char complete-char">${charData.char}</span>`);
+            } else {
+                // 찾은 자음들로 부분 글자 만들기
+                let displayCho = charData.choFound ? charData.cho : '';
+                let displayJung = charData.jung; // 모음은 항상 표시
+                let displayJong = (charData.jong && charData.jongFound) ? charData.jong : '';
+                
+                if (displayCho && displayJong) {
+                    // 초성과 종성 모두 있으면 완전한 글자
+                    const composed = composeHangul(displayCho, displayJung, displayJong);
+                    displayParts.push(`<span class="hangul-char complete-char">${composed}</span>`);
+                } else if (displayCho && !charData.jong) {
+                    // 종성이 없는 글자에서 초성만 있으면 완전한 글자
+                    const composed = composeHangul(displayCho, displayJung, '');
+                    displayParts.push(`<span class="hangul-char complete-char">${composed}</span>`);
+                } else if (displayCho) {
+                    // 초성만 있는 경우 (종성이 아직 안 맞춰짐)
+                    const composed = composeHangul(displayCho, displayJung, '');
+                    displayParts.push(`<span class="hangul-char incomplete-char">${composed}</span>`);
+                } else if (displayJong) {
+                    // 종성만 있는 경우 (초성이 아직 안 맞춰짐) - 모음 위에, 종성 아래에 배치
+                    displayParts.push(`<span class="hangul-char incomplete-char" style="position: relative; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; min-width: 1em; height: 1.2em;"><span style="font-size: 0.8em;">${displayJung}</span><span style="font-size: 0.7em; margin-top: -0.1em;">${displayJong}</span></span>`);
+                } else {
+                    // 모음만 있는 경우
+                    displayParts.push(`<span class="hangul-char incomplete-char">${displayJung}</span>`);
+                }
+            }
+        });
+        
+        document.getElementById('sentenceArea').innerHTML = displayParts.join('');
+    }
+
+    // 자음 클릭 처리
+    function handleConsonantClick(consonant) {
+        if (guessedConsonants.has(consonant) || wrongConsonants.has(consonant) || gameWon || gameLost) return;
+
+        let found = false;
+        
+        charStates.forEach((charData, index) => {
+            if (charData.isSpace || charData.isNonHangul) return;
+            
+            console.log(`글자 ${index}: ${charData.char}, 초성: ${charData.cho}, 종성: ${charData.jong}, 클릭한 자음: ${consonant}`);
+            
+            // 초성 확인
+            if (!charData.choFound && containsConsonant(charData.cho, consonant)) {
+                console.log(`초성 매치! ${charData.cho} ← ${consonant}`);
+                charData.choFound = true;
+                found = true;
+            }
+            
+            // 종성 확인
+            if (charData.jong && !charData.jongFound && containsConsonant(charData.jong, consonant)) {
+                console.log(`종성 매치! ${charData.jong} ← ${consonant}`);
+                charData.jongFound = true;
+                found = true;
+            }
+        });
+        
+        console.log(`자음 ${consonant} 검색 결과: ${found ? '발견' : '없음'}`);
+        
+        if (found) {
+            guessedConsonants.add(consonant);
+            document.getElementById(`btn-${consonant}`).className = 'consonant-btn correct';
+            updateDisplay();
+            
+            // 승리 조건 체크 (모든 글자가 완성되었는지)
+            const allComplete = charStates.every(charData => 
+                charData.isSpace || charData.isNonHangul || isCharComplete(charData)
+            );
+            
+            if (allComplete) {
+                gameWon = true;
+                document.getElementById('winMessage').style.display = 'block';
+            }
+        } else {
+            wrongConsonants.add(consonant);
+            document.getElementById(`btn-${consonant}`).className = 'consonant-btn wrong';
+            
+            // 게임 오버 체크
+            if (wrongConsonants.size >= maxWrongAttempts) {
+                gameLost = true;
+                document.getElementById('loseMessage').style.display = 'block';
+                showAnswer();
+            }
+        }
+        
+        updateStats();
+    }
+
+    // 통계 업데이트
+    function updateStats() {
+        const remainingAttempts = maxWrongAttempts - wrongConsonants.size;
+        const wrongAttemptsDisplay = wrongConsonants.size > 0 ? 
+            `<span class="wrong-attempts">틀린 횟수: ${wrongConsonants.size}/${maxWrongAttempts}</span>` : '';
+        
+        document.getElementById('gameStats').innerHTML = 
+            `맞춘 자음: ${guessedConsonants.size}개 | 틀린 자음: ${wrongConsonants.size}개${wrongAttemptsDisplay}`;
+    }
+
+    // 새 게임 시작
+    function startNewGame() {
+        const randomSentenceData = sentences[Math.floor(Math.random() * sentences.length)];
+        currentSentence = randomSentenceData.text;
+        currentHint = randomSentenceData.hint;
+        guessedConsonants = new Set();
+        wrongConsonants = new Set();
+        gameWon = false;
+        gameLost = false;
+        charStates = [];
+        
+        document.getElementById('winMessage').style.display = 'none';
+        document.getElementById('loseMessage').style.display = 'none';
+        document.getElementById('hintText').textContent = currentHint;
+        // 글자 상태 초기화
+        for (let char of currentSentence) {
+            if (char === ' ') {
+                charStates.push({ isSpace: true });
+            } else {
+                const decomposed = decomposeHangul(char);
+                if (!decomposed) {
+                    charStates.push({ isNonHangul: true, char });
+                } else {
+                    charStates.push({
+                        char,
+                        cho: decomposed.cho,
+                        jung: decomposed.jung,
+                        jong: decomposed.jong,
+                        choFound: false,
+                        jongFound: false,
+                        isSpace: false,
+                        isNonHangul: false
+                    });
+                }
+            }
+        }
+        
+        updateDisplay();
+        createConsonantButtons();
+        updateStats();
+    }
+
+    // 게임 시작
+    window.onload = function() {
+        createConsonantButtons();
+        startNewGame();
+    };
+</script>
+<br>
+<div class="container">
+
+<strong>워퍼즈 클래식</strong>
+    격자 속에 숨어있는 단어 찾기 게임. 마음의 평화 보장 ! <br>
+    <em>Worpuzz Classic:</em> For the calm-hearted. A low-stimulus, original word puzzle experience.<br>
+    <button onclick="location.href='https://soosoohan.github.io/worpuzz/'">워퍼즈 클래식</button>
+  </p>
+
+  <p>
+    <strong>워퍼즈 메이트</strong>
+    친구와 같이 하는 단어 찾기 게임! 두근두근 보장!<br>
+    <em>Worpuzz Mate:</em> A word puzzle game to play with a friend! Thrills guaranteed!<br>
+    <button onclick="location.href='https://soosoohan.github.io/worpuzzmate/'">워퍼즈 메이트</button>
+  </p>
+
+  <p>
+    <strong>넘즐</strong>
+    숫자 카드로 목표값에 가까운 수식을 만드는 수학 게임! 두뇌 개발 보장!<br>
+    <em>Numzzle:</em> A math card game to build formulas close to the target number! Brain power guaranteed!<br>
+    <button onclick="location.href='https://soosoohan.github.io/numzzle/'">넘즐</button>
+  </p>
+
+  <p>
+    <strong>트링클</strong>
+    별을 이어 삼각형을 만드는 우주 땅따먹기 전략 게임! 재미 보장!<br>
+    <em>Trinkle:</em> A space strategy game where you connect stars to make triangles! Fun guaranteed!<br>
+    <button onclick="location.href='https://soosoohan.github.io/trinkle/'">트링클</button>
+  </p>
+
+  <p>
+    <strong>워퍼즈봇</strong>
+    똑똑해진 컴퓨터와 퍼즐 대결! 재미와 어휘력 두 마리 토끼 잡기 보장!<br>
+    <em>Worpuzz Bot:</em> Battle a smarter computer! Boost your vocabulary and enjoy the challenge!<br>
+    <button onclick="location.href='https://soosoohan.github.io/worpuzz-bot/'">워퍼즈봇</button>
+  </p>
+<br>
+<p>만든 사람: 한수수<br>
+     코딩 도움: ChatGPT, 클라우드</p>
+  <p>ⓒ 2025 한수수. 이 게임의 모든 권리는 제작자인 한수수에게 있습니다.<br>
+     무단 복제, 배포, 2차 창작을 금합니다.</p>
+  <p>Created by: Soosoo Han<br>
+     Coding Support: ChatGPT and Claude</p>
+  <p>© 2025 Soosoo Han. All rights reserved.<br>
+     No part of this game may be copied, distributed, or modified without permission.</p>
+</div>
+
+</body>
+</html>
