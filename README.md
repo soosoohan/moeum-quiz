@@ -23,29 +23,32 @@
 - **HTML·JS** 단일 파일, 어디서나 플레이
 
 ---
+### 🧪 한수수의 다른 게임들 | Other Games by Soosoo Han
 
-##  수수의 다른 게임들
-  other games created by Han Soosoo 
-  
-워퍼즈봇(Worpuzz-bot)
-격자 속에 숨어있는 단어를 찾으며 어휘력을 키우는 게임
-Find hidden words in the grid and build your vocabulary
-👉 http://soosoohan.github.io/worpuzz
+- **워퍼즈 (Worpuzz)**  
+  격자 속에 숨어있는 단어를 찾으며 컴퓨터와 겨루며 어휘력을 키우는 게임  
+  *Find hidden words in the grid and build your vocabulary*  
+  👉 http://soosoohan.github.io/worpuzz
 
-넘즐 (Numzzle)
-수학을 재미있게! 목표 숫자에 가까운 수식을 만드는 게임
-Make math fun! Create formulas to match the target number
-👉 http://soosoohan.github.io/numzzle
+- **넘즐 (Numzzle)**  
+  수학을 재미있게! 목표 숫자에 가까운 수식을 만드는 게임  
+  *Make math fun! Create formulas to match the target number*  
+  👉 http://soosoohan.github.io/numzzle
 
-트링클 (Trinkle)
-별을 잇고 삼각형을 그리는 우주 땅따먹기 전략 게임
-Connect stars to draw triangles in this cosmic strategy game
-👉 http://soosoohan.github.io/trinkle
+- **트링클 (Trinkle)**  
+  별을 잇고 삼각형을 그리는 우주 땅따먹기 전략 게임  
+  *Connect stars to draw triangles in this cosmic strategy game*  
+  👉 http://soosoohan.github.io/trinkle
 
-워퍼즈메이트 (Worpuzz Mate)
-격자를 열거나 단어를 추측하며 겨루는 어휘력 대결 게임
-Compete to guess or uncover words hidden in the grid
-👉 http://soosoohan.github.io/worpuzzmate
+- **워퍼즈메이트 (Worpuzz Mate)**  
+  격자를 열거나 단어를 추측하며 친구와 겨루는 어휘력 대결 게임  
+  *Compete to guess or uncover words hidden in the grid*  
+  👉 http://soosoohan.github.io/worpuzzmate
+
+- **워퍼즈봇 (Worpuzz Bot)**  
+  격자 속에 숨어있는 단어를 찾으며 어휘력을 키우는 게임. 워퍼즈의 업그레이드 버전  
+  *Compete to guess or uncover words hidden in the grid*  
+  👉 http://soosoohan.github.io/worpuzz-bot
 
 ---
 
