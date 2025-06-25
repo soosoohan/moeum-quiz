@@ -25,8 +25,9 @@
 ---
 
 ##  수수의 다른 게임들
-
-워퍼즈 (Worpuzz)
+  other games created by Han Soosoo 
+  
+워퍼즈봇(Worpuzz-bot)
 격자 속에 숨어있는 단어를 찾으며 어휘력을 키우는 게임
 Find hidden words in the grid and build your vocabulary
 👉 http://soosoohan.github.io/worpuzz
@@ -45,6 +46,7 @@ Connect stars to draw triangles in this cosmic strategy game
 격자를 열거나 단어를 추측하며 겨루는 어휘력 대결 게임
 Compete to guess or uncover words hidden in the grid
 👉 http://soosoohan.github.io/worpuzzmate
+
 ---
 
 ## 📜 라이선스
