@@ -311,7 +311,7 @@
 <script>
     // 게임 데이터 (힌트 포함)
     const sentences = [
-        { text: "가끔은 멈추는 것도 용기예요", hint: "인생 조언" },
+ { text: "가끔은 멈추는 것도 용기예요", hint: "인생 조언" },
 { text: "가는 날이 장날이다", hint: "우연히 겹친 상황" },
 { text: "가는 말이 고와야 오는 말이 곱다", hint: "말은 돌아온다" },
 { text: "감기 조심하세요", hint: "따뜻한 계절 인사" },
@@ -319,7 +319,7 @@
 { text: "감정은 흘려보내는 것", hint: "붙잡지 않아야 가벼워진다" },
 { text: "개구리 올챙이 적 생각 못 한다", hint: "과거를 잊은 모습" },
 { text: "개구리는 뛰어요", hint: "동물 행동" },
-{ text: "게임을 즐겁게 플레이하세요", hint: "게임" },
+{ text: "게임을 즐겁게 플레이하세요", hint: "지금" },
 { text: "겨울왕국", hint: "디즈니" },
 { text: "겸손은 배움의 첫걸음이다", hint: "배우는 자의 자세" },
 { text: "계절이 또 바뀌고 있어요", hint: "시간은 멈추지 않아요" },
@@ -332,7 +332,7 @@
 { text: "곰은 겨울잠을 잔다", hint: "동물" },
 { text: "공기는 눈에 보이지 않는다", hint: "과학" },
 { text: "공든 탑이 무너지랴", hint: "정성은 무너지지 않는다" },
-{ text: "괜찮아 다 잘 될 거야", hint: "위로" },
+{ text: "괜찮아. 다 잘 될 거야", hint: "위로" },
 { text: "괜찮아요, 천천히 가도 돼요", hint: "재촉하지 않는 격려" },
 { text: "구름 사이 햇살이 비쳤다", hint: "그림 같은 하루의 한 장면" },
 { text: "구름은 천천히 흘러갑니다", hint: "하늘 위의 느린 여행자" },
@@ -348,17 +348,16 @@
 { text: "나는 오늘을 사랑하기로 했어요", hint: "자기 다짐" },
 { text: "나무가 푸르게 자라고 있어요", hint: "초록의 성장기" },
 { text: "남극에는 북극곰이 없다", hint: "이름과 반대의 위치" },
-{ text: "낫 놓고 기역자도 모른다", hint: "기초도 모르는 상태" },
+{ text: "낫 놓고 기역자도 모른다", hint: "문맹" },
 { text: "내일은 더 나은 하루가 되길", hint: "오늘에 바라는 마음" },
 { text: "너는 나의 봄이다", hint: "계절처럼 찾아온 사람" },
-{ text: "너는 나의 봄이었어", hint: "감성적인 문장" },
 { text: "너의 이름은", hint: "엇갈림 속에 피어난 이야기" },
 { text: "누군가의 말 한마디가 큰 위로가 돼요", hint: "말 한 줄의 힘" },
 { text: "누워서 침 뱉기", hint: "자신을 해치는 말이나 행동" },
 { text: "눈은 하늘에서 내려요", hint: "날씨" },
 { text: "늘 고마워요", hint: "짧지만 가득한 마음" },
 { text: "늦게 배운 도둑질 날 새는 줄 모른다", hint: "뒤늦게 빠져든 열정" },
-{ text: "다 괜찮을 거야  지나고 보면", hint: "위로" },
+{ text: "다 괜찮을 거야.  지나고 보면", hint: "위로" },
 { text: "달은 밤하늘을 지켜줘요", hint: "자연" },
 { text: "달은 지구의 위성이다", hint: "밤하늘의 가장 가까운 이웃" },
 { text: "달팽이 식당", hint: "느리지만 따뜻한 요리와 위로" },
@@ -376,16 +375,14 @@
 { text: "마음은 보이지 않아도 느껴져요", hint: "감성" },
 { text: "마음은 전해진다고 믿어요", hint: "말 없이도 느껴지는 것" },
 { text: "마음이 따뜻해졌어요", hint: "차가운 하루 끝의 온기" },
-{ text: "말보다는 행동이 중요하다", hint: "입보다는 발" },
-{ text: "말보다는 행동이 중요하다", hint: "행동이 말보다 크게 들릴 때" },
+{ text: "말보다는 행동이 중요하다", hint: "실천력" },
 { text: "모든 순간이 소중해요", hint: "지나고 나면 알게 되는 것" },
-{ text: "무엇이든 시작이 반이다", hint: "문을 열기만 해도 반은 간 셈" },
+{ text: "무엇이든 시작이 반이다", hint: "도전" },
 { text: "무지개는 일곱 가지 색이에요", hint: "자연" },
-{ text: "물은 0도에서 얼고 100도에서 끓는다", hint: "가장 기본적인 물의 변화" },
+{ text: "물은  섭씨 0도에서 얼음이 된다", hint: "가장 기본적인 물의 변화" },
 { text: "물은 섭씨 100도에서 끓어요", hint: "기초 과학" },
 { text: "바늘 도둑이 소 도둑 된다", hint: "작은 죄가 커진다" },
 { text: "바람결이 상쾌하네요", hint: "보이지 않아도 느껴지는 것" },
-{ text: "바람이 분다 살아야겠다", hint: "삶을 붙드는 다짐" },
 { text: "바람이 선선해서 좋아요", hint: "긴팔 꺼내는 아침" },
 { text: "밥은 먹고 다니니", hint: "영화보다 깊은 한마디" },
 { text: "백문이 불여일견", hint: "들어도 본 것만 못하다" },
@@ -411,14 +408,13 @@
 { text: "세계에서 가장 긴 강은 나일강이다", hint: "지리" },
 { text: "수고했어요, 오늘도", hint: "하루의 끝에 듣고 싶은 말" },
 { text: "쉬어도 괜찮아, 멈춘 게 아니니까", hint: "잠시 숨 고르기" },
-{ text: "쉬어도 괜찮아요, 멈춘 게 아니니까요", hint: "멈춤은 곧 준비" },
 { text: "스스로를 사랑하세요", hint: "가장 가까운 사람을 챙기는 법" },
 { text: "슬픔도 지나가고 결국 꽃이 피었다", hint: "위로" },
 { text: "시간은 누구에게나 공평하다", hint: "모두가 가진 같은 하루" },
-{ text: "시간은 누구에게나 공평하다", hint: "모두가 가진 24시간" },
 { text: "시간이 약이다", hint: "흔하지만 진한 말" },
 { text: "식물은 햇빛을 좋아해요", hint: "생물" },
 { text: "실수는 성장의 증거다", hint: "흔적이 남는 배움" },
+{ text: "아몬드", hint: "청소년 소설" },
 { text: "아무것도 하지 않아도 괜찮아", hint: "가만히 있어도 되는 순간" },
 { text: "안녕하세요 반갑습니다", hint: "인사말" },
 { text: "어떤 순간에도 계속 걸어가세요", hint: "멈추지 않는 발걸음" },
@@ -443,16 +439,13 @@
 { text: "작은 시작이 큰 기적을 만듭니다", hint: "처음은 작아도 괜찮아" },
 { text: "작은 친절이 큰 기쁨이 돼요", hint: "따뜻한 마음" },
 { text: "작은 행복이 쌓여 큰 기쁨이 되기를", hint: "행복은 모여 커진다" },
-{ text: "잘하고 있어요, 정말로요", hint: "의심 말고 받아들이세요" },
+{ text: "잘하고 있어요 정말로요", hint: "의심 말고 받아들이세요" },
 { text: "잠깐 멈춰도 괜찮아", hint: "멈춤이 필요한 때" },
 { text: "잠깐의 고난은 당신을 성장시킵니다", hint: "지금은 과정일 뿐" },
 { text: "좋은 꿈 꾸세요", hint: "하루의 마지막 인사" },
 { text: "좋은 하루는 작은 일에서 시작돼요", hint: "일상" },
-{ text: "죽고 싶지만 떡볶이는 먹고 싶어", hint: "우울과 욕망 사이의 균형" },
 { text: "지구는 태양 주위를 돈다", hint: "우리가 공전하고 있다는 사실" },
 { text: "지금 이 순간에 집중하자", hint: "생각이 멈추는 자리" },
-{ text: "지금 이 순간을 느껴봐요", hint: "시간은 지나간다, 지금이 전부" },
-{ text: "지금 이 순간이 충분해요", hint: "더 바라지 않아도 되는 때" },
 { text: "지금이 가장 빠른 때다", hint: "망설임보다 한 걸음" },
 { text: "진심은 언젠가 통한다", hint: "시간이 걸려도 닿는 마음" },
 { text: "천천히 가도 괜찮다", hint: "속도보다 중요한 건 방향" },
@@ -480,8 +473,10 @@
 { text: "호랑이 굴에 가야 호랑이를 잡는다", hint: "두려움 없이 얻는 것" },
 { text: "호미로 막을 것을 가래로 막는다", hint: "초기 대응의 중요성" },
 { text: "혼자서도 괜찮아", hint: "자립에 담긴 위로" },
-{ text: "흔들려야 꽃이다", hint: "철학" }
- ];
+{ text: "흔들려야 꽃이다", hint: "철학" }       
+
+
+];
 
     const consonants = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
 
@@ -494,39 +489,51 @@
     let charStates = [];
     let currentHint = '';
 
-    // 자음 포함 여부 확인
+    // 셔플된 문장 리스트와 인덱스
+    let shuffledSentences = [];
+    let sentenceIndex = 0;
+
+    function shuffleSentences() {
+        shuffledSentences = [...sentences];
+        for (let i = shuffledSentences.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledSentences[i], shuffledSentences[j]] = [shuffledSentences[j], shuffledSentences[i]];
+        }
+        sentenceIndex = 0;
+    }
+
+    function getNextSentence() {
+        if (sentenceIndex >= shuffledSentences.length) {
+            shuffleSentences();
+        }
+        return shuffledSentences[sentenceIndex++];
+    }
+
     function containsConsonant(targetChar, consonant) {
         const consonantMap = {
             'ㄲ': 'ㄱ', 'ㄸ': 'ㄷ', 'ㅃ': 'ㅂ', 'ㅆ': 'ㅅ', 'ㅉ': 'ㅈ'
         };
-        
         const complexConsonantMap = {
             'ㄳ': ['ㄱ', 'ㅅ'], 'ㄵ': ['ㄴ', 'ㅈ'], 'ㄶ': ['ㄴ', 'ㅎ'],
             'ㄺ': ['ㄹ', 'ㄱ'], 'ㄻ': ['ㄹ', 'ㅁ'], 'ㄼ': ['ㄹ', 'ㅂ'],
             'ㄽ': ['ㄹ', 'ㅅ'], 'ㄾ': ['ㄹ', 'ㅌ'], 'ㄿ': ['ㄹ', 'ㅍ'],
             'ㅀ': ['ㄹ', 'ㅎ'], 'ㅄ': ['ㅂ', 'ㅅ']
         };
-        
         if (targetChar === consonant) return true;
         if (consonantMap[targetChar] === consonant) return true;
         if (complexConsonantMap[targetChar] && complexConsonantMap[targetChar].includes(consonant)) return true;
-        
         return false;
     }
 
-    // 한글 분해
     function decomposeHangul(char) {
         const code = char.charCodeAt(0) - 0xAC00;
         if (code < 0 || code > 11171) return null;
-        
         const jong = code % 28;
         const jung = (code - jong) / 28 % 21;
         const cho = ((code - jong) / 28 - jung) / 21;
-        
         const choTable = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
         const jungTable = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
         const jongTable = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
-        
         return {
             cho: choTable[cho],
             jung: jungTable[jung],
@@ -534,32 +541,25 @@
         };
     }
 
-    // 한글 조합
     function composeHangul(cho, jung, jong = '') {
         const choTable = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
         const jungTable = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
         const jongTable = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
-        
         const choIndex = choTable.indexOf(cho);
         const jungIndex = jungTable.indexOf(jung);
         const jongIndex = jongTable.indexOf(jong);
-        
         if (choIndex === -1 || jungIndex === -1 || jongIndex === -1) return null;
-        
         const code = 0xAC00 + (choIndex * 21 + jungIndex) * 28 + jongIndex;
         return String.fromCharCode(code);
     }
 
-    // 글자 상태 확인
     function isCharComplete(charData) {
         return charData.choFound && (!charData.jong || charData.jongFound);
     }
 
-    // 자음 버튼 생성
     function createConsonantButtons() {
         const grid = document.getElementById('consonantGrid');
         grid.innerHTML = '';
-        
         consonants.forEach(consonant => {
             const button = document.createElement('button');
             button.className = 'consonant-btn available';
@@ -570,86 +570,73 @@
         });
     }
 
-    // 정답 공개
     function showAnswer() {
         const displayParts = [];
-        
         charStates.forEach(charData => {
             if (charData.isSpace) {
                 displayParts.push('<span class="space"></span>');
-            } else if (charData.isNonHangul) {
-                displayParts.push(`<span class="hangul-char complete-char">${charData.char}</span>`);
             } else {
                 displayParts.push(`<span class="hangul-char complete-char">${charData.char}</span>`);
             }
         });
-        
         document.getElementById('sentenceArea').innerHTML = displayParts.join('');
     }
 
-    // 화면 업데이트
-    function updateDisplay() {
-        const displayParts = [];
-        
-        charStates.forEach(charData => {
-            if (charData.isSpace) {
-                displayParts.push('<span class="space"></span>');
-            } else if (charData.isNonHangul) {
-                displayParts.push(`<span class="hangul-char complete-char">${charData.char}</span>`);
+function updateDisplay() {
+    const displayParts = [];
+
+    charStates.forEach(charData => {
+        if (charData.isSpace) {
+            displayParts.push('<span class="space"></span>');
+        } else if (charData.isNonHangul) {
+            displayParts.push(`<span class="hangul-char complete-char">${charData.char}</span>`);
+        } else {
+            let displayCho = charData.choFound ? charData.cho : '';
+            let displayJung = charData.jung;
+            let displayJong = (charData.jong && charData.jongFound) ? charData.jong : '';
+
+            if (displayCho && displayJong) {
+                displayParts.push(`<span class="hangul-char complete-char">${composeHangul(displayCho, displayJung, displayJong)}</span>`);
+            } else if (displayCho && !charData.jong) {
+                displayParts.push(`<span class="hangul-char complete-char">${composeHangul(displayCho, displayJung)}</span>`);
+            } else if (displayCho) {
+                displayParts.push(`<span class="hangul-char incomplete-char">${composeHangul(displayCho, displayJung)}</span>`);
+            } else if (displayJong) {
+                displayParts.push(`<span class="hangul-char incomplete-char" style="position: relative; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; min-width: 1em; height: 1.2em;"><span style="font-size: 0.8em;">${displayJung}</span><span style="font-size: 0.7em; margin-top: -0.1em;">${displayJong}</span></span>`);
             } else {
-                let displayCho = charData.choFound ? charData.cho : '';
-                let displayJung = charData.jung;
-                let displayJong = (charData.jong && charData.jongFound) ? charData.jong : '';
-                
-                if (displayCho && displayJong) {
-                    const composed = composeHangul(displayCho, displayJung, displayJong);
-                    displayParts.push(`<span class="hangul-char complete-char">${composed}</span>`);
-                } else if (displayCho && !charData.jong) {
-                    const composed = composeHangul(displayCho, displayJung, '');
-                    displayParts.push(`<span class="hangul-char complete-char">${composed}</span>`);
-                } else if (displayCho) {
-                    const composed = composeHangul(displayCho, displayJung, '');
-                    displayParts.push(`<span class="hangul-char incomplete-char">${composed}</span>`);
-                } else if (displayJong) {
-                    displayParts.push(`<span class="hangul-char incomplete-char" style="position: relative; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; min-width: 1em; height: 1.2em;"><span style="font-size: 0.8em;">${displayJung}</span><span style="font-size: 0.7em; margin-top: -0.1em;">${displayJong}</span></span>`);
-                } else {
-                    displayParts.push(`<span class="hangul-char incomplete-char">${displayJung}</span>`);
-                }
+                displayParts.push(`<span class="hangul-char incomplete-char">${displayJung}</span>`);
             }
-        });
-        
-        document.getElementById('sentenceArea').innerHTML = displayParts.join('');
-    }
+        }
+    });
 
-    // 자음 클릭 처리
+    document.getElementById('sentenceArea').innerHTML = displayParts.join('');
+}
+
+
+
     function handleConsonantClick(consonant) {
         if (guessedConsonants.has(consonant) || wrongConsonants.has(consonant) || gameWon || gameLost) return;
 
         let found = false;
-        
-        charStates.forEach((charData, index) => {
+        charStates.forEach(charData => {
             if (charData.isSpace || charData.isNonHangul) return;
-            
             if (!charData.choFound && containsConsonant(charData.cho, consonant)) {
                 charData.choFound = true;
                 found = true;
             }
-            
             if (charData.jong && !charData.jongFound && containsConsonant(charData.jong, consonant)) {
                 charData.jongFound = true;
                 found = true;
             }
         });
-        
+
         if (found) {
             guessedConsonants.add(consonant);
             document.getElementById(`btn-${consonant}`).className = 'consonant-btn correct';
             updateDisplay();
-            
-            const allComplete = charStates.every(charData => 
+            const allComplete = charStates.every(charData =>
                 charData.isSpace || charData.isNonHangul || isCharComplete(charData)
             );
-            
             if (allComplete) {
                 gameWon = true;
                 document.getElementById('winMessage').style.display = 'block';
@@ -657,29 +644,23 @@
         } else {
             wrongConsonants.add(consonant);
             document.getElementById(`btn-${consonant}`).className = 'consonant-btn wrong';
-            
             if (wrongConsonants.size >= maxWrongAttempts) {
                 gameLost = true;
                 document.getElementById('loseMessage').style.display = 'block';
                 showAnswer();
             }
         }
-        
+
         updateStats();
     }
 
-    // 통계 업데이트
     function updateStats() {
-        const wrongAttemptsDisplay = wrongConsonants.size > 0 ? 
-            `<span class="wrong-attempts">틀린 횟수: ${wrongConsonants.size}/${maxWrongAttempts}</span>` : '';
-        
-        document.getElementById('gameStats').innerHTML = 
-            `맞춘 자음: ${guessedConsonants.size}개 | 틀린 자음: ${wrongConsonants.size}개${wrongAttemptsDisplay}`;
+        document.getElementById('gameStats').innerHTML =
+            `맞춘 자음: ${guessedConsonants.size}개 | 틀린 자음: ${wrongConsonants.size}개`;
     }
 
-    // 새 게임 시작
     function startNewGame() {
-        const randomSentenceData = sentences[Math.floor(Math.random() * sentences.length)];
+        const randomSentenceData = getNextSentence();
         currentSentence = randomSentenceData.text;
         currentHint = randomSentenceData.hint;
         guessedConsonants = new Set();
@@ -687,11 +668,10 @@
         gameWon = false;
         gameLost = false;
         charStates = [];
-        
         document.getElementById('winMessage').style.display = 'none';
         document.getElementById('loseMessage').style.display = 'none';
         document.getElementById('hintText').textContent = currentHint;
-        
+
         for (let char of currentSentence) {
             if (char === ' ') {
                 charStates.push({ isSpace: true });
@@ -713,18 +693,20 @@
                 }
             }
         }
-        
+
         updateDisplay();
         createConsonantButtons();
         updateStats();
     }
 
-    // 게임 시작
-    window.onload = function() {
+    window.onload = function () {
         createConsonantButtons();
+        shuffleSentences();
         startNewGame();
     };
 </script>
+
+
 
 
 </body>
