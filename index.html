@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>모음퀴즈 인덱스</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script:wght@400&display=swap');
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
 
 
 * {
@@ -16,7 +16,7 @@
 }
 
 body {
-    font-family: 'Nanum Pen Script', cursive;
+    font-family: 'Pretendard', sans-serif;
     background: #2e8b8b ;
     min-height: 100vh;
     display: flex;
@@ -44,8 +44,8 @@ body {
 
 .chalk-text {
     color: #f0f8ff;
-    font-family: 'Nanum Pen Script', cursive;
-}
+    font-family: 'Pretendard', sans-serif;
+    }
 
 .main-title {
     position: absolute;
@@ -68,8 +68,8 @@ margin-bottom: 4px; /* 간격 조절 */
     padding: 15px;
     color: #333;
     width: 200px;
-    font-family: 'Nanum Pen Script', cursive;
-}
+    font-family: 'Pretendard', sans-serif;
+    }
 
 
 
@@ -79,9 +79,9 @@ margin-bottom: 4px; /* 간격 조절 */
     text-align: center;
     margin-bottom: 12px;
     font-weight: bold;
-    border-bottom: 2px solid #2e8b8b;
+    
     padding-bottom: 6px;
-    border-bottom: 2px solid #f0f8ff;
+    
 
 }
 
@@ -90,7 +90,6 @@ margin-bottom: 4px; /* 간격 조절 */
     justify-content: space-between;
     align-items: center;
     padding: 10px; /* 버튼 주변 여백 */
-    border-bottom: 1px solid #ccc;
     color: #2e8b8b;
 background-color: #2e8b8b;  /* 칠판색 */
 
@@ -124,8 +123,8 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 
-font-family: 'Nanum Pen Script', cursive;
-box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+font-family: 'Pretendard', sans-serif;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .schedule-item .game-button:hover {
@@ -188,7 +187,7 @@ box-shadow: 0 6px 15px rgba(0,0,0,0.3);
     margin: 2px;
     border-radius: 5px;
     cursor: pointer;
-    font-family: 'Nanum Pen Script', cursive;
+    font-family: 'Pretendard', sans-serif;
     font-size: 1.1em;
     transition: all 0.3s ease;
 }
@@ -244,7 +243,7 @@ box-shadow: 0 6px 15px rgba(0,0,0,0.3);
     border: none;
     border-radius: 10px;
     font-size: 1.3em;
-    font-family: 'Nanum Pen Script', cursive;
+    font-family: 'Pretendard', sans-serif;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -396,7 +395,7 @@ box-shadow: 0 6px 15px rgba(0,0,0,0.3);
 <li>The adult version features proverbs, mottos, everyday conversations, as well as titles from dramas, movies, and novels, including related words, phrases, and sentences.</li>
 <li>💡 If you think, “This sentence would be fun too!”, please leave a comment with your suggestion.</li>
 <li>Your ideas might appear in the next quiz!</li>
-        
+  </ul>      
 </div>
   
 
@@ -405,7 +404,10 @@ box-shadow: 0 6px 15px rgba(0,0,0,0.3);
             기획: 한수수 <span class="heart">♡</span>
         </div>
         <div class="credits-item">
-            코딩 도움: 재치 <span class="heart">♡</span>, 클라우드 <span class="heart">♡</span>
+            개발 도움: 재치 <span class="heart">♡</span>
+        </div>
+        <div class="credits-item">
+            코딩 도움: 클라우드 <span class="heart">♡</span>
         </div>
         <div class="credits-item">
             © 2025 한수수
@@ -428,5 +430,27 @@ box-shadow: 0 6px 15px rgba(0,0,0,0.3);
         <div class="chalk"></div>
     </div>
 </div>
+
+<script>
+    function toggleLanguage(lang) {
+        const koreanDesc = document.getElementById('korean-description');
+        const englishDesc = document.getElementById('english-description');
+        const buttons = document.querySelectorAll('.language-button');
+        
+        buttons.forEach(btn => btn.classList.remove('active'));
+        
+        if (lang === 'ko') {
+            koreanDesc.classList.remove('hidden');
+            englishDesc.classList.add('hidden');
+            buttons[0].classList.add('active');
+        } else {
+            koreanDesc.classList.add('hidden');
+            englishDesc.classList.remove('hidden');
+            buttons[1].classList.add('active');
+        }
+    }
+</script>
+
+
 </body>
 </html>
