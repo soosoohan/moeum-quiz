@@ -46,17 +46,23 @@
   👉 http://soosoohan.github.io/worpuzz
 
 ---
+### 👤 만든 사람 | Credits
 
-## 📜 라이선스
+- 기획 : 한수수  
+- 개발 보조 : 재치  
+- 코딩 도움 : 클라우드  
+- 디자인 : 네이처리
+- Planning: Soosoo Han  
+- Development Assistant: Jaechi  
+- Coding Support: Claude  
+- Design: Nature Lee
 
-본 게임은 교육·비상업적 목적으로 자유롭게 사용할 수 있습니다.  
-다만 **무단 복제·재판매**는 금지됩니다.
+ⓒ 2025 한수수.  
+이 게임의 모든 권리는 제작자에게 있으며,  
+**무단 복제, 배포, 2차 창작을 금지합니다.**
+
+© 2025 Soosoo Han.  
+All rights reserved.  
+**Do not copy, distribute, or create derivative works without permission.**
 
 ---
-
-## ✍️ 제작 정보
-
- 기획·디자인  :  한수수  
- 코딩 지원   : 챗GPT , 클라우드
-
-> © 2025. 수수. All rights reserved.
