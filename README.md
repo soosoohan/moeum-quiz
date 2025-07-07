@@ -1,7 +1,7 @@
 🟡 모음퀴즈 (Moeum Quiz)
 
-모음이 공개된 상태에서 자음을 맞춰서  숨어있는 단어, 구절, 문장을 찾는 게임
-This is a Korean language puzzle game where players guess the hidden consonants to complete sentences with only vowels revealed.
+- 모음이 공개된 상태에서 자음을 맞춰서  숨어있는 단어, 구절, 문장을 찾는 게임
+- This is a Korean language puzzle game where players guess the hidden consonants to complete sentences with only vowels revealed.
 
 ---
 
