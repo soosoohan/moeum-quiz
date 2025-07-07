@@ -22,29 +22,24 @@
 
 ## 📅 개발 타임라인 / Development Timeline
 
-- **2025-06-18 am 11:00**  
+- **2025-06-18**  
   갖고 있던 게임 아이디어를 모두 게임으로 만들어서 할 일이 없어짐.
   운명의 수레바퀴와 초성퀴즈에서 영감을 받아   새로운 게임을 만들어보자고 결심함.
-
   I turned all the game ideas I had into actual games, and suddenly found myself with nothing left to do.
   Inspired by Wheel of Fortune and Initial Consonant Quiz, I decided to create a new game.
 
-- **2025-06-18 pm 07:00**  
   첫 번째 프로토타입 완성 후 [`/moeum-quiz`](https://soosoohan.github.io/moeum-quiz) 레포에 업로드.  실질적인 초기 완성 단계.
-
-  First prototype completed and uploaded to the [`/moeum-quiz`](https://github.com/soosoohan/moeum-quiz) repository.
+  First prototype completed and uploaded to the [`/moeum-quiz`](https://soosoohan.github.io/moeum-quiz) repository.
 
 - **2025-07-05**  
   청록색 계열의 테마로 디자인을 전면 리뉴얼하고 같은 레포에 덮어씀.  
   그러나 모바일에서 UI가 깨지는 문제가 발생함.
-
   Redesigned the game with a turquoise theme and updated the same repository.  
   However, layout issues appeared on mobile devices.
 
 - **2025-07-05**  
-  반응형 버전을 복구하기 위해 새로운 레포 [`/mong`](https://github.com/soosoohan/mong) 생성 후 6월 18일 버전을 개선해서 업로드.
-
-  Created a new repo [`/mong`](https://github.com/soosoohan/mong) to restore Improved and uploaded the June 18 version.
+  반응형 버전을 복구하기 위해 새로운 레포 [`/mong`](https://soosoohan.github.io/mong) 생성 후 6월 18일 버전을 개선해서 업로드.
+  Created a new repo [`/mong`](https://soosoohan.github.io/mong) to restore Improved and uploaded the June 18 version.
 
 ---
 
