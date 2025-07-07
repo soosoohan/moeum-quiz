@@ -30,7 +30,7 @@
   Inspired by Wheel of Fortune and Initial Consonant Quiz, I decided to create a new game.
 
 - **2025-06-18 pm 07:00**  
-  첫 번째 프로토타입 완성 후 [`/moeum-quiz`](https://github.com/soosoohan/moeum-quiz) 레포에 업로드.  실질적인 초기 완성 단계.
+  첫 번째 프로토타입 완성 후 [`/moeum-quiz`](https://soosoohan.github.io/moeum-quiz) 레포에 업로드.  실질적인 초기 완성 단계.
 
   First prototype completed and uploaded to the [`/moeum-quiz`](https://github.com/soosoohan/moeum-quiz) repository.
 
