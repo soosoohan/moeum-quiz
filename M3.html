@@ -1,10 +1,12 @@
+
+
 <!DOCTYPE html>
 
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>모음 퀴즈 음식</title>
+    <title>모음퀴즈 음식편  </title>
     <style>
         * {
             margin: 0;
@@ -58,7 +60,6 @@
         font-size: 3em;
         background: rgba(223, 242, 235, 0.3);
         padding: 30px;
-        border-radius: 8px;
         min-height: 120px;
         display: flex;
         align-items: center;
@@ -146,29 +147,6 @@
         margin-left: 10px;
     }
     
-    .hint-section {
-        background: rgba(185, 229, 232, 0.6);
-        border: 1px solid #7AB2D3;
-        border-radius: 8px;
-        padding: 15px;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-    
-    .hint-title {
-        font-size: 1.2em;
-        color: #4A628A;
-        font-weight: bold;
-        margin-bottom: 5px;
-    display:inline;
-}
-    
-    .hint-text {
-        font-size: 1.1em;
-        color: #4A628A;
-        font-weight: bold;
-    display:inline;
-}
     
     .consonant-section {
         background: rgba(255, 255, 255, 0.9);
@@ -193,9 +171,9 @@
     }
     
     .consonant-btn {
-        width: 60px;
-        height: 60px;
-        font-size: 1.4em;
+        width: 80px;
+        height: 80px;
+        font-size: 2.0em;
         font-weight: bold;
         border-radius: 8px;
         border: 2px solid;
@@ -206,7 +184,8 @@
     .consonant-btn.available {
         background: linear-gradient(135deg, #B9E5E8, #DFF2EB);
         color: #4A628A;
-        }
+        border-color: #7AB2D3;
+    }
     
     .consonant-btn.available:hover {
         background: linear-gradient(135deg, #7AB2D3, #B9E5E8);
@@ -274,16 +253,18 @@
         }
 
         .consonant-btn {
-            width: 100%;
-            height: 50px;
-            font-size: 1.0em;
+        width: 60px;
+        height: 60px;
+        font-size: 1.2em;
+        font-weight: bold;
         }
 
         .new-game-btn {
             width: 100%;
             padding: 12px 0;
             font-size: 1em;
-        }
+       
+}
 
         .game-info {
             flex-direction: column;
@@ -302,267 +283,55 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1 class="title">모음 퀴즈 음식</h1>
-            <p class="subtitle">자음을 맞춰서 완전한 글자를 만드세요!</p>
+            <h1 class="title">모음 퀴즈 음식편</h1>
+            <p class="subtitle">모음은 공개! 자음을 맞춰서 완전한 글자를 만드세요!</p>
         </div>
 
-
-    <div class="game-board">
-        <div class="hint-section">
-            <div class="hint-title">💡 </div>
-            <div class="hint-text" id="hintText">게임을 시작하세요!</div>
-        </div>
-        
+<div class="game-board">        
         <div class="sentence-display">
             <div class="sentence-area" id="sentenceArea">
                 게임을 시작하세요!
             </div>
         </div>
-        
-        <div id="winMessage" class="win-message" style="display: none;">
-            <div class="win-alert">
-                🎉 축하합니다! 정답을 맞추셨습니다! 🎉
-            </div>
-        </div>
-        
-        <div id="loseMessage" class="lose-message" style="display: none;">
-            <div class="lose-alert">
-                😔 게임 종료! 정답을 확인하세요.
-            </div>
+
+
+    <div id="winMessage" class="win-message" style="display: none;">
+        <div class="win-alert">
+            정답을 맞추셨습니다!
         </div>
     </div>
-
-    <div class="consonant-section">
-        <h3 class="consonant-title">자음을 선택하세요</h3>
-        <div class="consonant-grid" id="consonantGrid">
-            <!-- 자음 버튼들이 여기에 생성됩니다 -->
+    
+    <div id="loseMessage" class="lose-message" style="display: none;">
+        <div class="lose-alert">
+            게임 종료! 정답을 확인하세요.
         </div>
     </div>
-
-    <div class="game-info">
-        <div class="stats" id="gameStats">
-            맞춘 자음: 0개 | 틀린 자음: 0개
-        </div>
-        <button class="new-game-btn" onclick="startNewGame()"> 새 게임</button>
-    <button class="new-game-btn" onclick="location.href='index.html'" class="game-button">초기 화면</button>
 </div>
 
+<div class="consonant-section">
+    <h3 class="consonant-title">자음을 선택하세요</h3>
+    <div class="consonant-grid" id="consonantGrid">
+        <!-- 자음 버튼들이 여기에 생성됩니다 -->
     </div>
+</div>
+
+<div class="game-info">
+    <div class="stats" id="gameStats">
+        맞춘 자음: 0개 | 틀린 자음: 0개
+    </div>
+    <button class="new-game-btn" onclick="startNewGame()">새 게임</button>
+
+
+<button class="new-game-btn" onclick="location.href='index.html'" class="game-button">초기 화면</button>
+</div>
+
+</div>
 
 <script>
-    // 게임 데이터 (힌트 포함)
+    // 게임 데이터 (단순화된 워드풀)
     const sentences = [
-{ text: "브로콜리", hint: "식재료" },
-{ text: "간장 게장", hint: "음식" },
-{ text: "갈릭버터새우", hint: "음식" },
-{ text: "개나리꽃차", hint: "차" },
-{ text: "계란말이", hint: "음식" },
-{ text: "계피가루", hint: "식재료" },
-{ text: "고등어 조림", hint: "음식" },
-{ text: "곤드레밥", hint: "음식" },
-{ text: "골뱅이 소면", hint: "음식" },
-{ text: "과테말라 안티구아", hint: "커피 원두" },
-{ text: "궁중 떡볶이", hint: "음식" },
-{ text: "그레인프리파스타", hint: "음식" },
-{ text: "김치 볶음밥", hint: "음식" },
-{ text: "김치말이 국수", hint: "음식" },
-{ text: "까나리 액젓", hint: "식재료" },
-{ text: "깐쇼 새우", hint: "음식" },
-{ text: "깻잎 장아찌", hint: "음식" },
-{ text: "나폴리탄 스파게티", hint: "음식" },
-{ text: "누룽지탕", hint: "음식" },
-{ text: "단호박 샐러드", hint: "음식" },
-{ text: "달맞이꽃차", hint: "차" },
-{ text: "돌솥 비빔밥", hint: "음식" },
-{ text: "된장찌개", hint: "음식" },
-{ text: "두부 스테이크", hint: "음식" },
-{ text: "두유 라떼", hint: "음식" },
-{ text: "둥글레차", hint: "음식" },
-{ text: "들국화차", hint: "차" },
-{ text: "들깨 칼국수", hint: "음식" },
-{ text: "딸기 케이크", hint: "디저트" },
-{ text: "라따뚜이", hint: "음식" },
-{ text: "렌틸콩 카레", hint: "음식" },
-{ text: "렌틸콩", hint: "식재료" },
-{ text: "로제 떡볶이", hint: "음식" },
-{ text: "마늘간장 치킨", hint: "음식" },
-{ text: "마라샹궈", hint: "음식" },
-{ text: "마키아또", hint: "커피 음료" },
-{ text: "매실 장아찌", hint: "음식" },
-{ text: "맨드라미차", hint: "차" },
-{ text: "멕시칸 부리또", hint: "음식" },
-{ text: "무지개 떡", hint: "음식" },
-{ text: "미역줄기 볶음", hint: "음식" },
-{ text: "바닐라 아이스크림", hint: "디저트" },
-{ text: "바지락 칼국수", hint: "음식" },
-{ text: "발사믹 식초", hint: "음식" },
-{ text: "발아통밀 파스타", hint: "음식" },
-{ text: "발아현미 누룽지", hint: "음식" },
-{ text: "발아현미밥", hint: "음식" },
-{ text: "발아현미죽", hint: "음식" },
-{ text: "병아리콩 스튜", hint: "음식" },
-{ text: "병아리콩", hint: "식재료" },
-{ text: "봉골레 파스타", hint: "음식" },
-{ text: "브라질 산토스", hint: "커피 원두" },
-{ text: "브로콜리 스프", hint: "음식" },
-{ text: "브로콜리", hint: "식재료" },
-{ text: "브루스케타", hint: "음식" },
-{ text: "블루베리 스무디", hint: "음료" },
-{ text: "비건 김밥", hint: "음식" },
-{ text: "비건 라자냐", hint: "음식" },
-{ text: "비엔나 소시지", hint: "음식" },
-{ text: "산채비빔밥", hint: "음식" },
-{ text: "샌드위치", hint: "음식" },
-{ text: "서브마린 샌드위치", hint: "음식" },
-{ text: "소고기 무국", hint: "음식" },
-{ text: "순두부 찌개", hint: "음식" },
-{ text: "숯불 갈비", hint: "음식" },
-{ text: "스트링 치즈", hint: "음식" },
-{ text: "시나몬 파우더", hint: "식재료" },
-{ text: "시칠리안 피자", hint: "음식" },
-{ text: "시카고 피자", hint: "음식" },
-{ text: "아라비아따 스파게티", hint: "음식" },
-{ text: "아마란스죽", hint: "음식" },
-{ text: "따뜻한 아메리카노", hint: "커피 음료" },
-{ text: "아몬드 밀크", hint: "음식" },
-{ text: "아보카도 샐러드", hint: "음식" },
-{ text: "아보카도 오일", hint: "음식" },
-{ text: "아보카도", hint: "채소" },
-{ text: "아스파라거스", hint: "음식" },
-{ text: "아이스 아메리카노", hint: "음료" },
-{ text: "알타리무", hint: "채소" },
-{ text: "양념치킨", hint: "음식" },
-{ text: "얼그레이 밀크티", hint: "음료" },
-{ text: "연근조림", hint: "음식" },
-{ text: "레모네이드", hint: "음료" },
-{ text: "루이보스티", hint: "음료" },
-{ text: "밀크쉐이크", hint: "음료" },
-{ text: "오렌지 주스", hint: "음료" },
-{ text: "오미자차", hint: "음료" },
-{ text: "옥수수수염차", hint: "음료" },
-{ text: "자몽에이드", hint: "음료" },
-{ text: "자스민차", hint: "음료" },
-{ text: "캐모마일티", hint: "음료" },
-{ text: "하이라이스", hint: "음식" },
-{ text: "오무라이스", hint: "음식" },
-{ text: "오트밀 쿠키", hint: "음식" },
-{ text: "올갱이 묵", hint: "음식" },
-{ text: "올리브 오일", hint: "음식" },
-{ text: "유기농 그래놀라", hint: "음식" },
-{ text: "자장 떡볶이", hint: "음식" },
-{ text: "전주 비빔밥", hint: "음식" },
-{ text: "총각 김치", hint: "음식" },
-{ text: "치아바타 샌드위치", hint: "음식" },
-{ text: "치아시드 푸딩", hint: "음식" },
-{ text: "카르보나라 스파게티", hint: "음식" },
-{ text: "카모마일차", hint: "차" },
-{ text: "캘리포니아 롤", hint: "음식" },
-{ text: "케일 스무디", hint: "음식" },
-{ text: "콜리플라워", hint: "식재료" },
-{ text: "콩나물 해장국", hint: "음식" },
-{ text: "퀴노아 샐러드", hint: "음식" },
-{ text: "타락죽", hint: "음식" },
-{ text: "탕수육", hint: "음식" },
-{ text: "토마토 스파게티", hint: "음식" },
-{ text: "토마토 주스", hint: "음료" },
-{ text: "페페로니 피자", hint: "음식" },
-{ text: "평양 냉면", hint: "음식" },
-{ text: "표고버섯", hint: "식재료" },
-{ text: "프렌치 토스트", hint: "음식" },
-{ text: "피시 앤 칩스", hint: "음식" },
-{ text: "하와이안 피자", hint: "음식" },
-{ text: "함흥 냉면", hint: "음식" },
-{ text: "허니버터치즈 닭꼬치", hint: "음식" },
-{ text: "현미죽", hint: "음식" },
-{ text: "후라이드 치킨", hint: "음식" },
-{ text: "훈제 연어", hint: "음식" },
-{ text: "휘핑 크림", hint: "식재료" },
-{ text: "과테말라 게이샤", hint: "커피 품종" },
-{ text: "라이베리아 리베리카", hint: "커피 품종" },
-{ text: "마라고지페", hint: "커피 품종" },
-{ text: "브라질 게이샤", hint: "커피 품종" },
-{ text: "수단 루메", hint: "커피 품종" },
-{ text: "에티오피아 시다모", hint: "커피 품종" },
-{ text: "에티오피아 아라비카", hint: "커피 품종" },
-{ text: "자메이카 블루마운틴", hint: "커피 품종"},
-{ text: "에티오피아 예가체프", hint: "커피 품종"},
-{ text: "엘살바도르 게이샤", hint: "커피 품종" },
-{ text: "예멘 모카", hint: "커피 품종"},
-{ text: "인도 켄트", hint: "커피 품종" },
-{ text: "인도네시아 자바", hint: "커피 품종" },
-{ text: "카티모르", hint: "커피 품종" },
-{ text: "케냐 더블에이", hint: "커피 품종" },
-{ text: "코스타리카 게이샤", hint: "커피 품종" },
-{ text: "코스타리카 파카스", hint: "커피 품종" },
-{ text: "콜롬비아 게이샤", hint: "커피 품종" },
-{ text: "콜롬비아 수프리모", hint: "커피 품종" },
-{ text: "탄자니아 킬리만자로", hint: "커피 품종" },
-{ text: "파나마 게이샤", hint: "커피 품종" },
-{ text: "하와이안 코나", hint: "커피 품종" },
-{ text: "에스프레소", hint: "커피" },
-{ text: "도피오 커피", hint: "커피" },
-{ text: "룽고 커피", hint: "커피" },
-{ text: "리스트레토", hint: "커피" },
-{ text: "마키아또", hint: "커피" },
-{ text: "더치 커피", hint: "커피" },
-{ text: "라떼 마끼아또", hint: "커피" },
-{ text: "롱블랙", hint: "커피" },
-{ text: "아메리카노", hint: "커피" },
-{ text: "아이스 라떼", hint: "커피" },
-{ text: "아인슈페너", hint: "커피" },
-{ text: "아포가토", hint: "커피" },
-{ text: "카라멜 마끼아또", hint: "커피" },
-{ text: "카페 라떼", hint: "커피" },
-{ text: "카푸치노", hint: "커피" },
-{ text: "콘 파냐", hint: "커피" },
-{ text: "콜드 브루", hint: "커피" },
-{ text: "플랫 화이트", hint: "커피" },
-{ text: "에스프레소 콘 파냐", hint: "커피" },
-{ text: "카페 모카", hint: "커피" },
-{ text: "화이트 모카", hint: "커피" },
-{ text: "감자 샐러드", hint: "음식" },
-{ text: "그릭 샐러드", hint: "음식" },
-{ text: "그린 샐러드", hint: "음식" },
-{ text: "라디키오", hint: "채소" },
-{ text: "레디비트", hint: "채소" },
-{ text: "로메인  새우 아보카도", hint: "샐러드" },
-{ text: "로메인 방울토마토", hint: "샐러드" },
-{ text: "로메인 상추", hint: "채소" },
-{ text: "매시드 포테이토", hint: "음식" },
-{ text: "멕시칸 샐러드", hint: "음식" },
-{ text: "모차렐라 치즈", hint: "식재료" },
-{ text: "방울양배추", hint: "채소" },
-{ text: "살라드 니스와즈", hint: "음식" },
-{ text: "살라드 리요네즈", hint: "음식" },
-{ text: "숍스카 샐러드", hint: "음식" },
-{ text: "시저 샐러드", hint: "음식" },
-{ text: "아보카도 달걀", hint: "샐러드" },
-{ text: "아티초크", hint: "채소" },
-{ text: "알배추 겉절이", hint: "음식" },
-{ text: "에즈메 살라타", hint: "음식" },
-{ text: "연어 샐러드", hint: "음식" },
-{ text: "오크리프", hint: "채소" },
-{ text: "이자벨 느타리버섯", hint: "샐러드" },
-{ text: "이자벨 닭안심살", hint: "샐러드" },
-{ text: "이자벨 올리브", hint: "샐러드" },
-{ text: "인살라타 카프레제", hint: "음식" },
-{ text: "적치커리", hint: "채소" },
-{ text: "청치커리", hint: "채소" },
-{ text: "치마상추", hint: "채소" },
-{ text: "코울슬로", hint: "음식" },
-{ text: "콘샐러드", hint: "음식" },
-{ text: "콥 샐러드", hint: "음식" },
-{ text: "파프리카", hint: "채소" },
-{ text: "프로슈토", hint: "식재료" },
-{ text: "해산물 샐러드", hint: "음식" },
-{ text: "호리아티키 살라타", hint: "음식" },
-{ text: "오렌지 에이드", hint: "음료" }
-
-
-
-
-
-];
+ '간장 게장', '갈릭버터새우', '갈비탕', '감자 샐러드', '감자탕', '갓김치', '개나리꽃차', '개피떡', '검은콩떡', '견과류떡', '계란말이',  '고들빼기김치', '고등어조림', '고추잎김치', '고추잡채', '고추장아찌', '병아리콩', '곤드레밥', '곤약면', '골뱅이 소면', '군만두', '궁중떡볶이', '귀리죽', '그레인프리파스타', '그릭 샐러드', '그린 샐러드',  '기장떡', '기장밥', '김치', '김치 볶음밥', '김치말이 국수', '김치볶음밥', '김치전', '김치찌개', '김치찜', '까나리 액젓', '깍두기', '깐풍새우', '깨강정', '깻잎 장아찌', '깻잎김치', '깻잎장아찌', '나물비빔밥', '나박김치', '나폴리탄 스파게티', '녹두전병', '누룽지탕', '다시마국', '단호박 샐러드', '단호박국수', '단호박떡', '달맞이꽃차', '닭도리탕', '닭볶음탕', '당근 샐러드', '당근 케이크', '당근김치', '대추송편', '더덕김치', '더덕장아찌', '더치 커피', '데리야키 치킨', '도라지김치', '도라지장아찌', '도피오 커피', '돌솥 비빔밥', '돌솥비빔밥', '동치미', '돼지갈비찜', '된장국', '된장찌개', '두부 스크램블', '두부 스테이크', '두부면 파스타', '두부조림', '두유 라떼', '둥글레차', '들국화차', '들깨 칼국수', '따뜻한 아메리카노', '딸기 소르베', '딸기 케이크', '딸기케이크', '땅콩강정', '떡만둣국', '똠양꿍', '라따뚜이', '라떼 마끼아또', '라이베리아 리베리카 커피 원두', '라자냐', '레드 카레', '레모네이드', '레몬 소르베', '레몬 케이크', '렌틸콩 카레', '로메인 방울토마토', '로메인 새우 아보카도', '로즈마리 오레가노', '롱블랙 커피', '루이보스티', '룽고 커피', '리스트레토', '리조또', '마늘간장 치킨', '마늘장아찌', '마늘쫑김치', '마들렌', '마카롱', '마키아또 커피', '마파두부', '망고 젤라또', '매생이굴떡국', '매시드 포테이토', '매실 장아찌', '매운탕', '머스터드',  '마요네즈', '멕시칸 부리또', '멕시칸 샐러드', '모차렐라 치즈', '무말랭이김치', '무장아찌', '무지개떡', '물김치', '물만두', '미나리김치', '미역국', '미역줄기 볶음', '밀크쉐이크', '바나나 케이크', '바닐라 젤라또', '바닐라 푸딩', '바지락 칼국수', '계란말이', '연근조림', '발사믹 식초', '발아통밀 파스타', '발아현미 누룽지', '발아현미떡', '발아현미밥', '발아현미죽', '밤송편', '배추김치', '백김치', '백설기떡', '버섯 스테이크', '버터 쿠키', '병아리콩 스튜', '보리떡', '보쌈김치', '봉골레 파스타',  '부추김치', '브라우니', '브라질 산토스', '브로콜리 샐러드', '브로콜리 스프', '브로콜리김치', '블루베리 머핀', '블루베리 스무디', '비건 라자냐', '비건라자냐', '비엔나 소시지', '비트 샐러드', '산채비빔밥', '삼겹살구이', '삼계탕', '새우튀김', '샌드위치', '생선구이', '서리태떡', '서브마린 샌드위치', '설렁탕', '소고기 무국', '소고기 스테이크', '소고기스테이크', '소르베',  '수수밥', '수수팥떡', '순두부 찌개', '순두부찌개', '순무김치', '숯불 갈비', '슈크림', '스테이크 타르타르', '스트링 치즈', '스파게티', '시금치 샐러드', '시금치김치', '시나몬 파우더', '시루떡', '시저 샐러드', '시저샐러드', '시칠리안 피자', '시카고 피자', '식빵', '쌀국수', '쑥개떡', '쑥송편', '쑥시루떡', '아라비아따', '아라비아따 스파게티', '아마란스죽', '아마씨 샐러드', '아메리카노', '아몬드 밀크', '아몬드 샐러드', '아몬드 쿠키', '아보카도', '아보카도 달걀', '아보카도 샐러드', '아보카도 오일', '아스파라거스', '아이스 라떼', '아이스 아메리카노', '아인슈페너', '아포가토', '안동찜닭', '알배추 겉절이', '알타리김치', '애플 파이', '애호박전병', '야키소바', '양념치킨', '양배추김치', '양파김치', '양파장아찌', '얼그레이 밀크티', '에스프레소 커피', '에스프레소 콘 파냐', '에즈메 살라타', '에클레어', '에티오피아 시다모 커피 원두', '에티오피아 아라비카 커피 원두', '에티오피아 예가체프 커피 원두', '연근김치', '연근장아찌', '연두부 샐러드', '연어 샐러드', '연어 스테이크', '연어초밥', '열무김치', '예멘 모카 커피 원두', '오곡강정', '오곡밥', '오렌지 에이드', '오렌지 주스', '오무라이스', '오미자차', '오색송편', '오이깍두기', '오이소박이', '오이장아찌', '오이피클', '오일 파스타', '오코노미야키', '오트밀 쿠키', '옥수수떡', '옥수수수염차', '올갱이 묵', '올리브 오일', '와플', '우엉김치', '우엉장아찌', '월남쌈', '유부초밥', '육개장', '율무떡', '이자벨 느타리버섯 샐러드', '이자벨 닭안심살 샐러드', '이자벨 올리브 샐러드', '인도네시아 자바 커피 원두', '인살라타 카프레제', '인절미떡', '자메이카 블루마운틴 커피 원두', '자몽에이드', '자색고구마떡', '자스민차', '자장 떡볶이', '잡곡밥', '전주 비빔밥', '전주비빔밥', '젤라또', '쪽파김치', '차조떡', '채소 라디키오', '채소 레디비트', '채소 로메인 상추', '채소 방울양배추', '채소 브로콜리', '채소 아티초크', '채소 알타리무', '채소 오크리프', '채소 적치커리', '채소 청치커리', '채소 치마상추', '채소 파프리카', '채소 표고버섯', '청국장찌개', '체리 파이', '초콜릿 도넛', '초콜릿 케이크', '초콜릿 쿠키', '초콜릿 푸딩', '초콜릿 케이크', '총각 김치', '총각김치', '추어탕', '취나물김치', '치아바타 샌드위치', '치아시드 푸딩', '치즈 케이크', '치킨 스테이크', '카라멜 마끼아또', '카라멜 푸딩', '카르보나라', '카르보나라 스파게티', '카모마일차', '카티모르 커피 원두', '카페 라떼', '카페 모카', '카푸치노', '캐모마일 티', '캘리포니아 롤', '케냐 더블에이 커피 원두', '케일 샐러드', '케일 스무디', '코울슬로', '코코넛 오일', '콘 샐러드', '콘 파냐 커피', '콘샐러드', '콜드 브루', '콜라비김치', '콜롬비아 수프리모 커피 원두', '콜리플라워', '콜리플라워 구이', '콥 샐러드', '콥샐러드', '콩개떡', '콩나물 해장국', '콩나물해장국', '콩송편', '콩시루떡', '퀴노아 샐러드', '퀴노아밥', '크루아상', '크림 파스타', '크림브륄레', '클럽 샌드위치', '탄자니아 킬리만자로 커피 원두', '토마토 스파게티', '토마토 주스', '토마토파스타', '톳나물', '티라미수', '파김치', '파래무침', '파스타 푸타네스카', '파프리카김치', '팟타이', '팥송편', '팥시루떡', '팬 케이크', '페스토 파스타', '페페로니 피자', '평양 냉면', '프렌치 토스트', '프렌치토스트', '프로슈토', '플랫 화이트', '피스타치오 젤라또', '피시 앤 칩스', '피자 마르게리타', '하와이안 코나 커피 원두', '하와이안 피자', '하이라이스', '함흥 냉면', '해물탕', '해산물 샐러드', '해조류 샐러드', '현미떡', '현미밥', '현미죽', '호두 샐러드', '호박 파이', '호박전병', '화이트 모카', '후라이드 치킨', '훈제 연어', '휘낭시에', '휘핑 크림', '흑임자떡',
+     ];
 
     const consonants = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
 
@@ -571,9 +340,8 @@
     let wrongConsonants = new Set();
     let gameWon = false;
     let gameLost = false;
-    const maxWrongAttempts = 3;
+    const maxWrongAttempts = 4;
     let charStates = [];
-    let currentHint = '';
 
     // 셔플된 문장 리스트와 인덱스
     let shuffledSentences = [];
@@ -595,19 +363,28 @@
         return shuffledSentences[sentenceIndex++];
     }
 
-    function containsConsonant(targetChar, consonant) {
-        const consonantMap = {
-            'ㄲ': 'ㄱ', 'ㄸ': 'ㄷ', 'ㅃ': 'ㅂ', 'ㅆ': 'ㅅ', 'ㅉ': 'ㅈ'
-        };
+    // 겹받침 처리를 위한 개선된 함수
+    function getComplexConsonantComponents(consonant) {
         const complexConsonantMap = {
             'ㄳ': ['ㄱ', 'ㅅ'], 'ㄵ': ['ㄴ', 'ㅈ'], 'ㄶ': ['ㄴ', 'ㅎ'],
             'ㄺ': ['ㄹ', 'ㄱ'], 'ㄻ': ['ㄹ', 'ㅁ'], 'ㄼ': ['ㄹ', 'ㅂ'],
             'ㄽ': ['ㄹ', 'ㅅ'], 'ㄾ': ['ㄹ', 'ㅌ'], 'ㄿ': ['ㄹ', 'ㅍ'],
             'ㅀ': ['ㄹ', 'ㅎ'], 'ㅄ': ['ㅂ', 'ㅅ']
         };
+        return complexConsonantMap[consonant] || null;
+    }
+
+    function containsConsonant(targetChar, consonant) {
+        const consonantMap = {
+            'ㄲ': 'ㄱ', 'ㄸ': 'ㄷ', 'ㅃ': 'ㅂ', 'ㅆ': 'ㅅ', 'ㅉ': 'ㅈ'
+        };
+        
         if (targetChar === consonant) return true;
         if (consonantMap[targetChar] === consonant) return true;
-        if (complexConsonantMap[targetChar] && complexConsonantMap[targetChar].includes(consonant)) return true;
+        
+        const components = getComplexConsonantComponents(targetChar);
+        if (components && components.includes(consonant)) return true;
+        
         return false;
     }
 
@@ -639,8 +416,33 @@
         return String.fromCharCode(code);
     }
 
+    // 종성이 완전히 맞춰졌는지 확인하는 개선된 함수
+    function isJongComplete(charData) {
+        if (!charData.jong) return true; // 종성이 없으면 완료
+        
+        // 쌍받침 처리 (ㄲ, ㅆ)
+        const doubleConsonantMap = {
+            'ㄲ': 'ㄱ', 'ㅆ': 'ㅅ'
+        };
+        
+        if (doubleConsonantMap[charData.jong]) {
+            // 쌍받침: 기본 자음이 맞춰지면 완료
+            const baseConsonant = doubleConsonantMap[charData.jong];
+            return charData.foundJongComponents.has(baseConsonant) || charData.foundJongComponents.has(charData.jong);
+        }
+        
+        const components = getComplexConsonantComponents(charData.jong);
+        if (!components) {
+            // 단순 종성: 하나만 맞추면 됨
+            return charData.foundJongComponents.has(charData.jong);
+        } else {
+            // 겹받침: 모든 구성 요소가 맞춰져야 함
+            return components.every(comp => charData.foundJongComponents.has(comp));
+        }
+    }
+
     function isCharComplete(charData) {
-        return charData.choFound && (!charData.jong || charData.jongFound);
+        return charData.choFound && isJongComplete(charData);
     }
 
     function createConsonantButtons() {
@@ -671,17 +473,47 @@
             }
         });
 
-        // 마지막 단어 추가
         if (currentWord.length > 0) {
             words.push(currentWord);
         }
 
-        // 단어별로 그룹화하여 출력
         const wordGroups = words.map(word => 
             `<span class="word-group">${word.join('')}</span>`
         );
 
         document.getElementById('sentenceArea').innerHTML = wordGroups.join('');
+    }
+
+    // 종성 표시를 위한 개선된 함수
+    function getDisplayJong(charData) {
+        if (!charData.jong) return '';
+        
+        // 쌍받침 처리 (ㄲ, ㅆ)
+        const doubleConsonantMap = {
+            'ㄲ': 'ㄱ', 'ㅆ': 'ㅅ'
+        };
+        
+        if (doubleConsonantMap[charData.jong]) {
+            const baseConsonant = doubleConsonantMap[charData.jong];
+            if (charData.foundJongComponents.has(baseConsonant) || charData.foundJongComponents.has(charData.jong)) {
+                return charData.jong; // 쌍받침 전체 표시
+            }
+            return '';
+        }
+        
+        const components = getComplexConsonantComponents(charData.jong);
+        if (!components) {
+            // 단순 종성
+            return charData.foundJongComponents.has(charData.jong) ? charData.jong : '';
+        } else {
+            // 겹받침: 찾은 구성 요소만 표시
+            const foundComponents = components.filter(comp => charData.foundJongComponents.has(comp));
+            if (foundComponents.length === 0) return '';
+            if (foundComponents.length === components.length) return charData.jong; // 모두 찾음
+            
+            // 일부만 찾은 경우: 찾은 구성 요소들만 표시
+            return foundComponents.join('');
+        }
     }
 
     function updateDisplay() {
@@ -700,29 +532,35 @@
                 } else {
                     let displayCho = charData.choFound ? charData.cho : '';
                     let displayJung = charData.jung;
-                    let displayJong = (charData.jong && charData.jongFound) ? charData.jong : '';
+                    let displayJong = getDisplayJong(charData);
 
-                    if (displayCho && displayJong) {
+                    if (displayCho && displayJong && isJongComplete(charData)) {
                         currentWord.push(`<span class="hangul-char complete-char">${composeHangul(displayCho, displayJung, displayJong)}</span>`);
                     } else if (displayCho && !charData.jong) {
                         currentWord.push(`<span class="hangul-char complete-char">${composeHangul(displayCho, displayJung)}</span>`);
                     } else if (displayCho) {
-                        currentWord.push(`<span class="hangul-char incomplete-char">${composeHangul(displayCho, displayJung)}</span>`);
+                        if (displayJong) {
+                            // 초성 있고 종성 일부만 맞춤
+                            currentWord.push(`<span class="hangul-char incomplete-char">${composeHangul(displayCho, displayJung, displayJong)}</span>`);
+                        } else {
+                            // 초성만 있음
+                            currentWord.push(`<span class="hangul-char incomplete-char">${composeHangul(displayCho, displayJung)}</span>`);
+                        }
                     } else if (displayJong) {
+                        // 종성만 있음 (초성 없음)
                         currentWord.push(`<span class="hangul-char incomplete-char" style="position: relative; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; min-width: 1em; height: 1.2em;"><span style="font-size: 0.8em;">${displayJung}</span><span style="font-size: 0.7em; margin-top: -0.1em;">${displayJong}</span></span>`);
                     } else {
+                        // 모음만 있음
                         currentWord.push(`<span class="hangul-char incomplete-char">${displayJung}</span>`);
                     }
                 }
             }
         });
 
-        // 마지막 단어 추가
         if (currentWord.length > 0) {
             words.push(currentWord);
         }
 
-        // 단어별로 그룹화하여 출력
         const wordGroups = words.map(word => 
             `<span class="word-group">${word.join('')}</span>`
         );
@@ -736,12 +574,25 @@
         let found = false;
         charStates.forEach(charData => {
             if (charData.isSpace || charData.isNonHangul) return;
+            
+            // 초성 처리
             if (!charData.choFound && containsConsonant(charData.cho, consonant)) {
                 charData.choFound = true;
                 found = true;
             }
-            if (charData.jong && !charData.jongFound && containsConsonant(charData.jong, consonant)) {
-                charData.jongFound = true;
+            
+            // 종성 처리 - 개선된 로직
+            if (charData.jong && containsConsonant(charData.jong, consonant)) {
+                charData.foundJongComponents.add(consonant);
+                
+                // 쌍받침의 경우 기본 자음을 맞췄을 때 쌍받침도 추가
+                const doubleConsonantReverse = {
+                    'ㄱ': 'ㄲ', 'ㅅ': 'ㅆ'
+                };
+                if (doubleConsonantReverse[consonant] === charData.jong) {
+                    charData.foundJongComponents.add(charData.jong);
+                }
+                
                 found = true;
             }
         });
@@ -776,9 +627,7 @@
     }
 
     function startNewGame() {
-        const randomSentenceData = getNextSentence();
-        currentSentence = randomSentenceData.text;
-        currentHint = randomSentenceData.hint;
+        currentSentence = getNextSentence();
         guessedConsonants = new Set();
         wrongConsonants = new Set();
         gameWon = false;
@@ -786,7 +635,6 @@
         charStates = [];
         document.getElementById('winMessage').style.display = 'none';
         document.getElementById('loseMessage').style.display = 'none';
-        document.getElementById('hintText').textContent = currentHint;
 
         for (let char of currentSentence) {
             if (char === ' ') {
@@ -802,7 +650,7 @@
                         jung: decomposed.jung,
                         jong: decomposed.jong,
                         choFound: false,
-                        jongFound: false,
+                        foundJongComponents: new Set(), // 종성 구성 요소들을 저장
                         isSpace: false,
                         isNonHangul: false
                     });
@@ -821,7 +669,6 @@
         startNewGame();
     };
 </script>
-
 
 </body>
 </html>
