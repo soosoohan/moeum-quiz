@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>모음퀴즈 여행지 </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+    body {
+        font-family: 'Malgun Gothic', sans-serif;
+        background: linear-gradient(135deg, #DFF2EB 0%, #B9E5E8 50%, #7AB2D3 100%);
+        min-height: 100vh;
+        padding: 20px;
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .title {
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #4A628A;
+        margin-bottom: 10px;
+    }
+    
+    .subtitle {
+        color: #4A628A;
+        font-size: 1.1em;
+    }
+    
+    .game-board {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(74, 98, 138, 0.2);
+        padding: 30px;
+        margin-bottom: 20px;
+    }
+    
+    .sentence-display {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .sentence-area {
+        font-size: 3em;
+        background: rgba(223, 242, 235, 0.3);
+        padding: 30px;
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        line-height: 1.2;
+        word-break: keep-all;
+        overflow-wrap: break-word;
+    }
+
+    .word-group {
+        display: inline-flex;
+        flex-wrap: nowrap;
+        white-space: nowrap;
+        align-items: center;
+        margin-right: 0.3em; /* 단어 사이 간격 조정 */
+    }
+
+    .word-group:last-child {
+        margin-right: 0; /* 마지막 단어는 오른쪽 여백 제거 */
+    }
+
+    .hangul-char {
+        display: inline-block;
+        min-width: 1em;
+        height: 1.2em;
+        text-align: center;
+        vertical-align: baseline;
+        font-family: 'Malgun Gothic', sans-serif;
+    }
+    
+    .incomplete-char {
+        background: rgba(223, 242, 235, 0.3);
+        color: #4A628A;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 1em;
+        height: 1.2em;
+    }
+    
+    .complete-char {
+        color: #4A628A;
+    }
+    
+    .space {
+        width: 0.5em;
+    }
+    
+    .win-message {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .win-alert {
+        background: rgba(223, 242, 235, 0.9);
+        border: 1px solid #7AB2D3;
+        color: #4A628A;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 1.2em;
+    }
+    
+    .lose-message {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .lose-alert {
+        background: rgba(122, 178, 211, 0.2);
+        border: 1px solid #7AB2D3;
+        color: #4A628A;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 1.2em;
+    }
+    
+    .wrong-attempts {
+        background: rgba(122, 178, 211, 0.3);
+        color: #4A628A;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+    
+    
+    .consonant-section {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(74, 98, 138, 0.2);
+        padding: 30px;
+        margin-bottom: 20px;
+    }
+    
+    .consonant-title {
+        font-size: 1.2em;
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #4A628A;
+    }
+    
+    .consonant-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 10px;
+    }
+    
+    .consonant-btn {
+        width: 80px;
+        height: 80px;
+        font-size: 2.0em;
+        font-weight: bold;
+        border-radius: 8px;
+        border: 2px solid;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .consonant-btn.available {
+        background: linear-gradient(135deg, #B9E5E8, #DFF2EB);
+        color: #4A628A;
+        border-color: #7AB2D3;
+    }
+    
+    .consonant-btn.available:hover {
+        background: linear-gradient(135deg, #7AB2D3, #B9E5E8);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(74, 98, 138, 0.3);
+    }
+    
+    .consonant-btn.correct {
+        background: #7AB2D3;
+        color: white;
+        border-color: #4A628A;
+    }
+    
+    .consonant-btn.wrong {
+        background: pink;
+        color: red;
+        border-color: #B9E5E8;
+        cursor: not-allowed;
+    }
+    
+    .game-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .stats {
+        font-size: 1.3em;
+        color: #4A628A;
+    }
+    
+    .new-game-btn {
+        background: linear-gradient(135deg, #7AB2D3, #4A628A);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: all 0.3s ease;
+    }
+    
+    .new-game-btn:hover {
+        background: linear-gradient(135deg, #4A628A, #7AB2D3);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(74, 98, 138, 0.3);
+    }
+    
+    
+    @media (max-width: 600px) {
+        .title {
+            font-size: 1.8em;
+        }
+
+        .sentence-area {
+            font-size: 1.8em;
+            padding: 20px;
+            min-height: 80px;
+        }
+
+        .consonant-grid {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        .consonant-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 1.2em;
+        font-weight: bold;
+        }
+
+        .new-game-btn {
+            width: 100%;
+            padding: 12px 0;
+            font-size: 1em;
+       
+}
+
+        .game-info {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .container {
+            padding: 10px;
+        }
+    }
+</style>
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">모음 퀴즈 일상 대화</h1>
+            <p class="subtitle">모음은 공개! 자음을 맞춰서 완전한 글자를 만드세요!</p>
+        </div>
+
+<div class="game-board">        
+        <div class="sentence-display">
+            <div class="sentence-area" id="sentenceArea">
+                게임을 시작하세요!
+            </div>
+        </div>
+
+
+    <div id="winMessage" class="win-message" style="display: none;">
+        <div class="win-alert">
+            정답을 맞추셨습니다!
+        </div>
+    </div>
+    
+    <div id="loseMessage" class="lose-message" style="display: none;">
+        <div class="lose-alert">
+            게임 종료! 정답을 확인하세요.
+        </div>
+    </div>
+</div>
+
+<div class="consonant-section">
+    <h3 class="consonant-title">자음을 선택하세요</h3>
+    <div class="consonant-grid" id="consonantGrid">
+        <!-- 자음 버튼들이 여기에 생성됩니다 -->
+    </div>
+</div>
+
+<div class="game-info">
+    <div class="stats" id="gameStats">
+        맞춘 자음: 0개 | 틀린 자음: 0개
+    </div>
+    <button class="new-game-btn" onclick="startNewGame()">새 게임</button>
+
+
+<button class="new-game-btn" onclick="location.href='index.html'" class="game-button">초기 화면</button>
+</div>
+
+</div>
+
+<script>
+    // 게임 데이터 (단순화된 워드풀)
+    const sentences = [
+    '가평 아침고요수목원', '강릉 경포대', '강릉 안목해변', '강릉 정동진', '강릉시 정동진', '강원 고성 설악산 건봉사', '강원 동해 무릉계곡 삼화사', '강원 속초 설악산 신흥사', '강원 양양 낙산 낙산사', '강원 영월 계족산 영월사', '강원 인제 설악산 백담사', '강원 평창 오대산 상원사', '강원 평창 오대산 월정사', '강원 홍천 공작산 수타사', '강원 홍천 팔봉산 자운사', '강진 다산초당', '강진 도갑사', '강진 도갑산 도갑사', '강화 고인돌 유적', '강화 전등사', '개성 보광사', '개성 성불사', '개성 은율사', '거제 바람의 언덕', '거창 관음사', '거창 수승대', '경기 고양 북한산 흥국사', '경기 구리 아차산 약사사', '경기 남양주 운길산 봉선사', '경기 남양주 운길산 수종사', '경기 안성 칠장산 칠장사', '경기 양평 용문산 석남사', '경기 양평 용문산 용문사', '경기 여주 여주 신륵사', '경기 의정부 도봉산 망월사', '경기도 광주 남한산성', '경복궁', '경복궁 조선의 법궁', '경주  불국사', '경주 보문산 감은사', '경주 불국사', '경주 석굴암', '경주 양동마을', '경주 역사유적지구', '경주 토함산 불국사', '경주 토함산 석굴암', '경희궁', '고성 화진포', '고양 서삼릉', '고양 서오릉', '고창 고인돌 유적', '고창 고인돌유적', '고창 내장산 선운사', '고창 선운사', '곡성 기차마을', '공주 공산성', '공주 마곡사', '공주 한옥마을', '광양 매화마을', '광주 화담숲', '괴산 산막이옛길', '구례 지리산 화엄사', '구리 동구릉', '국립중앙박물관', '군산 시간여행마을', '금강산 만월대사', '금강산 유점사', '금강산 장안사', '금강산 통일사', '금강산 표훈사', '금산 칠백의총', '김제 모악산 금산사', '김제 벽골제', '김제 용화사', '김포 장릉', '김해 장유 포교사', '낙산 공원', '남산 남산 타워', '남산골 한옥마을', '남양주 광릉', '남양주 물의정원', '남양주 사릉', '남양주 홍릉과 유릉', '남원 광한루원', '논산 관촉사', '단양 도담삼봉', '단양 수양개 선사유적지', '담양 죽녹원', '덕수궁  대한제국 황궁', '덕수궁 석조전', '동주 무령왕릉', '동해 추암 촛대바위', '묘향산 보현사', '묘향산 정양사', '무주 구암사', '무주 덕유산', '무주 적상사', '문경 새재', '문경 선본사', '밀양 영남루', '변산 대야사', '보령 대천해수욕장', '보성 녹차밭', '보은 정이품송', '봉화 도리사', '봉화 청량산', '봉화 화엄사', '부산 금정산 범어사', '부소산성 낙화암', '부안 내소사', '부여 정림사지', '북촌 한옥마을', '사천 죽림온천', '산청 대원사', '삼척 해신당공원', '상주 경천대', '서산 간월암', '서산 마애삼존불', '서울 관악산 승가사', '서울 광화문', '서울 북한산 국청사', '서울 북한산 도선사', '서울 북한산 봉국사', '서울 북한산 삼천사', '서울 북한산 진관사', '서울 북한산 호압사', '서울 북한산 화계사', '서울 선릉과 정릉', '서울 의릉', '서울 인왕산 연화사', '서울 정릉', '서울 종묘', '서울 창덕궁', '서울 태릉과 강릉', '서울 헌릉과 인릉', '서천 국립생태원', '설악산 신흥사', '성북동 천문대', '성산 일출봉', '성수동 서울숲', '속리산 법주사', '속초 설악산', '속초 영랑호', '송산리 고분군', '수원 화성', '순창 강천산', '순천 낙안읍성', '순천 용문사', '순천 조계산 선암사', '순천 조계산 송광사', '순천만 국가정원', '안동 옥산서원', '안동 청량산 봉정사', '안동 하회마을', '양산 영축산 통도사', '양산 통도사', '양양 낙산사', '양주 온릉', '양평 두물머리', '여수 오동도', '여주 신륵사', '여주 영릉', '영광 불갑사', '영광 불갑산 불갑사', '영암 영암사', '영암 월출산 대흥사', '영월 장릉', '영주 부석사', '예산 덕산온천', '예산 수덕사', '오대산 월정사', '완도 청산도', '용인 민속촌', '용인 에버랜드', '용인 한국민속촌', '운산 반구천 암각화', '울진 죽변항', '원주 소금산 출렁다리', '음성 감곡매괴성당', '의왕 백운호수', '이천 도예마을', '익산 미륵사지', '인제 방태산', '인천 월미도', '장성 무위사', '장성 백양산 백양사', '장수 논개생가지', '장흥 편백숲', '전주 한옥마을', '정읍 내장산', '정읍 내장산 내장사', '제주 비자나무 숲', '제주 성산일출봉', '제주 용암 동굴', '제주 화산섬', '제주도 김녕 해수욕장', '제주도 만장굴', '제주도 산방산', '제주도 섭지코지', '제주도 용눈이오름', '제주도 우도', '제주도 정방폭포', '제천 리솜포레스트', '제천 의림지', '지리산 화엄사', '진도 세방낙조', '진안 금산 금산사', '진안 마이산', '진안 마이산 탑사', '진주시 진주성', '진천 농다리', '창경궁 벚꽃', '창녕 법륜사', '창녕 불영사', '창녕 우포늪', '창덕궁 비원', '창원 용지공원', '천지연 폭포', '청도 관음사', '청송 주왕산', '청주 상당산성', '충남 공주 계룡산 갑사', '충남 공주 계룡산 신원사', '충남 공주 태화산 마곡사', '충남 논산 운주사', '충남 부여 보원사', '충남 부여 연곡사', '충남 예산 광덕산 광덕사', '충남 예산 수덕사', '충남 청양 장곡사', ' 괴산 속리산 보덕사', ' 보은 속리산 문장대', ' 보은 속리산 법주사', '충북과학체험관', ' 제천 수암사', ' 청원 속리산 법주사', ' 충주 미륵사', ' 충주 월성사', ' 충주 월악산 법천사', ' 충주 월악산 상원사', '충주 탄금대', '칠곡 가산산성', '태백 탄탄파크', '태백산 정암사', '태안 신두리해안사구', '태안 안면도', '토함산 석굴암', 'DMG 비무장지대', '통영 동피랑마을', '파주 삼릉', '파주 장릉', '팔공산 동화사', '평양 보통사', '평양 칠성사', '평창 대관령', '포항 호미곶', '하동 화개장터', '한강 노들섬', '한라산 국립공원', '함양 지리산 천은사', '합천 가야산 대광사', '합천 가야산 영암사', '합천 가야산 해인사', '합천 해인사 장경판전', '해남 고란사', '해남 달마산 해남사', '해남 대흥사', '해남 옥룡사', '협재 해수욕장', '홍천 오대산', '화성 융릉과 건릉', '화순 고인돌 유적', '화순 법성사', '화순 운주사',
+
+
+        ];
+
+    const consonants = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+
+    let currentSentence = '';
+    let guessedConsonants = new Set();
+    let wrongConsonants = new Set();
+    let gameWon = false;
+    let gameLost = false;
+    const maxWrongAttempts = 4;
+    let charStates = [];
+
+    // 셔플된 문장 리스트와 인덱스
+    let shuffledSentences = [];
+    let sentenceIndex = 0;
+
+    function shuffleSentences() {
+        shuffledSentences = [...sentences];
+        for (let i = shuffledSentences.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledSentences[i], shuffledSentences[j]] = [shuffledSentences[j], shuffledSentences[i]];
+        }
+        sentenceIndex = 0;
+    }
+
+    function getNextSentence() {
+        if (sentenceIndex >= shuffledSentences.length) {
+            shuffleSentences();
+        }
+        return shuffledSentences[sentenceIndex++];
+    }
+
+    // 겹받침 처리를 위한 개선된 함수
+    function getComplexConsonantComponents(consonant) {
+        const complexConsonantMap = {
+            'ㄳ': ['ㄱ', 'ㅅ'], 'ㄵ': ['ㄴ', 'ㅈ'], 'ㄶ': ['ㄴ', 'ㅎ'],
+            'ㄺ': ['ㄹ', 'ㄱ'], 'ㄻ': ['ㄹ', 'ㅁ'], 'ㄼ': ['ㄹ', 'ㅂ'],
+            'ㄽ': ['ㄹ', 'ㅅ'], 'ㄾ': ['ㄹ', 'ㅌ'], 'ㄿ': ['ㄹ', 'ㅍ'],
+            'ㅀ': ['ㄹ', 'ㅎ'], 'ㅄ': ['ㅂ', 'ㅅ']
+        };
+        return complexConsonantMap[consonant] || null;
+    }
+
+    function containsConsonant(targetChar, consonant) {
+        const consonantMap = {
+            'ㄲ': 'ㄱ', 'ㄸ': 'ㄷ', 'ㅃ': 'ㅂ', 'ㅆ': 'ㅅ', 'ㅉ': 'ㅈ'
+        };
+        
+        if (targetChar === consonant) return true;
+        if (consonantMap[targetChar] === consonant) return true;
+        
+        const components = getComplexConsonantComponents(targetChar);
+        if (components && components.includes(consonant)) return true;
+        
+        return false;
+    }
+
+    function decomposeHangul(char) {
+        const code = char.charCodeAt(0) - 0xAC00;
+        if (code < 0 || code > 11171) return null;
+        const jong = code % 28;
+        const jung = (code - jong) / 28 % 21;
+        const cho = ((code - jong) / 28 - jung) / 21;
+        const choTable = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        const jungTable = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
+        const jongTable = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        return {
+            cho: choTable[cho],
+            jung: jungTable[jung],
+            jong: jong === 0 ? '' : jongTable[jong]
+        };
+    }
+
+    function composeHangul(cho, jung, jong = '') {
+        const choTable = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        const jungTable = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
+        const jongTable = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        const choIndex = choTable.indexOf(cho);
+        const jungIndex = jungTable.indexOf(jung);
+        const jongIndex = jongTable.indexOf(jong);
+        if (choIndex === -1 || jungIndex === -1 || jongIndex === -1) return null;
+        const code = 0xAC00 + (choIndex * 21 + jungIndex) * 28 + jongIndex;
+        return String.fromCharCode(code);
+    }
+
+    // 종성이 완전히 맞춰졌는지 확인하는 개선된 함수
+    function isJongComplete(charData) {
+        if (!charData.jong) return true; // 종성이 없으면 완료
+        
+        // 쌍받침 처리 (ㄲ, ㅆ)
+        const doubleConsonantMap = {
+            'ㄲ': 'ㄱ', 'ㅆ': 'ㅅ'
+        };
+        
+        if (doubleConsonantMap[charData.jong]) {
+            // 쌍받침: 기본 자음이 맞춰지면 완료
+            const baseConsonant = doubleConsonantMap[charData.jong];
+            return charData.foundJongComponents.has(baseConsonant) || charData.foundJongComponents.has(charData.jong);
+        }
+        
+        const components = getComplexConsonantComponents(charData.jong);
+        if (!components) {
+            // 단순 종성: 하나만 맞추면 됨
+            return charData.foundJongComponents.has(charData.jong);
+        } else {
+            // 겹받침: 모든 구성 요소가 맞춰져야 함
+            return components.every(comp => charData.foundJongComponents.has(comp));
+        }
+    }
+
+    function isCharComplete(charData) {
+        return charData.choFound && isJongComplete(charData);
+    }
+
+    function createConsonantButtons() {
+        const grid = document.getElementById('consonantGrid');
+        grid.innerHTML = '';
+        consonants.forEach(consonant => {
+            const button = document.createElement('button');
+            button.className = 'consonant-btn available';
+            button.textContent = consonant;
+            button.onclick = () => handleConsonantClick(consonant);
+            button.id = `btn-${consonant}`;
+            grid.appendChild(button);
+        });
+    }
+
+    function showAnswer() {
+        const words = [];
+        let currentWord = [];
+
+        charStates.forEach(charData => {
+            if (charData.isSpace) {
+                if (currentWord.length > 0) {
+                    words.push(currentWord);
+                    currentWord = [];
+                }
+            } else {
+                currentWord.push(`<span class="hangul-char complete-char">${charData.char}</span>`);
+            }
+        });
+
+        if (currentWord.length > 0) {
+            words.push(currentWord);
+        }
+
+        const wordGroups = words.map(word => 
+            `<span class="word-group">${word.join('')}</span>`
+        );
+
+        document.getElementById('sentenceArea').innerHTML = wordGroups.join('');
+    }
+
+    // 종성 표시를 위한 개선된 함수
+    function getDisplayJong(charData) {
+        if (!charData.jong) return '';
+        
+        // 쌍받침 처리 (ㄲ, ㅆ)
+        const doubleConsonantMap = {
+            'ㄲ': 'ㄱ', 'ㅆ': 'ㅅ'
+        };
+        
+        if (doubleConsonantMap[charData.jong]) {
+            const baseConsonant = doubleConsonantMap[charData.jong];
+            if (charData.foundJongComponents.has(baseConsonant) || charData.foundJongComponents.has(charData.jong)) {
+                return charData.jong; // 쌍받침 전체 표시
+            }
+            return '';
+        }
+        
+        const components = getComplexConsonantComponents(charData.jong);
+        if (!components) {
+            // 단순 종성
+            return charData.foundJongComponents.has(charData.jong) ? charData.jong : '';
+        } else {
+            // 겹받침: 찾은 구성 요소만 표시
+            const foundComponents = components.filter(comp => charData.foundJongComponents.has(comp));
+            if (foundComponents.length === 0) return '';
+            if (foundComponents.length === components.length) return charData.jong; // 모두 찾음
+            
+            // 일부만 찾은 경우: 찾은 구성 요소들만 표시
+            return foundComponents.join('');
+        }
+    }
+
+    function updateDisplay() {
+        const words = [];
+        let currentWord = [];
+
+        charStates.forEach(charData => {
+            if (charData.isSpace) {
+                if (currentWord.length > 0) {
+                    words.push(currentWord);
+                    currentWord = [];
+                }
+            } else {
+                if (charData.isNonHangul) {
+                    currentWord.push(`<span class="hangul-char complete-char">${charData.char}</span>`);
+                } else {
+                    let displayCho = charData.choFound ? charData.cho : '';
+                    let displayJung = charData.jung;
+                    let displayJong = getDisplayJong(charData);
+
+                    if (displayCho && displayJong && isJongComplete(charData)) {
+                        currentWord.push(`<span class="hangul-char complete-char">${composeHangul(displayCho, displayJung, displayJong)}</span>`);
+                    } else if (displayCho && !charData.jong) {
+                        currentWord.push(`<span class="hangul-char complete-char">${composeHangul(displayCho, displayJung)}</span>`);
+                    } else if (displayCho) {
+                        if (displayJong) {
+                            // 초성 있고 종성 일부만 맞춤
+                            currentWord.push(`<span class="hangul-char incomplete-char">${composeHangul(displayCho, displayJung, displayJong)}</span>`);
+                        } else {
+                            // 초성만 있음
+                            currentWord.push(`<span class="hangul-char incomplete-char">${composeHangul(displayCho, displayJung)}</span>`);
+                        }
+                    } else if (displayJong) {
+                        // 종성만 있음 (초성 없음)
+                        currentWord.push(`<span class="hangul-char incomplete-char" style="position: relative; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; min-width: 1em; height: 1.2em;"><span style="font-size: 0.8em;">${displayJung}</span><span style="font-size: 0.7em; margin-top: -0.1em;">${displayJong}</span></span>`);
+                    } else {
+                        // 모음만 있음
+                        currentWord.push(`<span class="hangul-char incomplete-char">${displayJung}</span>`);
+                    }
+                }
+            }
+        });
+
+        if (currentWord.length > 0) {
+            words.push(currentWord);
+        }
+
+        const wordGroups = words.map(word => 
+            `<span class="word-group">${word.join('')}</span>`
+        );
+
+        document.getElementById('sentenceArea').innerHTML = wordGroups.join('');
+    }
+
+    function handleConsonantClick(consonant) {
+        if (guessedConsonants.has(consonant) || wrongConsonants.has(consonant) || gameWon || gameLost) return;
+
+        let found = false;
+        charStates.forEach(charData => {
+            if (charData.isSpace || charData.isNonHangul) return;
+            
+            // 초성 처리
+            if (!charData.choFound && containsConsonant(charData.cho, consonant)) {
+                charData.choFound = true;
+                found = true;
+            }
+            
+            // 종성 처리 - 개선된 로직
+            if (charData.jong && containsConsonant(charData.jong, consonant)) {
+                charData.foundJongComponents.add(consonant);
+                
+                // 쌍받침의 경우 기본 자음을 맞췄을 때 쌍받침도 추가
+                const doubleConsonantReverse = {
+                    'ㄱ': 'ㄲ', 'ㅅ': 'ㅆ'
+                };
+                if (doubleConsonantReverse[consonant] === charData.jong) {
+                    charData.foundJongComponents.add(charData.jong);
+                }
+                
+                found = true;
+            }
+        });
+
+        if (found) {
+            guessedConsonants.add(consonant);
+            document.getElementById(`btn-${consonant}`).className = 'consonant-btn correct';
+            updateDisplay();
+            const allComplete = charStates.every(charData =>
+                charData.isSpace || charData.isNonHangul || isCharComplete(charData)
+            );
+            if (allComplete) {
+                gameWon = true;
+                document.getElementById('winMessage').style.display = 'block';
+            }
+        } else {
+            wrongConsonants.add(consonant);
+            document.getElementById(`btn-${consonant}`).className = 'consonant-btn wrong';
+            if (wrongConsonants.size >= maxWrongAttempts) {
+                gameLost = true;
+                document.getElementById('loseMessage').style.display = 'block';
+                showAnswer();
+            }
+        }
+
+        updateStats();
+    }
+
+    function updateStats() {
+        document.getElementById('gameStats').innerHTML =
+            `맞춘 자음: ${guessedConsonants.size}개 | 틀린 자음: ${wrongConsonants.size}개`;
+    }
+
+    function startNewGame() {
+        currentSentence = getNextSentence();
+        guessedConsonants = new Set();
+        wrongConsonants = new Set();
+        gameWon = false;
+        gameLost = false;
+        charStates = [];
+        document.getElementById('winMessage').style.display = 'none';
+        document.getElementById('loseMessage').style.display = 'none';
+
+        for (let char of currentSentence) {
+            if (char === ' ') {
+                charStates.push({ isSpace: true });
+            } else {
+                const decomposed = decomposeHangul(char);
+                if (!decomposed) {
+                    charStates.push({ isNonHangul: true, char });
+                } else {
+                    charStates.push({
+                        char,
+                        cho: decomposed.cho,
+                        jung: decomposed.jung,
+                        jong: decomposed.jong,
+                        choFound: false,
+                        foundJongComponents: new Set(), // 종성 구성 요소들을 저장
+                        isSpace: false,
+                        isNonHangul: false
+                    });
+                }
+            }
+        }
+
+        updateDisplay();
+        createConsonantButtons();
+        updateStats();
+    }
+
+    window.onload = function () {
+        createConsonantButtons();
+        shuffleSentences();
+        startNewGame();
+    };
+</script>
+
+</body>
+</html>
