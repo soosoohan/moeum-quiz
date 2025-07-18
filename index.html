@@ -140,7 +140,6 @@ body {
     width: 90%;
     max-width: 500px;
     max-height: 30vh;
-    overflow-y: auto;
     padding: 10px 0;
 }
 
@@ -161,38 +160,35 @@ body {
         display: block;
         text-decoration: none;
     }
+.square-button {
+            width: 100px;
+            height: 100px;
+            background-color: #FFB3D9; /* 연분홍 */
+            color: white;
+            border: none;
+            border-radius: 12px; /* 둥근 모서리 */
+            cursor: pointer;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: 1.2;
+            margin: 8px;
+            transition: all 0.3s ease;
+            font-family: Arial, sans-serif;
+        }
 
-      .square-button {
-width: 100px;
-height: 100px;
-background-color: #BEDff5;
-color: white;
-border: none;
-border-radius: 12px; /* 둥근 모서리 */
-cursor: pointer;
-font-size: clamp(1rem, 3vw, 1.3rem);
-font-weight: bold;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-line-height: 1.2;
-margin: 8px;
-transition: all 0.3s ease;
-font-family: Arial, sans-serif;
-}
+    .square-button:hover {
+        background-color: #FF8FAB; /* 호버 시 진한 분홍 */
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
 
-
-.square-button:hover {
-    background-color: #FF8FAB; /* 호버 시 진한 분홍 */
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.square-button:active {
-    transform: scale(0.95);
-}
-
+    .square-button:active {
+        transform: scale(0.95);
+    }
 /* 데스크톱: 3열 그리드 */
 @media (min-width: 1024px) {
     .game-menu {
@@ -427,19 +423,17 @@ font-family: Arial, sans-serif;
             <button class="main-game-button" onclick="location.href='M5.html'">일상 대화 힌트없음</button>
             <button class="main-game-button" onclick="location.href='M6.html'">노래 가수 힌트없음</button>
             <button class="main-game-button" onclick="location.href='M7.html'">속담 격언 힌트없음</button>
-            <button class="main-game-button" onclick="location.href='M8.html'">나라와 수도 힌트없음</button>
-           <button class="main-game-button" onclick="window.open('https://youtu.be/4rLktuVf9xM?si=rgHNJZAhYPMTxEKA', '_blank')">
-                🎥 튜토리얼 영상 보기
-            </button>
+            <button class="main-game-button" onclick="location.href='M8.html'">세계 여행 힌트없음</button>
+            <button class="main-game-button" onclick="location.href='M10.html'">동물 식물 힌트없음</button>
+       
          </div>
-<button class="square-button" onclick="location.href='https://soosoohan.github.io/soosooland/'">
+
+        <div class="credits-area chalk-text">
+           <button class="square-button light-blue" onclick="alert('파란 버튼')">
     <div>게임하며</div>
     <div>공부하는</div>
     <div>수수랜드</div>
-</button>
-
-        <div class="credits-area chalk-text">
-            <div class="credits-item">기획·개발 : 한수수</div>
+</button>     <div class="credits-item">기획·개발 : 한수수</div>
             <div class="credits-item">개발 보조: 챗GPT</div>
             <div class="credits-item">코딩 도움: 클로드</div>
             <div class="credits-item">디자인 도움: 네이처리</div>
