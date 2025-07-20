@@ -2,9 +2,17 @@
 
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4YZHC1G9FN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4YZHC1G9FN');
+    </script>
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>모음 퀴즈</title>
+    <title>모음어린이</title>
     <style>
         * {
             margin: 0;
@@ -186,11 +194,10 @@
         color: #4A628A;
     }
     
-   .consonant-grid {
+    .consonant-grid {
+        display: grid;
         grid-template-columns: repeat(7, 1fr);
         gap: 10px;
-        display: flex;
-        flex-wrap: wrap;
     }
     
     .consonant-btn {
@@ -303,7 +310,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1 class="title">모음 퀴즈 어린이용</h1>
+            <h1 class="title">모음 퀴즈 음식</h1>
             <p class="subtitle">자음을 맞춰서 완전한 글자를 만드세요!</p>
         </div>
 
