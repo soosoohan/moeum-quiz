@@ -2,9 +2,18 @@
 
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4YZHC1G9FN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4YZHC1G9FN');
+    </script>
+
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>모음 퀴즈</title>
+    <title>모음어른</title>
     <style>
         * {
             margin: 0;
@@ -58,6 +67,7 @@
         font-size: 3em;
         background: rgba(223, 242, 235, 0.3);
         padding: 30px;
+        border-radius: 8px;
         min-height: 120px;
         display: flex;
         align-items: center;
@@ -155,7 +165,7 @@
     }
     
     .hint-title {
-        font-size: 1.1em;
+        font-size: 1.2em;
         color: #4A628A;
         font-weight: bold;
         margin-bottom: 5px;
@@ -185,17 +195,16 @@
         color: #4A628A;
     }
     
-.consonant-grid {
+    .consonant-grid {
+        display: grid;
         grid-template-columns: repeat(7, 1fr);
         gap: 10px;
-        display: flex;
-        flex-wrap: wrap;
     }
     
     .consonant-btn {
         width: 60px;
         height: 60px;
-        font-size: 1.2em;
+        font-size: 1.4em;
         font-weight: bold;
         border-radius: 8px;
         border: 2px solid;
@@ -206,8 +215,7 @@
     .consonant-btn.available {
         background: linear-gradient(135deg, #B9E5E8, #DFF2EB);
         color: #4A628A;
-        border-color: #7AB2D3;
-    }
+        }
     
     .consonant-btn.available:hover {
         background: linear-gradient(135deg, #7AB2D3, #B9E5E8);
@@ -303,7 +311,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1 class="title">모음 퀴즈 어른용 </h1>
+            <h1 class="title">모음 퀴즈 음식</h1>
             <p class="subtitle">자음을 맞춰서 완전한 글자를 만드세요!</p>
         </div>
 
@@ -322,7 +330,7 @@
         
         <div id="winMessage" class="win-message" style="display: none;">
             <div class="win-alert">
-               정답을 맞추셨습니다! 🎉
+                🎉 축하합니다! 정답을 맞추셨습니다! 🎉
             </div>
         </div>
         
@@ -344,12 +352,11 @@
         <div class="stats" id="gameStats">
             맞춘 자음: 0개 | 틀린 자음: 0개
         </div>
-        <button class="new-game-btn" onclick="startNewGame()">새 게임</button>
+        <button class="new-game-btn" onclick="startNewGame()"> 새 게임</button>
     <button class="new-game-btn" onclick="location.href='index.html'" class="game-button">초기 화면</button>
 </div>
 
-    
-</div>
+    </div>
 
 <script>
     // 게임 데이터 (힌트 포함)
