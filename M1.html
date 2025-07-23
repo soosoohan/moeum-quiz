@@ -59,7 +59,7 @@
     
     .sentence-display {
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 0px;
     }
     
     .sentence-area {
@@ -74,17 +74,18 @@
         flex-wrap: wrap;
         gap: 10px;
         line-height: 1.2;
-        word-break: keep-all;
+        word-break: break-all;
         overflow-wrap: break-word;
     }
 
     .word-group {
-        display: inline-flex;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         white-space: nowrap;
         align-items: center;
         margin-right: 0.3em; /* 단어 사이 간격 조정 */
-    }
+		  display: inline;
+        
+}
 
     .word-group:last-child {
         margin-right: 0; /* 마지막 단어는 오른쪽 여백 제거 */
@@ -271,11 +272,25 @@
             font-size: 1.8em;
         }
 
+.container {
+            padding: 0px;
+        }
+   
+.game-board {
+    margin-bottom: 10px;  /* 현재 20px → 10px로 변경 */
+}
+
         .sentence-area {
             font-size: 1.8em;
-            padding: 20px;
+             padding: 10px;
             min-height: 80px;
-        }
+        		word-break: break-all;
+        		overflow-wrap: anywhere;
+}
+.consonant-section {
+    margin-bottom: 10px;
+    margin-top: 10px;  /* 이 줄 추가 (기본값은 0) */
+}
 
         .consonant-grid {
             grid-template-columns: repeat(5, 1fr);
@@ -299,10 +314,7 @@
             gap: 10px;
         }
 
-        .container {
-            padding: 10px;
-        }
-    }
+         }
 </style>
 
 
