@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4YZHC1G9FN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-4YZHC1G9FN');
+    </script>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>모음퀴즈초등국사  </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+    body {
+        font-family: 'Malgun Gothic', sans-serif;
+        background: linear-gradient(135deg, #DFF2EB 0%, #B9E5E8 50%, #7AB2D3 100%);
+        min-height: 100vh;
+        padding: 20px;
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .title {
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #4A628A;
+        margin-bottom: 10px;
+    }
+    
+    .subtitle {
+        color: #4A628A;
+        font-size: 1.1em;
+    }
+    
+    .game-board {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(74, 98, 138, 0.2);
+        padding: 30px;
+        margin-bottom: 20px;
+    }
+    
+    .sentence-display {
+        text-align: center;
+        margin-bottom: 0px;
+    }
+    
+    .sentence-area {
+        font-size: 3em;
+        background: rgba(223, 242, 235, 0.3);
+        padding: 30px;
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        line-height: 1.2;
+        word-break: break-all;
+        overflow-wrap: break-word;
+    }
+
+    .word-group {
+        display: inline;
+        flex-wrap: wrap;
+        white-space: nowrap;
+        align-items: center;
+        margin-right: 0.3em; /* 단어 사이 간격 조정 */
+    }
+
+    .word-group:last-child {
+        margin-right: 0; /* 마지막 단어는 오른쪽 여백 제거 */
+    }
+
+    .hangul-char {
+        display: inline-block;
+        min-width: 1em;
+        height: 1.2em;
+        text-align: center;
+        vertical-align: baseline;
+        font-family: 'Malgun Gothic', sans-serif;
+    }
+    
+    .incomplete-char {
+        background: rgba(223, 242, 235, 0.3);
+        color: #4A628A;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 1em;
+        height: 1.2em;
+    }
+    
+    .complete-char {
+        color: #4A628A;
+    }
+    
+    .space {
+        width: 0.5em;
+    }
+    
+    .win-message {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .win-alert {
+        background: rgba(223, 242, 235, 0.9);
+        border: 1px solid #7AB2D3;
+        color: #4A628A;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 1.2em;
+    }
+    
+    .lose-message {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .lose-alert {
+        background: rgba(122, 178, 211, 0.2);
+        border: 1px solid #7AB2D3;
+        color: #4A628A;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 1.2em;
+    }
+    
+    .wrong-attempts {
+        background: rgba(122, 178, 211, 0.3);
+        color: #4A628A;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+    
+    
+    .consonant-section {
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(74, 98, 138, 0.2);
+        padding: 30px;
+        margin-bottom: 20px;
+    }
+    
+    .consonant-title {
+        font-size: 1.2em;
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #4A628A;
+    }
+    
+   .consonant-grid {
+        grid-template-columns: repeat(7, 1fr);
+        gap: 10px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .consonant-btn {
+        width: 80px;
+        height: 80px;
+        font-size: 2.0em;
+        font-weight: bold;
+        border-radius: 8px;
+        border: 2px solid;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .consonant-btn.available {
+        background: linear-gradient(135deg, #B9E5E8, #DFF2EB);
+        color: #4A628A;
+        border-color: #7AB2D3;
+    }
+    
+    .consonant-btn.available:hover {
+        background: linear-gradient(135deg, #7AB2D3, #B9E5E8);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(74, 98, 138, 0.3);
+    }
+    
+    .consonant-btn.correct {
+        background: #7AB2D3;
+        color: white;
+        border-color: #4A628A;
+    }
+    
+    .consonant-btn.wrong {
+    background:#f8caca;
+    color: #7AB2D3;
+        border-color: #B9E5E8;
+        cursor: not-allowed;
+    }
+    
+    .game-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .stats {
+        font-size: 1.3em;
+        color: #4A628A;
+    }
+    
+    .new-game-btn {
+        background: linear-gradient(135deg, #7AB2D3, #4A628A);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: all 0.3s ease;
+    }
+    
+    .new-game-btn:hover {
+        background: linear-gradient(135deg, #4A628A, #7AB2D3);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(74, 98, 138, 0.3);
+    }
+    
+    
+    @media (max-width: 600px) {
+        .title {
+            font-size: 1.8em;
+        }
+.game-board {
+    margin-bottom: 10px;  /* 현재 20px → 10px로 변경 */
+}
+
+        .sentence-area {
+            font-size: 1.8em;
+            padding: 10px;
+            min-height: 80px;
+				word-break: break-all;
+        		overflow-wrap: anywhere;        
+}
+.consonant-section {
+    margin-bottom: 10px;
+    margin-top: 10px;  /* 이 줄 추가 (기본값은 0) */
+}
+
+        .consonant-grid {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        .consonant-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 1.2em;
+        font-weight: bold;
+        }
+
+        .new-game-btn {
+            width: 100%;
+            padding: 12px 0;
+            font-size: 1em;
+       
+}
+
+        .game-info {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .container {
+            padding: 0px;
+        }
+    }
+</style>
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">모음 퀴즈 초등국사</h1>
+            <p class="subtitle">모음은 공개! 자음을 맞춰서 완전한 글자를 만드세요!</p>
+        </div>
+
+<div class="game-board">        
+        <div class="sentence-display">
+            <div class="sentence-area" id="sentenceArea">
+                게임을 시작하세요!
+            </div>
+        </div>
+
+
+    <div id="winMessage" class="win-message" style="display: none;">
+        <div class="win-alert">
+            정답을 맞추셨습니다!
+        </div>
+    </div>
+    
+    <div id="loseMessage" class="lose-message" style="display: none;">
+        <div class="lose-alert">
+            게임 종료! 정답을 확인하세요.
+        </div>
+    </div>
+</div>
+
+<div class="consonant-section">
+    <h3 class="consonant-title">자음을 선택하세요</h3>
+    <div class="consonant-grid" id="consonantGrid">
+        <!-- 자음 버튼들이 여기에 생성됩니다 -->
+    </div>
+</div>
+
+<div class="game-info">
+    <div class="stats" id="gameStats">
+        맞춘 자음: 0개 | 틀린 자음: 0개
+    </div>
+    <button class="new-game-btn" onclick="startNewGame()">새 게임</button>
+
+
+<button class="new-game-btn" onclick="location.href='index.html'" class="game-button">초기 화면</button>
+</div>
+
+</div>
+
+<script>
+    // 게임 데이터 (단순화된 워드풀)
+    const sentences = [
+ "기원전 2333년 고조선 건국", "기원전 108년 한사군 설치", "기원전 57년 박혁거세 신라 건국", "기원전 37년 주몽 고구려 건국", "기원전 18년 온조 백제 건국", "371년 백제 근초고왕 한강 유역 차지", "372년 고구려 불교 수용", "427년 고구려 장수왕 평양 천도", "427년 고구려 한강 유역 차지", "512년 신라 지증왕 우산국 정복", "512년 신라 장군 이사부 우산국 정복", "555년 신라 진흥왕 한강 유역 차지", "562년 가야 멸망", "660년 백제 멸망", "668년 고구려 멸망", "676년 신라 삼국 통일", "682년 신문왕 국학 설립", "698년 대조영 발해 건국", "774년 석굴암 완공", "900년 견훤 후백제 건국", "901년 궁예 후고구려 건국", "918년 왕건 고려 건국", "935년 신라 멸망", "936년 고려 삼국 통일", "993년 서희 강동 6주 확보", "1019년 강감찬 귀주대첩", "1105년 탐라 고려에 편입", "1170년 무신정변", "1231년 몽골 1차 침입", "1232년 수도 강화도로 천도", "1251년 팔만대장경 완성", "1281년 몽골 5차 침입과 삼별초 항쟁", "1377년 직지 간행", "1377년 직지 세계 최초 금속활자 인쇄본", "1388년 위화도 회군", "1392년 이성계 조선 건국", "1394년 한양 천도", "1398년 1차 왕자의 난", "1443년 세종 훈민정음 창제", "1592년 임진왜란", "1592년 이순신 한산도 대첩", "1593년 행주대첩", "1597년 명량해전", "1636년 병자호란 청나라 침입", "1725년 영조 탕평책 실시", "1796년 수원 화성 완공", "1866년 병인양요", "1871년 신미양요", "1871년 척화비 건립", "1875년 운요호 사건", "1876년 강화도 조약", "1882년 임오군란", "1884년 갑신정변", "1894년 동학 농민 운동", "1895년 을미사변", "1896년 아관파천", "1897년 대한제국 수립", "1898년 독립협회 만민공동회", "1905년 을사늑약 체결", "1907년 헤이그 특사 파견", "1909년 안중근 이토 히로부미 처단", "1910년 국권 피탈", "1911년 이회영 신흥강습소 설립", "1919년 3·1 운동", "1919년 대한민국 임시정부 수립 (상하이)", "1920년 봉오동 전투", "1920년 청산리 대첩", "1921년 김익상 의거", "1926년 6·10 만세 운동", "1929년 광주 학생 항일 운동", "1932년 윤봉길 의거", "1940년 한국 광복군 창설", "1945년 8월 15일 광복", "1945년 38도선 설정", "1945년 모스크바 3국 외상회의", "1946년 미·소 공동위원회", "1948년 5·10 총선거 실시", "1948년 제헌 헌법 공포", "1948년 대한민국 정부 수립", "1948년 여수 순천 사건", "1950년 한국 전쟁", "1950년 인천상륙작전", "1953년 정전 협정 체결",
+     ];
+
+    const consonants = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+
+    let currentSentence = '';
+    let guessedConsonants = new Set();
+    let wrongConsonants = new Set();
+    let gameWon = false;
+    let gameLost = false;
+    const maxWrongAttempts = 6;
+    let charStates = [];
+
+    // 셔플된 문장 리스트와 인덱스
+    let shuffledSentences = [];
+    let sentenceIndex = 0;
+
+    function shuffleSentences() {
+        shuffledSentences = [...sentences];
+        for (let i = shuffledSentences.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledSentences[i], shuffledSentences[j]] = [shuffledSentences[j], shuffledSentences[i]];
+        }
+        sentenceIndex = 0;
+    }
+
+    function getNextSentence() {
+        if (sentenceIndex >= shuffledSentences.length) {
+            shuffleSentences();
+        }
+        return shuffledSentences[sentenceIndex++];
+    }
+
+    // 겹받침 처리를 위한 개선된 함수
+    function getComplexConsonantComponents(consonant) {
+        const complexConsonantMap = {
+            'ㄳ': ['ㄱ', 'ㅅ'], 'ㄵ': ['ㄴ', 'ㅈ'], 'ㄶ': ['ㄴ', 'ㅎ'],
+            'ㄺ': ['ㄹ', 'ㄱ'], 'ㄻ': ['ㄹ', 'ㅁ'], 'ㄼ': ['ㄹ', 'ㅂ'],
+            'ㄽ': ['ㄹ', 'ㅅ'], 'ㄾ': ['ㄹ', 'ㅌ'], 'ㄿ': ['ㄹ', 'ㅍ'],
+            'ㅀ': ['ㄹ', 'ㅎ'], 'ㅄ': ['ㅂ', 'ㅅ']
+        };
+        return complexConsonantMap[consonant] || null;
+    }
+
+    function containsConsonant(targetChar, consonant) {
+        const consonantMap = {
+            'ㄲ': 'ㄱ', 'ㄸ': 'ㄷ', 'ㅃ': 'ㅂ', 'ㅆ': 'ㅅ', 'ㅉ': 'ㅈ'
+        };
+        
+        if (targetChar === consonant) return true;
+        if (consonantMap[targetChar] === consonant) return true;
+        
+        const components = getComplexConsonantComponents(targetChar);
+        if (components && components.includes(consonant)) return true;
+        
+        return false;
+    }
+
+    function decomposeHangul(char) {
+        const code = char.charCodeAt(0) - 0xAC00;
+        if (code < 0 || code > 11171) return null;
+        const jong = code % 28;
+        const jung = (code - jong) / 28 % 21;
+        const cho = ((code - jong) / 28 - jung) / 21;
+        const choTable = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        const jungTable = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
+        const jongTable = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        return {
+            cho: choTable[cho],
+            jung: jungTable[jung],
+            jong: jong === 0 ? '' : jongTable[jong]
+        };
+    }
+
+    function composeHangul(cho, jung, jong = '') {
+        const choTable = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        const jungTable = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
+        const jongTable = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        const choIndex = choTable.indexOf(cho);
+        const jungIndex = jungTable.indexOf(jung);
+        const jongIndex = jongTable.indexOf(jong);
+        if (choIndex === -1 || jungIndex === -1 || jongIndex === -1) return null;
+        const code = 0xAC00 + (choIndex * 21 + jungIndex) * 28 + jongIndex;
+        return String.fromCharCode(code);
+    }
+
+    // 종성이 완전히 맞춰졌는지 확인하는 개선된 함수
+    function isJongComplete(charData) {
+        if (!charData.jong) return true; // 종성이 없으면 완료
+        
+        // 쌍받침 처리 (ㄲ, ㅆ)
+        const doubleConsonantMap = {
+            'ㄲ': 'ㄱ', 'ㅆ': 'ㅅ'
+        };
+        
+        if (doubleConsonantMap[charData.jong]) {
+            // 쌍받침: 기본 자음이 맞춰지면 완료
+            const baseConsonant = doubleConsonantMap[charData.jong];
+            return charData.foundJongComponents.has(baseConsonant) || charData.foundJongComponents.has(charData.jong);
+        }
+        
+        const components = getComplexConsonantComponents(charData.jong);
+        if (!components) {
+            // 단순 종성: 하나만 맞추면 됨
+            return charData.foundJongComponents.has(charData.jong);
+        } else {
+            // 겹받침: 모든 구성 요소가 맞춰져야 함
+            return components.every(comp => charData.foundJongComponents.has(comp));
+        }
+    }
+
+    function isCharComplete(charData) {
+        return charData.choFound && isJongComplete(charData);
+    }
+
+    function createConsonantButtons() {
+        const grid = document.getElementById('consonantGrid');
+        grid.innerHTML = '';
+        consonants.forEach(consonant => {
+            const button = document.createElement('button');
+            button.className = 'consonant-btn available';
+            button.textContent = consonant;
+            button.onclick = () => handleConsonantClick(consonant);
+            button.id = `btn-${consonant}`;
+            grid.appendChild(button);
+        });
+    }
+
+    function showAnswer() {
+        const words = [];
+        let currentWord = [];
+
+        charStates.forEach(charData => {
+            if (charData.isSpace) {
+                if (currentWord.length > 0) {
+                    words.push(currentWord);
+                    currentWord = [];
+                }
+            } else {
+                currentWord.push(`<span class="hangul-char complete-char">${charData.char}</span>`);
+            }
+        });
+
+        if (currentWord.length > 0) {
+            words.push(currentWord);
+        }
+
+        const wordGroups = words.map(word => 
+            `<span class="word-group">${word.join('')}</span>`
+        );
+
+        document.getElementById('sentenceArea').innerHTML = wordGroups.join('');
+    }
+
+    // 종성 표시를 위한 개선된 함수
+    function getDisplayJong(charData) {
+        if (!charData.jong) return '';
+        
+        // 쌍받침 처리 (ㄲ, ㅆ)
+        const doubleConsonantMap = {
+            'ㄲ': 'ㄱ', 'ㅆ': 'ㅅ'
+        };
+        
+        if (doubleConsonantMap[charData.jong]) {
+            const baseConsonant = doubleConsonantMap[charData.jong];
+            if (charData.foundJongComponents.has(baseConsonant) || charData.foundJongComponents.has(charData.jong)) {
+                return charData.jong; // 쌍받침 전체 표시
+            }
+            return '';
+        }
+        
+        const components = getComplexConsonantComponents(charData.jong);
+        if (!components) {
+            // 단순 종성
+            return charData.foundJongComponents.has(charData.jong) ? charData.jong : '';
+        } else {
+            // 겹받침: 찾은 구성 요소만 표시
+            const foundComponents = components.filter(comp => charData.foundJongComponents.has(comp));
+            if (foundComponents.length === 0) return '';
+            if (foundComponents.length === components.length) return charData.jong; // 모두 찾음
+            
+            // 일부만 찾은 경우: 찾은 구성 요소들만 표시
+            return foundComponents.join('');
+        }
+    }
+
+    function updateDisplay() {
+        const words = [];
+        let currentWord = [];
+
+        charStates.forEach(charData => {
+            if (charData.isSpace) {
+                if (currentWord.length > 0) {
+                    words.push(currentWord);
+                    currentWord = [];
+                }
+            } else {
+                if (charData.isNonHangul) {
+                    currentWord.push(`<span class="hangul-char complete-char">${charData.char}</span>`);
+                } else {
+                    let displayCho = charData.choFound ? charData.cho : '';
+                    let displayJung = charData.jung;
+                    let displayJong = getDisplayJong(charData);
+
+                    if (displayCho && displayJong && isJongComplete(charData)) {
+                        currentWord.push(`<span class="hangul-char complete-char">${composeHangul(displayCho, displayJung, displayJong)}</span>`);
+                    } else if (displayCho && !charData.jong) {
+                        currentWord.push(`<span class="hangul-char complete-char">${composeHangul(displayCho, displayJung)}</span>`);
+                    } else if (displayCho) {
+                        if (displayJong) {
+                            // 초성 있고 종성 일부만 맞춤
+                            currentWord.push(`<span class="hangul-char incomplete-char">${composeHangul(displayCho, displayJung, displayJong)}</span>`);
+                        } else {
+                            // 초성만 있음
+                            currentWord.push(`<span class="hangul-char incomplete-char">${composeHangul(displayCho, displayJung)}</span>`);
+                        }
+                    } else if (displayJong) {
+                        // 종성만 있음 (초성 없음)
+                        currentWord.push(`<span class="hangul-char incomplete-char" style="position: relative; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; min-width: 1em; height: 1.2em;"><span style="font-size: 0.8em;">${displayJung}</span><span style="font-size: 0.7em; margin-top: -0.1em;">${displayJong}</span></span>`);
+                    } else {
+                        // 모음만 있음
+                        currentWord.push(`<span class="hangul-char incomplete-char">${displayJung}</span>`);
+                    }
+                }
+            }
+        });
+
+        if (currentWord.length > 0) {
+            words.push(currentWord);
+        }
+
+        const wordGroups = words.map(word => 
+            `<span class="word-group">${word.join('')}</span>`
+        );
+
+        document.getElementById('sentenceArea').innerHTML = wordGroups.join('');
+    }
+
+    function handleConsonantClick(consonant) {
+        if (guessedConsonants.has(consonant) || wrongConsonants.has(consonant) || gameWon || gameLost) return;
+
+        let found = false;
+        charStates.forEach(charData => {
+            if (charData.isSpace || charData.isNonHangul) return;
+            
+            // 초성 처리
+            if (!charData.choFound && containsConsonant(charData.cho, consonant)) {
+                charData.choFound = true;
+                found = true;
+            }
+            
+            // 종성 처리 - 개선된 로직
+            if (charData.jong && containsConsonant(charData.jong, consonant)) {
+                charData.foundJongComponents.add(consonant);
+                
+                // 쌍받침의 경우 기본 자음을 맞췄을 때 쌍받침도 추가
+                const doubleConsonantReverse = {
+                    'ㄱ': 'ㄲ', 'ㅅ': 'ㅆ'
+                };
+                if (doubleConsonantReverse[consonant] === charData.jong) {
+                    charData.foundJongComponents.add(charData.jong);
+                }
+                
+                found = true;
+            }
+        });
+
+        if (found) {
+            guessedConsonants.add(consonant);
+            document.getElementById(`btn-${consonant}`).className = 'consonant-btn correct';
+            updateDisplay();
+            const allComplete = charStates.every(charData =>
+                charData.isSpace || charData.isNonHangul || isCharComplete(charData)
+            );
+            if (allComplete) {
+                gameWon = true;
+                document.getElementById('winMessage').style.display = 'block';
+            }
+        } else {
+            wrongConsonants.add(consonant);
+            document.getElementById(`btn-${consonant}`).className = 'consonant-btn wrong';
+            if (wrongConsonants.size >= maxWrongAttempts) {
+                gameLost = true;
+                document.getElementById('loseMessage').style.display = 'block';
+                showAnswer();
+            }
+        }
+
+        updateStats();
+    }
+
+    function updateStats() {
+        document.getElementById('gameStats').innerHTML =
+            `맞춘 자음: ${guessedConsonants.size}개 | 틀린 자음: ${wrongConsonants.size}개`;
+    }
+
+    function startNewGame() {
+        currentSentence = getNextSentence();
+        guessedConsonants = new Set();
+        wrongConsonants = new Set();
+        gameWon = false;
+        gameLost = false;
+        charStates = [];
+        document.getElementById('winMessage').style.display = 'none';
+        document.getElementById('loseMessage').style.display = 'none';
+
+        for (let char of currentSentence) {
+            if (char === ' ') {
+                charStates.push({ isSpace: true });
+            } else {
+                const decomposed = decomposeHangul(char);
+                if (!decomposed) {
+                    charStates.push({ isNonHangul: true, char });
+                } else {
+                    charStates.push({
+                        char,
+                        cho: decomposed.cho,
+                        jung: decomposed.jung,
+                        jong: decomposed.jong,
+                        choFound: false,
+                        foundJongComponents: new Set(), // 종성 구성 요소들을 저장
+                        isSpace: false,
+                        isNonHangul: false
+                    });
+                }
+            }
+        }
+
+        updateDisplay();
+        createConsonantButtons();
+        updateStats();
+    }
+
+    window.onload = function () {
+        createConsonantButtons();
+        shuffleSentences();
+        startNewGame();
+    };
+</script>
+
+</body>
+</html>
