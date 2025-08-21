@@ -32,9 +32,9 @@
 
 - **2025-06-18**  
   갖고 있던 게임 아이디어를 모두 게임으로 만들어서 할 일이 없어짐.
-  운명의 수레바퀴와 초성퀴즈에서 영감을 받아   새로운 게임을 만들어보자고 결심함.
+  운명의 수레바퀴에서 영감을 받아   새로운 게임을 만들어보자고 결심함.
   I turned all the game ideas I had into actual games, and suddenly found myself with nothing left to do.
-  Inspired by Wheel of Fortune and Initial Consonant Quiz, I decided to create a new game.
+  Inspired by Wheel of Fortune, I decided to create a new game.
 
   첫 번째 프로토타입 완성 후 [`/moeum-quiz`](https://soosoohan.github.io/moeum-quiz) 레포에 업로드.  실질적인 초기 완성 단계.
   First prototype completed and uploaded to the [`/moeum-quiz`](https://soosoohan.github.io/moeum-quiz) repository.
@@ -51,9 +51,12 @@
 
 ---
 
-### 🧪 한수수의  게임들 |  Games by Soosoo Han
+## 🌟 Soosooland - Game Demo Hub by Han Soosoo
 
-➡️ [https://soosoohan.github.io/soosooland](https://soosoohan.github.io/soosooland)
+ "Learning through fun, and fun through learning."
+
+Explore more brain games and puzzles in **[Soosooland](https://soosoohan.github.io/soosooland/)**    
+— a digital playground designed to improve memory, logic, and creativity while having fun!
 
 ---
 
