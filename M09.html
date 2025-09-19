@@ -4,16 +4,20 @@
 <head>
 
    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4YZHC1G9FN"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-4YZHC1G9FN');
-    </script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4YZHC1G9FN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-4YZHC1G9FN');
+</script>
+
+
 <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>모음음식유</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>모음음식 힌트있음</title>
     <style>
         * {
             margin: 0;
@@ -21,295 +25,293 @@
             box-sizing: border-box;
         }
 
-
 body {
-    font-family: 'Malgun Gothic', sans-serif;
-    background: linear-gradient(135deg, #DFF2EB 0%, #B9E5E8 50%, #7AB2D3 100%);
-    min-height: 100vh;
-    padding: 20px;
+font-family: ‘Malgun Gothic’, sans-serif;
+background: linear-gradient(135deg, #DFF2EB 0%, #B9E5E8 50%, #7AB2D3 100%);
+min-height: 100vh;
+padding: 20px;
 }
 
 .container {
-    max-width: 800px;
-    margin: 0 auto;
+max-width: 800px;
+margin: 0 auto;
 }
 
 .header {
-    text-align: center;
-    margin-bottom: 30px;
+text-align: center;
+margin-bottom: 30px;
 }
 
 .title {
-    font-size: 2.5em;
-    font-weight: bold;
-    color: #4A628A;
-    margin-bottom: 10px;
+font-size: 2.5em;
+font-weight: bold;
+color: #4A628A;
+margin-bottom: 10px;
 }
 
 .subtitle {
-    color: #4A628A;
-    font-size: 1.1em;
+color: #4A628A;
+font-size: 1.1em;
 }
 
 .game-board {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(74, 98, 138, 0.2);
-    padding: 30px;
-    margin-bottom: 20px;
+background: rgba(255, 255, 255, 0.9);
+border-radius: 12px;
+box-shadow: 0 8px 32px rgba(74, 98, 138, 0.2);
+padding: 30px;
+margin-bottom: 20px;
 }
 
 .sentence-display {
-    text-align: center;
-    margin-bottom: 20px;
+text-align: center;
+margin-bottom: 20px;
 }
 
 .sentence-area {
-    font-size: 3em;
-    background: rgba(223, 242, 235, 0.3);
-    padding: 30px;
-    border-radius: 8px;
-    min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    line-height: 1.2;
-    word-break: keep-all;
-    overflow-wrap: break-word;
+font-size: 3em;
+background: rgba(223, 242, 235, 0.3);
+padding: 30px;
+border-radius: 8px;
+min-height: 120px;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+gap: 10px;
+line-height: 1.2;
+word-break: keep-all;
+overflow-wrap: break-word;
 }
 
 .word-group {
-    display: inline-flex;
-    flex-wrap: nowrap;
-    white-space: nowrap;
-    align-items: center;
-    margin-right: 0.3em; /* 단어 사이 간격 조정 */
+display: inline-flex;
+flex-wrap: nowrap;
+white-space: nowrap;
+align-items: center;
+margin-right: 0.3em; /* 단어 사이 간격 조정 */
 }
 
 .word-group:last-child {
-    margin-right: 0; /* 마지막 단어는 오른쪽 여백 제거 */
+margin-right: 0; /* 마지막 단어는 오른쪽 여백 제거 */
 }
 
 .hangul-char {
-    display: inline-block;
-    min-width: 1em;
-    height: 1.2em;
-    text-align: center;
-    vertical-align: baseline;
-    font-family: 'Malgun Gothic', sans-serif;
+display: inline-block;
+min-width: 1em;
+height: 1.2em;
+text-align: center;
+vertical-align: baseline;
+font-family: ‘Malgun Gothic’, sans-serif;
 }
 
 .incomplete-char {
-    background: rgba(223, 242, 235, 0.3);
-    color: #4A628A;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 1em;
-    height: 1.2em;
+background: rgba(223, 242, 235, 0.3);
+color: #4A628A;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+min-width: 1em;
+height: 1.2em;
 }
 
 .complete-char {
-    color: #4A628A;
+color: #4A628A;
 }
 
 .space {
-    width: 0.5em;
+width: 0.5em;
 }
 
 .win-message {
-    text-align: center;
-    margin-bottom: 20px;
+text-align: center;
+margin-bottom: 20px;
 }
 
 .win-alert {
-    background: rgba(223, 242, 235, 0.9);
-    border: 1px solid #7AB2D3;
-    color: #4A628A;
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 1.2em;
+background: rgba(223, 242, 235, 0.9);
+border: 1px solid #7AB2D3;
+color: #4A628A;
+padding: 15px;
+border-radius: 8px;
+font-size: 1.2em;
 }
 
 .lose-message {
-    text-align: center;
-    margin-bottom: 20px;
+text-align: center;
+margin-bottom: 20px;
 }
 
 .lose-alert {
-    background: rgba(122, 178, 211, 0.2);
-    border: 1px solid #7AB2D3;
-    color: #4A628A;
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 1.2em;
+background: rgba(122, 178, 211, 0.2);
+border: 1px solid #7AB2D3;
+color: #4A628A;
+padding: 15px;
+border-radius: 8px;
+font-size: 1.2em;
 }
 
 .wrong-attempts {
-    background: rgba(122, 178, 211, 0.3);
-    color: #4A628A;
-    padding: 8px 12px;
-    border-radius: 6px;
-    font-weight: bold;
-    margin-left: 10px;
+background: rgba(122, 178, 211, 0.3);
+color: #4A628A;
+padding: 8px 12px;
+border-radius: 6px;
+font-weight: bold;
+margin-left: 10px;
 }
 
 .hint-section {
-    background: rgba(185, 229, 232, 0.6);
-    border: 1px solid #7AB2D3;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 20px;
-    text-align: center;
+background: rgba(185, 229, 232, 0.6);
+border: 1px solid #7AB2D3;
+border-radius: 8px;
+padding: 15px;
+margin-bottom: 20px;
+text-align: center;
 }
 
 .hint-title {
-    font-size: 1.2em;
-    color: #4A628A;
-    font-weight: bold;
-    margin-bottom: 5px;
+font-size: 1.2em;
+color: #4A628A;
+font-weight: bold;
+margin-bottom: 5px;
 display:inline;
 
-
 }
-
 
 .hint-text {
-    font-size: 1.1em;
-    color: #4A628A;
-    font-weight: bold;
+font-size: 1.1em;
+color: #4A628A;
+font-weight: bold;
 display:inline;
-
 
 }
 
-
 .consonant-section {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(74, 98, 138, 0.2);
-    padding: 30px;
-    margin-bottom: 20px;
+background: rgba(255, 255, 255, 0.9);
+border-radius: 12px;
+box-shadow: 0 8px 32px rgba(74, 98, 138, 0.2);
+padding: 30px;
+margin-bottom: 20px;
 }
 
 .consonant-title {
-    font-size: 1.2em;
-    font-weight: 600;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #4A628A;
+font-size: 1.2em;
+font-weight: 600;
+margin-bottom: 20px;
+text-align: center;
+color: #4A628A;
 }
 
 .consonant-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+gap: 10px;
 }
 
 .consonant-btn {
-    width: 60px;
-    height: 60px;
-    font-size: 1.4em;
-    font-weight: bold;
-    border-radius: 8px;
-    border: 2px solid;
-    cursor: pointer;
-    transition: all 0.2s;
+width: 60px;
+height: 60px;
+font-size: 1.4em;
+font-weight: bold;
+border-radius: 8px;
+border: 2px solid;
+cursor: pointer;
+transition: all 0.2s;
 }
 
 .consonant-btn.available {
-    background: linear-gradient(135deg, #B9E5E8, #DFF2EB);
-    color: #4A628A;
-    }
+background: linear-gradient(135deg, #B9E5E8, #DFF2EB);
+color: #4A628A;
+}
 
 .consonant-btn.available:hover {
-    background: linear-gradient(135deg, #7AB2D3, #B9E5E8);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(74, 98, 138, 0.3);
+background: linear-gradient(135deg, #7AB2D3, #B9E5E8);
+color: white;
+transform: translateY(-2px);
+box-shadow: 0 5px 15px rgba(74, 98, 138, 0.3);
 }
 
 .consonant-btn.correct {
-    background: #7AB2D3;
-    color: white;
-    border-color: #4A628A;
+background: #7AB2D3;
+color: white;
+border-color: #4A628A;
 }
 
 .consonant-btn.wrong {
 background:#f8caca;
-    color: #7AB2D3;
-    border-color: #B9E5E8;
-    cursor: not-allowed;
+color: #7AB2D3;
+border-color: #B9E5E8;
+cursor: not-allowed;
 }
 
 .game-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 20px;
 }
 
 .stats {
-    font-size: 1.3em;
-    color: #4A628A;
+font-size: 1.3em;
+color: #4A628A;
 }
 
 .new-game-btn {
-    background: linear-gradient(135deg, #7AB2D3, #4A628A);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: all 0.3s ease;
+background: linear-gradient(135deg, #7AB2D3, #4A628A);
+color: white;
+padding: 10px 20px;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+font-size: 1em;
+transition: all 0.3s ease;
 }
 
 .new-game-btn:hover {
-    background: linear-gradient(135deg, #4A628A, #7AB2D3);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(74, 98, 138, 0.3);
+background: linear-gradient(135deg, #4A628A, #7AB2D3);
+transform: translateY(-2px);
+box-shadow: 0 5px 15px rgba(74, 98, 138, 0.3);
 }
 
 @media (max-width: 600px) {
-        .title {
-            font-size: 1.8em;
-        }
+.title {
+font-size: 1.8em;
+}
 
-        .sentence-area {
-            font-size: 1.8em;
-            padding: 20px;
-            min-height: 80px;
-        }
 
-        .consonant-grid {
-            grid-template-columns: repeat(5, 1fr);
-        }
-
-        .consonant-btn {
-            width: 100%;
-            height: 50px;
-            font-size: 1.0em;
-        }
-
-        .new-game-btn {
-            width: 100%;
-            padding: 12px 0;
-            font-size: 1em;
-        }
-
-        .game-info {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .container {
-            padding: 10px;
-        }
+    .sentence-area {
+        font-size: 1.8em;
+        padding: 20px;
+        min-height: 80px;
     }
+
+    .consonant-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .consonant-btn {
+        width: 100%;
+        height: 50px;
+        font-size: 1.0em;
+    }
+
+    .new-game-btn {
+        width: 100%;
+        padding: 12px 0;
+        font-size: 1em;
+    }
+
+    .game-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+}
+
+
 </style>
 
 </head>
@@ -317,33 +319,34 @@ background:#f8caca;
     <div class="container">
         <div class="header">
             <h1 class="title">모음 퀴즈 음식</h1>
-            <p class="subtitle">자음을 맞춰서 완전한 글자를 만드세요!</p>
-        </div>
-
+             </div>
 
 <div class="game-board">
     <div class="hint-section">
         <div class="hint-title">💡 </div>
         <div class="hint-text" id="hintText">게임을 시작하세요!</div>
     </div>
-    
-    <div class="sentence-display">
-        <div class="sentence-area" id="sentenceArea">
-            게임을 시작하세요!
-        </div>
+
+
+<div class="sentence-display">
+    <div class="sentence-area" id="sentenceArea">
+        게임을 시작하세요!
     </div>
-    
-    <div id="winMessage" class="win-message" style="display: none;">
-        <div class="win-alert">
-            🎉 축하합니다! 정답을 맞추셨습니다! 🎉
-        </div>
+</div>
+
+<div id="winMessage" class="win-message" style="display: none;">
+    <div class="win-alert">
+        🎉 축하합니다! 정답을 맞추셨습니다! 🎉
     </div>
-    
-    <div id="loseMessage" class="lose-message" style="display: none;">
-        <div class="lose-alert">
-            😔 게임 종료! 정답을 확인하세요.
-        </div>
+</div>
+
+<div id="loseMessage" class="lose-message" style="display: none;">
+    <div class="lose-alert">
+        😔 게임 종료! 정답을 확인하세요.
     </div>
+</div>
+
+
 </div>
 
 <div class="consonant-section">
@@ -360,16 +363,13 @@ background:#f8caca;
     <button class="new-game-btn" onclick="startNewGame()"> 새 게임</button>
 <button class="new-game-btn" onclick="location.href='index.html'" class="game-button">초기 화면</button>
 
-
 </div>
 
-
 </div>
-
 
 <script>
     // 게임 데이터 (힌트 포함)
-    const sentences = [
+        const sentences = [
 { text: "간장 게장", hint: "반찬" },
 { text: "갈릭버터새우", hint: "음식" },
 { text: "계란말이", hint: "반찬" },
@@ -382,6 +382,9 @@ background:#f8caca;
 { text: "깐쇼 새우", hint: "음식" },
 { text: "깻잎 장아찌", hint: "음식" },
 { text: "나폴리탄 스파게티", hint: "음식" },
+{ text: "궁중 떡볶이", hint: "음식" },
+{ text: "로제 떡볶이", hint: "음식" },
+{ text: "김치 볶음밥", hint: "음식" },
 { text: "누룽지탕", hint: "음식" },
 { text: "단호박 샐러드", hint: "음식" },
 { text: "달맞이꽃차", hint: "차" },
@@ -516,9 +519,9 @@ background:#f8caca;
 { text: "아티초크", hint: "채소" },
 { text: "알배추 겉절이", hint: "음식" },
 { text: "연어 샐러드", hint: "음식" },
-{ text: "이자벨 느타리버섯", hint: "샐러드" },
-{ text: "이자벨 닭안심살", hint: "샐러드" },
-{ text: "이자벨 올리브", hint: "샐러드" },
+{ text: "이자벨 느타리버섯", hint: "샐러드 재료" },
+{ text: "이자벨 닭안심살", hint: "샐러드 재료" },
+{ text: "이자벨 올리브", hint: "샐러드 재료" },
 { text: "적치커리", hint: "채소" },
 { text: "청치커리", hint: "채소" },
 { text: "치마상추", hint: "채소" },
@@ -529,6 +532,7 @@ background:#f8caca;
 { text: "오렌지 에이드", hint: "음료" },
 
     ];
+
 
     const consonants = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
 
@@ -607,6 +611,10 @@ background:#f8caca;
         const choTable = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
         const jungTable = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
         const jongTable = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+        
+
+
+
         const choIndex = choTable.indexOf(cho);
         const jungIndex = jungTable.indexOf(jung);
         const jongIndex = jongTable.indexOf(jong);
@@ -615,14 +623,17 @@ background:#f8caca;
         return String.fromCharCode(code);
     }
 
+    // 종성이 완전히 맞춰졌는지 확인하는 개선된 함수
     function isJongComplete(charData) {
-        if (!charData.jong) return true;
+        if (!charData.jong) return true; // 종성이 없으면 완료
         
+        // 쌍받침 처리 (ㄲ, ㅆ)
         const doubleConsonantMap = {
             'ㄲ': 'ㄱ', 'ㅆ': 'ㅅ'
         };
         
         if (doubleConsonantMap[charData.jong]) {
+            // 쌍받침: 기본 자음이 맞춰지면 완료
             const baseConsonant = doubleConsonantMap[charData.jong];
             return charData.foundJongComponents.has(baseConsonant) || charData.foundJongComponents.has(charData.jong);
         }
@@ -680,6 +691,19 @@ background:#f8caca;
 
     function getFoundJongDisplay(charData) {
         if (!charData.jong) return '';
+        
+        // 쌍받침 처리 (ㄲ, ㅆ)
+        const doubleConsonantMap = {
+            'ㄲ': 'ㄱ', 'ㅆ': 'ㅅ'
+        };
+        
+        if (doubleConsonantMap[charData.jong]) {
+            const baseConsonant = doubleConsonantMap[charData.jong];
+            if (charData.foundJongComponents.has(baseConsonant) || charData.foundJongComponents.has(charData.jong)) {
+                return charData.jong; // 전체 쌍받침 표시
+            }
+            return '';
+        }
         
         const components = getComplexConsonantComponents(charData.jong);
         if (!components) {
@@ -824,7 +848,7 @@ background:#f8caca;
                         jong: decomposed.jong,
                         choFound: false,
                         jongFound: false,
-                        foundJongComponents: new Set(), // 이 부분이 추가됨
+                        foundJongComponents: new Set(),
                         isSpace: false,
                         isNonHangul: false
                     });
