@@ -211,7 +211,7 @@ The buttons at the top are easier.</p>
   <div class="game_container">
       <div class="game-buttons">
         <button onclick="location.href='https://soosoofile.vercel.app/moeum05.html'">일상 대화</button>
-        <button onclick="location.href='https://soosoofile.vercel.app/moeum20.html'">속담 힌트</button>
+        <button onclick="playGame('sokdam')">💭 속담</button>
         <button onclick="location.href='https://soosoofile.vercel.app/moeum07.html'">속담 격언</button>
         <button onclick="location.href='https://soosoofile.vercel.app/moeum01.html'">어린이 힌트</button>
         <button onclick="location.href='https://soosoofile.vercel.app/moeum02.html'">어른용 힌트</button>
@@ -233,5 +233,17 @@ The buttons at the top are easier.</p>
         
       </div>
   </div>
+<script>
+function playGame(wordpool) {
+  // Vercel 게임 파일 주소 (나중에 실제 주소로 변경)
+  const gameUrl = 'https://soosoofile.vercel.app/moeum.html';
+  
+  // 워드풀 파일 주소
+  const wordpoolUrl = `https://soosooland.com/moeum-quiz/wordpools/${wordpool}.json`;
+  
+  // 게임 페이지로 이동 (워드풀 URL을 파라미터로 전달)
+  location.href = `${gameUrl}?wordpool=${encodeURIComponent(wordpoolUrl)}`;
+}
+</script>
 </body>
 </html>
