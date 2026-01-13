@@ -67,11 +67,6 @@
     line-height: 140%;
     margin:30px auto;
   }
-    header > div {
-      color: #fff;
-      line-height: 140%;
-      margin: 30px auto;
-    }
 
     header {
       min-height: 380px;
@@ -233,15 +228,18 @@ The buttons at the top are easier.</p>
       </div>
   </div>
 <script>
-function playGame(wordpool) {
-  // Vercel 게임 파일 주소 (나중에 실제 주소로 변경)
+function playGame(wordpool, title) {
+  // Vercel 게임 파일 주소
   const gameUrl = 'https://soosoofile.vercel.app/moeum.html';
   
   // 워드풀 파일 주소
   const wordpoolUrl = `https://soosooland.com/moeum-quiz/wordpools/${wordpool}.json`;
   
-  // 게임 페이지로 이동 (워드풀 URL을 파라미터로 전달)
-  location.href = `${gameUrl}?wordpool=${encodeURIComponent(wordpoolUrl)}`;
+  // 제목이 있으면 title 파라미터 추가, 없으면 빈 문자열
+  const titleParam = title ? `&title=${encodeURIComponent(title)}` : '';
+  
+  // 게임 페이지로 이동
+  location.href = `${gameUrl}?wordpool=${encodeURIComponent(wordpoolUrl)}${titleParam}`;
 }
 </script>
 </body>
