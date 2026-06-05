@@ -72,6 +72,37 @@
       min-height: 380px;
       margin-bottom: 40px;
     }
+ .language-toggle {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(255,255,255,0.9);
+        padding: 8px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        z-index: 100;
+    }
+
+    .language-button {
+        background: #2e8b8b;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        margin: 2px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: 'Pretendard', sans-serif;
+        font-size: clamp(0.8rem, 2vw, 1rem);
+        transition: all 0.3s ease;
+    }
+
+    .language-button:hover {
+        background: #20b2aa;
+    }
+
+    .language-button.active {
+        background: #ff69b4;
+    }
 
     h1 {
       font-size: 3em;
@@ -147,6 +178,9 @@
         background-color: #FF9494;
         color: white;
     }
+    .hidden {
+        display: none;
+    }
 
     /* 반응형 레이아웃 */
     @media (min-width: 800px) {
@@ -164,7 +198,21 @@
     }
 
     @media (max-width: 499px) {
-      .game-buttons button {
+      @media (max-width: 480px) {
+    
+.language-toggle {
+        top: 10px;
+        right: 10px;
+        padding: 6px;
+        max-width: 150px; /* 최대 너비 제한 */
+    }
+    
+    .language-button {
+        padding: 5px 8px;
+        font-size: 0.85rem;
+        white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    }
+     .game-buttons button {
         flex: 0 0 calc(100% - 20px); /* 1줄 */
         max-width: 280px;
       }
@@ -175,16 +223,19 @@
     }
 </style>
 </head>
-<body>
-  <button class="back-button" onclick="location.href='https://soosooland.com/'">
+<body onload="initLanguage()">
+    <button class="back-button" onclick="location.href='https://soosooland.com/'">
     Soosooland </button>
     <div class="blackboard">
+  <div class="language-toggle">
+                <button class="language-button active" onclick="toggleLanguage('ko')">한국어</button>
+                <button class="language-button" onclick="toggleLanguage('en')">English</button>
+            </div>
         <div class="moeum-main" id="moeum-main">
+<div id="korean-description">
             <h1 class="chalk-text main-title">모음 퀴즈</h1>
-</div><h2>Korean Hangman  </h2>
-
-      <h2>자음을 추리해서 단어, 구절, 문장을 완성하는 게임이에요.</h2>
-<p style="color: #a7fff0;">게임 방법 / How to Play<br>
+  <h2>자음을 추리해서 단어, 구절, 문장을 완성하는 게임이에요.</h2>
+<p style="color: #a7fff0;">게임 방법<br>
 
 모음은 모두 공개된 상태에서 게임이 시작됩니다.<br>
 화면 아래 자음 버튼을 클릭해 해당 자음이 포함되어 있는지 추리합니다.<br>
@@ -192,12 +243,26 @@
 6번의 기회 안에 정답을 맞추면 승리!<br>
 실패하면 정답이 공개됩니다.<br>
 위에 있는 버튼들은 쉽고, 아래로 내려갈수록 어려워집니다.<br>
+ 
+
+</div>
+
+<div id="english-description" class="hidden">
+            <h1 class="chalk-text main-title">Moeum Quiz</h1>
+  <h2>Korean Hangman</h2>  
+<p style="color: #a7fff0;">How to Play<br>
 The game starts with all vowels revealed.<br>
 Click the consonant buttons at the bottom to guess if the consonant is in the sentence.<br>
 Correct consonants are revealed in their positions, while incorrect guesses reduce your attempt count.<br>
 Solve the puzzle within 6 tries to win!
 If you fail, the correct sentence will be shown.<br>
 The buttons at the top are easier.</p>
+
+    
+ </div>
+
+            </div>
+
     </div>       
     </div></div>
   <div class="game_container">
@@ -222,6 +287,35 @@ The buttons at the top are easier.</p>
       </div>
   </div>
 <script>
+function toggleLanguage(lang) {
+        const koreanDesc = document.getElementById('korean-description');
+        const englishDesc = document.getElementById('english-description');
+        const buttons = document.querySelectorAll('.language-button');
+        
+        buttons.forEach(btn => btn.classList.remove('active'));
+        
+        if (lang === 'ko') {
+            koreanDesc.classList.remove('hidden');
+            englishDesc.classList.add('hidden');
+            buttons[0].classList.add('active');
+        } else {
+            koreanDesc.classList.add('hidden');
+            englishDesc.classList.remove('hidden');
+            buttons[1].classList.add('active');
+        }
+
+localStorage.setItem('soosoo-lang', lang); 
+
+    }
+function initLanguage() {
+  const saved = localStorage.getItem('soosoo-lang');
+  if (saved) {
+    toggleLanguage(saved); // 저장된 값 우선
+  } else {
+    const lang = navigator.language.startsWith('ko') ? 'ko' : 'en';
+    toggleLanguage(lang); // 브라우저 언어 감지
+  }
+}
 function playGame(wordpool, title) {
   // Vercel 게임 파일 주소
   const gameUrl = 'https://soosoofile.vercel.app/moeum.html';
