@@ -85,10 +85,10 @@
     }
  .language-toggle {
         position: absolute;
-        top: 20px;
-        right: 20px;
+        top: 12px;
+        right: 12px;
         background: rgba(255,255,255,0.9);
-        padding: 8px;
+        padding: 5px;
         border-radius: 8px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         z-index: 100;
@@ -114,6 +114,11 @@
     .language-button.active {
         background: #ff69b4;
     }
+    .back-button {position: fixed;top: 12px; left: 12px;width: 44px;height: 44px;padding: 0;background: transparent;border: none;border-radius: 22%;cursor: pointer;z-index: 100; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.25); }
+
+    .back-button img {width: 100%;height: 100%;object-fit: cover;display: block;}
+
+    .back-button:active {transform: scale(0.92);transition: transform 0.1s;}
 
     h1 {
       font-size: 3em;
@@ -169,26 +174,6 @@
       background-color: #1baf8f;
       color: #fff;
     }
-
-  .back-button {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        padding: 10px 20px;
-        font-size: 1em;
-        background-color: #FFD6BA;
-        color: #7A2E2E;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        z-index: 100;
-    }
-
-    .back-button:hover {
-        background-color: #FF9494;
-        color: white;
-    }
     footer {
 text-align: center;
 color: #c3dbdb;
@@ -215,10 +200,9 @@ margin-top: 30px;
       }
     }
 
-    @media (max-width: 499px) {
       @media (max-width: 480px) {
     
-.language-toggle {
+    .language-toggle {
         top: 10px;
         right: 10px;
         padding: 6px;
@@ -230,6 +214,7 @@ margin-top: 30px;
         font-size: 0.85rem;
         white-space: nowrap; /* 텍스트 줄바꿈 방지 */
     }
+     .back-button {top: 10px;left: 10px;width: 40px;height: 40px;}
      .game-buttons button {
         flex: 0 0 calc(100% - 20px); /* 1줄 */
         max-width: 280px;
@@ -242,8 +227,8 @@ margin-top: 30px;
 </style>
 </head>
 <body onload="initLanguage()">
-    <button class="back-button" onclick="location.href='https://soosooland.com/'">
-    Soosooland </button>
+  <button class="back-button" onclick="location.href='https://soosooland.com/'" aria-label="수수랜드 홈으로">
+  <img src="https://soosooland.com/images/home.png" alt="수수랜드 홈"></button>
     <div class="blackboard">
   <div class="language-toggle">
                 <button class="language-button active" onclick="toggleLanguage('ko')">한국어</button>
