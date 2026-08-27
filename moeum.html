@@ -1,909 +1,176 @@
-<!DOCTYPE html>
-
-<html lang="ko">
-<head>
-<script>
-  if (window.top !== window.self) {
-    window.top.location = "https://soosooland.com";
-  }
-  console.log("© 2025-2026 Soosooland by 한수수. All rights reserved.");
-  console.log("https://soosooland.com");
-  console.log("🎮 Moeum Quiz | Born: 2025-06-21");
-</script>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4YZHC1G9FN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-4YZHC1G9FN');
-</script>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="robots" content="noindex, nofollow">
-<title>모음퀴즈</title>
-<link rel="stylesheet" href="https://soosooland.com/css/protection.css">
-<script src="https://soosooland.com/js/protection.js"></script>
-<style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-body {
-font-family: 'Malgun Gothic', sans-serif;
-background: #145454;
-min-height: 100vh;
-padding: 20px;
-}
-
-.container {
-max-width: 800px;
-margin: 0 auto;
-}
-
-.header {
-text-align: center;
-margin-bottom: 30px;
-}
-.back-button { position: fixed; top: max(48px, env(safe-area-inset-top) + 20px); left: 22px; width: 44px; height: 44px; padding: 0; font-size: 1.8em; font-weight: bold; 
- background-color: white;
- color: #145454;
- border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;z-index: 100;}
-        
-    .back-button:hover {
-        background: linear-gradient(135deg, #4A628A, #7AB2D3);
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(74, 98, 138, 0.3);
-}
-    .title {
-        font-size: 1.8em;
-        font-weight: bold;
-        color: #b4f0f0;
-        margin-bottom: 10px;
-    }    
-.subtitle {
-    color: #FFD700;
-    font-size: 1.4em;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.game-desc {
-    color: white;
-    font-size: 1.1em;
-}
-
-.game-board {
-background: rgba(255, 255, 255, 0.9);
-border-radius: 12px;
-box-shadow: 0 8px 32px rgba(74, 98, 138, 0.2);
-padding: 30px;
-margin-bottom: 20px;
-}
-
-.sentence-display {
-text-align: center;
-margin-bottom: 20px;
-}
-
-.sentence-area {
-font-size: 3em;
-background: rgba(223, 242, 235, 0.3);
-padding: 30px;
-border-radius: 8px;
-min-height: 120px;
-display: flex;
-align-items: center;
-justify-content: center;
-flex-wrap: wrap;
-gap: 10px;
-line-height: 1.2;
-word-break: keep-all;
-overflow-wrap: break-word;
-}
-
-.word-group {
-display: inline-flex;
-flex-wrap: nowrap;
-white-space: nowrap;
-align-items: center;
-margin-right: 0.3em;
-}
-
-.word-group:last-child {
-margin-right: 0;
-}
-
-.hangul-char {
-display: inline-block;
-min-width: 1em;
-height: 1.2em;
-text-align: center;
-vertical-align: baseline;
-font-family: 'Malgun Gothic', sans-serif;
-}
-
-.incomplete-char {
-background: rgba(223, 242, 235, 0.3);
-color: #4A628A;
-display: inline-flex;
-align-items: center;
-justify-content: center;
-min-width: 1em;
-height: 1.2em;
-}
-
-.complete-char {
-color: #4A628A;
-}
-
-.space {
-width: 0.5em;
-}
-
-.win-message {
-text-align: center;
-margin-bottom: 20px;
-}
-
-.win-alert {
-background: rgba(223, 242, 235, 0.9);
-border: 1px solid #7AB2D3;
-color: #4A628A;
-padding: 15px;
-border-radius: 8px;
-font-size: 1.2em;
-}
-
-.lose-message {
-text-align: center;
-margin-bottom: 20px;
-}
-
-.lose-alert {
-background: rgba(122, 178, 211, 0.2);
-border: 1px solid #7AB2D3;
-color: #4A628A;
-padding: 15px;
-border-radius: 8px;
-font-size: 1.2em;
-}
-
-.wrong-attempts {
-background: rgba(122, 178, 211, 0.3);
-color: #4A628A;
-padding: 8px 12px;
-border-radius: 6px;
-font-weight: bold;
-margin-left: 10px;
-}
-
-.hint-section {
-background: rgba(185, 229, 232, 0.6);
-border: 1px solid #7AB2D3;
-border-radius: 8px;
-padding: 15px;
-margin-bottom: 20px;
-text-align: center;
-}
-
-.hint-title {
-font-size: 1.2em;
-color: #4A628A;
-font-weight: bold;
-margin-bottom: 5px;
-display:inline;
-
-}
-
-.hint-text {
-font-size: 1.1em;
-color: #4A628A;
-font-weight: bold;
-display:inline;
-
-}
-
-.consonant-section {
-background: rgba(255, 255, 255, 0.9);
-border-radius: 12px;
-box-shadow: 0 8px 32px rgba(74, 98, 138, 0.2);
-padding: 30px;
-margin-bottom: 20px;
-}
-
-.consonant-title {
-font-size: 1.2em;
-font-weight: 600;
-margin-bottom: 20px;
-text-align: center;
-color: #4A628A;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 10px;
-flex-wrap: wrap;
-}
-
-.title-text-desktop {
-    display: inline;
-}
-
-.title-text-mobile {
-    display: none;
-}
-
-.consonant-input {
-width: 50px;
-height: 40px;
-font-size: clamp(16px, 1.5em, 24px);
-text-align: center;
-border: 2px solid #7AB2D3;
-border-radius: 8px;
-padding: 5px;
-font-family: 'Malgun Gothic', sans-serif;
-background: white;
-color: #4A628A;
-}
-
-.consonant-input:focus {
-outline: none;
-border-color: #4A628A;
-box-shadow: 0 0 5px rgba(74, 98, 138, 0.3);
-}
-
-.consonant-grid {
-display: grid;
-grid-template-columns: repeat(7, 1fr);
-gap: 10px;
-}
-
-.consonant-btn {
-width: 60px;
-height: 60px;
-font-size: 1.4em;
-font-weight: bold;
-border-radius: 8px;
-border: 2px solid;
-cursor: pointer;
-transition: all 0.2s;
-}
-
-.consonant-btn.available {
-background: linear-gradient(135deg, #B9E5E8, #DFF2EB);
-color: #4A628A;
-}
-
-.consonant-btn.available:hover {
-background: linear-gradient(135deg, #7AB2D3, #B9E5E8);
-color: white;
-transform: translateY(-2px);
-box-shadow: 0 5px 15px rgba(74, 98, 138, 0.3);
-}
-
-.consonant-btn.correct {
-background: #7AB2D3;
-color: white;
-border-color: #4A628A;
-}
-
-.consonant-btn.wrong {
-background:#f8caca;
-color: #7AB2D3;
-border-color: #B9E5E8;
-cursor: not-allowed;
-}
-
-.game-info {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 20px;
-}
-
-.stats {
-font-size: 1.3em;
-color: #e386c7;
-}
-
-.new-game-btn {
-background: linear-gradient(135deg, #7AB2D3, #4A628A);
-color: white;
-padding: 10px 20px;
-border: none;
-border-radius: 8px;
-cursor: pointer;
-font-size: 1em;
-transition: all 0.3s ease;
-}
-
-.new-game-btn:hover {
-background: linear-gradient(135deg, #4A628A, #7AB2D3);
-transform: translateY(-2px);
-box-shadow: 0 5px 15px rgba(74, 98, 138, 0.3);
-}
-
-.loading-message {
-text-align: center;
-color: white;
-font-size: 1.5em;
-margin-top: 50px;
-}
-
-.error-message {
-text-align: center;
-color: #ff6b6b;
-font-size: 1.2em;
-margin-top: 50px;
-background: rgba(255, 255, 255, 0.9);
-padding: 20px;
-border-radius: 12px;
-}
-footer {
-text-align: center;
-color: #c3dbdb;
-font-size: 0.8rem;
-margin-top: 30px;
-}
-
-@media (max-width: 600px) {
-     .back-button {
-        width: 100%;
-        padding: 12px 0;
-        font-size: 1em;
-    }
-
-    .title {
-        font-size: 1.8em;
-}
-    .sentence-area {
-        font-size: 1.8em;
-        padding: 20px;
-        min-height: 80px;
-    }
-
-    .consonant-title {
-        font-size: 1em;
-        flex-direction: column;
-        gap: 5px;
-    }
-
-   .title-text-desktop {
-        display: none;
-    }
-    
-    .title-text-mobile {
-        display: inline;
-        font-size: 1em;
-}
-    
-    .title-text::after {
-        content: '';  /* 화살표 없애기 */
-    }
-    .consonant-input {
-        width: 60px;
-        height: 45px;
-        display: none;  /* 입력창 숨기기 */
-    }
-
-    .consonant-grid {
-        grid-template-columns: repeat(5, 1fr);
-    }
-
-    .consonant-btn {
-        width: 100%;
-        height: 50px;
-        font-size: 1.0em;
-    }
-
-    .new-game-btn {
-        width: 100%;
-        padding: 12px 0;
-        font-size: 1em;
-    }
-
-    .game-info {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-
-    .container {
-        padding: 10px;
-    }
-}
-  @media (max-width: 480px) {
-.back-button { top: max(30px, env(safe-area-inset-top) + 10px); left: 10px; width: 40px; height: 40px; font-size: 1.5em; }
-}
-
-</style>
-
-</head>
-<body>
- <button class="back-button" onclick="location.href='https://soosooland.com/moeum-quiz/index.html'">
-   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
- </button>
-   <div class="container">
-        <div class="header">
-    <h1 class="title">모음 퀴즈</h1>
-    <p class="subtitle" id="categoryTitle">게임을 시작하세요</p>
-</div>
-
-<div id="loadingMessage" class="loading-message">
-    문제를 불러오는 중...
-</div>
-
-<div id="errorMessage" class="error-message" style="display: none;">
-</div>
-
-<div id="gameContent" style="display: none;">
-<div class="game-board">
-    <div class="hint-section">
-        <div class="hint-title">💡 </div>
-        <div class="hint-text" id="hintText">게임을 시작하세요!</div>
-    </div>
-
-<div class="sentence-display">
-    <div class="sentence-area" id="sentenceArea">
-        게임을 시작하세요!
-    </div>
-</div>
-
-<div id="winMessage" class="win-message" style="display: none;">
-    <div class="win-alert">
-        🎉 축하합니다! 정답을 맞추셨습니다! 🎉
-    </div>
-</div>
-
-<div id="loseMessage" class="lose-message" style="display: none;">
-    <div class="lose-alert">
-        😔 게임 종료! 정답을 확인하세요.
-    </div>
-</div>
-</div>
-<div class="consonant-section">
-  <h3 class="consonant-title">
-    <span class="title-text-desktop">자음을 클릭하거나 입력하세요 →</span>
-    <span class="title-text-mobile">자음을 클릭하세요</span>
-<input type="text" 
-       class="consonant-input" 
-       id="consonantInput" 
-       maxlength="1" 
-       autocomplete="off"
-       autocorrect="off"
-       autocapitalize="off"
-       spellcheck="false"
-       name="consonant-input-random">     
-</h3>
-    <div class="consonant-grid" id="consonantGrid">
-    </div>
-</div>
-<div class="game-info">
-    <div class="stats" id="gameStats">
-        맞춘 자음: 0개 | 틀린 자음: 0개
-    </div>
-<button class="new-game-btn" onclick="startNewGame()">새 게임</button>
-</div>
-</div>
-</div>
-  <footer>
-  <p>© 2025 Han Soosoo. All rights reserved.</p>
-</footer>
-
-<script>
-    // 워드풀 URL 파라미터에서 가져오기
-const urlParams = new URLSearchParams(window.location.search);
-const wordpoolUrl = urlParams.get('wordpool');
-const categoryTitle = urlParams.get('title') || '모음 퀴즈';
-
-// 게임 데이터 (외부에서 로딩됨)
-let sentences = [];
-
-const consonants = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
-
-let currentSentence = '';
-let guessedConsonants = new Set();
-let wrongConsonants = new Set();
-let gameWon = false;
-let gameLost = false;
-const maxWrongAttempts = 6;
-let charStates = [];
-let currentHint = '';
-
-// 셔플된 문장 리스트와 인덱스
-let shuffledSentences = [];
-let sentenceIndex = 0;
-
-// 워드풀 로딩 함수
-async function loadWordpool() {
-    if (!wordpoolUrl) {
-        showError('워드풀 주소가 지정되지 않았습니다.');
-        return false;
-    }
-
-    try {
-        const response = await fetch(wordpoolUrl);
-        if (!response.ok) {
-            throw new Error('워드풀을 불러올 수 없습니다.');
-        }
-        const data = await response.json();
-sentences = data.map(item => {
-    const result = {};
-    for (const key in item) {
-        result[key] = typeof item[key] === 'string'
-            ? item[key].replace(/[\u200B-\u200D\uFEFF\u00A0]/g, '').trim()
-            : item[key];
-    }
-    return result;
-});
-        
-        if (!Array.isArray(sentences) || sentences.length === 0) {
-            throw new Error('워드풀 형식이 올바르지 않습니다.');
-        }
-        
-        return true;
-    } catch (error) {
-        showError('워드풀을 불러오는 중 오류가 발생했습니다: ' + error.message);
-        return false;
-    }
-}
-
-function showError(message) {
-    document.getElementById('loadingMessage').style.display = 'none';
-    document.getElementById('errorMessage').textContent = message;
-    document.getElementById('errorMessage').style.display = 'block';
-}
-
-function hideLoadingAndShowGame() {
-    document.getElementById('loadingMessage').style.display = 'none';
-    document.getElementById('errorMessage').style.display = 'none';
-    document.getElementById('gameContent').style.display = 'block';
-}
-
-function shuffleSentences() {
-    shuffledSentences = [...sentences];
-    for (let i = shuffledSentences.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledSentences[i], shuffledSentences[j]] = [shuffledSentences[j], shuffledSentences[i]];
-    }
-    sentenceIndex = 0;
-}
-
-function getNextSentence() {
-    if (sentenceIndex >= shuffledSentences.length) {
-        shuffleSentences();
-    }
-    return shuffledSentences[sentenceIndex++];
-}
-
-function containsConsonant(targetChar, consonant) {
-    const consonantMap = {
-        'ㄲ': 'ㄱ', 'ㄸ': 'ㄷ', 'ㅃ': 'ㅂ', 'ㅆ': 'ㅅ', 'ㅉ': 'ㅈ'
-    };
-    const complexConsonantMap = {
-        'ㄳ': ['ㄱ', 'ㅅ'], 'ㄵ': ['ㄴ', 'ㅈ'], 'ㄶ': ['ㄴ', 'ㅎ'],
-        'ㄺ': ['ㄹ', 'ㄱ'], 'ㄻ': ['ㄹ', 'ㅁ'], 'ㄼ': ['ㄹ', 'ㅂ'],
-        'ㄽ': ['ㄹ', 'ㅅ'], 'ㄾ': ['ㄹ', 'ㅌ'], 'ㄿ': ['ㄹ', 'ㅍ'],
-        'ㅀ': ['ㄹ', 'ㅎ'], 'ㅄ': ['ㅂ', 'ㅅ']
-    };
-    if (targetChar === consonant) return true;
-    if (consonantMap[targetChar] === consonant) return true;
-    if (complexConsonantMap[targetChar] && complexConsonantMap[targetChar].includes(consonant)) return true;
-    return false;
-}
-
-function getComplexConsonantComponents(consonant) {
-    const complexConsonantMap = {
-        'ㄳ': ['ㄱ', 'ㅅ'], 'ㄵ': ['ㄴ', 'ㅈ'], 'ㄶ': ['ㄴ', 'ㅎ'],
-        'ㄺ': ['ㄹ', 'ㄱ'], 'ㄻ': ['ㄹ', 'ㅁ'], 'ㄼ': ['ㄹ', 'ㅂ'],
-        'ㄽ': ['ㄹ', 'ㅅ'], 'ㄾ': ['ㄹ', 'ㅌ'], 'ㄿ': ['ㄹ', 'ㅍ'],
-        'ㅀ': ['ㄹ', 'ㅎ'], 'ㅄ': ['ㅂ', 'ㅅ']
-    };
-    return complexConsonantMap[consonant] || null;
-}
-
-function decomposeHangul(char) {
-    const code = char.charCodeAt(0) - 0xAC00;
-    if (code < 0 || code > 11171) return null;
-    const jong = code % 28;
-    const jung = (code - jong) / 28 % 21;
-    const cho = ((code - jong) / 28 - jung) / 21;
-    const choTable = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
-    const jungTable = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
-    const jongTable = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
-    return {
-        cho: choTable[cho],
-        jung: jungTable[jung],
-        jong: jong === 0 ? '' : jongTable[jong]
-    };
-}
-
-function composeHangul(cho, jung, jong = '') {
-    const choTable = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
-    const jungTable = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ', 'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ', 'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
-    const jongTable = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ', 'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ', 'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
-    
-    const choIndex = choTable.indexOf(cho);
-    const jungIndex = jungTable.indexOf(jung);
-    const jongIndex = jongTable.indexOf(jong);
-    if (choIndex === -1 || jungIndex === -1 || jongIndex === -1) return null;
-    const code = 0xAC00 + (choIndex * 21 + jungIndex) * 28 + jongIndex;
-    return String.fromCharCode(code);
-}
-
-function isJongComplete(charData) {
-    if (!charData.jong) return true;
-    
-    const doubleConsonantMap = {
-        'ㄲ': 'ㄱ', 'ㅆ': 'ㅅ'
-    };
-    
-    if (doubleConsonantMap[charData.jong]) {
-        const baseConsonant = doubleConsonantMap[charData.jong];
-        return charData.foundJongComponents.has(baseConsonant) || charData.foundJongComponents.has(charData.jong);
-    }
-    
-    const components = getComplexConsonantComponents(charData.jong);
-    if (!components) {
-        return charData.foundJongComponents.has(charData.jong);
-    } else {
-        return components.every(comp => charData.foundJongComponents.has(comp));
-    }
-}
-
-function isCharComplete(charData) {
-    return charData.choFound && isJongComplete(charData);
-}
-
-function createConsonantButtons() {
-    const grid = document.getElementById('consonantGrid');
-    grid.innerHTML = '';
-    consonants.forEach(consonant => {
-        const button = document.createElement('button');
-        button.className = 'consonant-btn available';
-        button.textContent = consonant;
-        button.onclick = () => handleConsonantClick(consonant);
-        button.id = `btn-${consonant}`;
-        grid.appendChild(button);
-    });
-    
-// 자음 입력창 이벤트 리스너
-  const input = document.getElementById('consonantInput');
-if (input) {
-    // 자동으로 포커스 주기
-    input.focus();  
-    input.addEventListener('input', function(e) {
-        const value = e.target.value;
-        if (value) {
-            // 자음인지 확인
-            if (consonants.includes(value)) {
-                handleConsonantClick(value);
-            }
-            // 100ms 후에 입력창 비우기
-            setTimeout(() => {
-                e.target.value = '';
-                input.focus(); // 입력 후에도 포커스 유지
-            }, 100);
-        }
-    });
-}
-}
-
-function showAnswer() {
-    const words = [];
-    let currentWord = [];
-
-    charStates.forEach(charData => {
-        if (charData.isSpace) {
-            if (currentWord.length > 0) {
-                words.push(currentWord);
-                currentWord = [];
-            }
-        } else {
-            currentWord.push(`<span class="hangul-char complete-char">${charData.char}</span>`);
-        }
-    });
-
-    if (currentWord.length > 0) {
-        words.push(currentWord);
-    }
-
-    const wordGroups = words.map(word => 
-        `<span class="word-group">${word.join('')}</span>`
-    );
-
-    document.getElementById('sentenceArea').innerHTML = wordGroups.join('');
-}
-
-function getFoundJongDisplay(charData) {
-    if (!charData.jong) return '';
-    
-    const doubleConsonantMap = {
-        'ㄲ': 'ㄱ', 'ㅆ': 'ㅅ'
-    };
-    
-    if (doubleConsonantMap[charData.jong]) {
-        const baseConsonant = doubleConsonantMap[charData.jong];
-        if (charData.foundJongComponents.has(baseConsonant) || charData.foundJongComponents.has(charData.jong)) {
-            return charData.jong;
-        }
-        return '';
-    }
-    
-    const components = getComplexConsonantComponents(charData.jong);
-    if (!components) {
-        return charData.foundJongComponents.has(charData.jong) ? charData.jong : '';
-    } else {
-        const foundParts = components.filter(comp => charData.foundJongComponents.has(comp));
-        if (foundParts.length === 0) return '';
-        if (foundParts.length === components.length) {
-            return charData.jong;
-        } else {
-            return foundParts.join('');
-        }
-    }
-}
-
-function updateDisplay() {
-    const words = [];
-    let currentWord = [];
-
-    charStates.forEach(charData => {
-        if (charData.isSpace) {
-            if (currentWord.length > 0) {
-                words.push(currentWord);
-                currentWord = [];
-            }
-        } else {
-            if (charData.isNonHangul) {
-                currentWord.push(`<span class="hangul-char complete-char">${charData.char}</span>`);
-            } else {
-                let displayCho = charData.choFound ? charData.cho : '';
-                let displayJung = charData.jung;
-                let displayJong = getFoundJongDisplay(charData);
-
-                if (displayCho && displayJong) {
-                    currentWord.push(`<span class="hangul-char complete-char">${composeHangul(displayCho, displayJung, displayJong)}</span>`);
-                } else if (displayCho && !charData.jong) {
-                    currentWord.push(`<span class="hangul-char complete-char">${composeHangul(displayCho, displayJung)}</span>`);
-                } else if (displayCho) {
-                    currentWord.push(`<span class="hangul-char incomplete-char">${composeHangul(displayCho, displayJung)}</span>`);
-                } else if (displayJong) {
-                    currentWord.push(`<span class="hangul-char incomplete-char" style="position: relative; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; min-width: 1em; height: 1.2em;"><span style="font-size: 0.8em;">${displayJung}</span><span style="font-size: 0.7em; margin-top: -0.1em;">${displayJong}</span></span>`);
-                } else {
-                    currentWord.push(`<span class="hangul-char incomplete-char">${displayJung}</span>`);
-                }
-            }
-        }
-    });
-
-    if (currentWord.length > 0) {
-        words.push(currentWord);
-    }
-
-    const wordGroups = words.map(word => 
-        `<span class="word-group">${word.join('')}</span>`
-    );
-
-    document.getElementById('sentenceArea').innerHTML = wordGroups.join('');
-}
-
-function handleConsonantClick(consonant) {
-    if (guessedConsonants.has(consonant) || wrongConsonants.has(consonant) || gameWon || gameLost) return;
-
-    let found = false;
-    charStates.forEach(charData => {
-        if (charData.isSpace || charData.isNonHangul) return;
-        
-        if (!charData.choFound && containsConsonant(charData.cho, consonant)) {
-            charData.choFound = true;
-            found = true;
-        }
-        
-        if (charData.jong && containsConsonant(charData.jong, consonant)) {
-            if (!charData.foundJongComponents.has(consonant)) {
-                charData.foundJongComponents.add(consonant);
-                found = true;
-                
-                if (isJongComplete(charData)) {
-                    charData.jongFound = true;
-                }
-            }
-        }
-    });
-
-    if (found) {
-        guessedConsonants.add(consonant);
-        document.getElementById(`btn-${consonant}`).className = 'consonant-btn correct';
-        updateDisplay();
-        const allComplete = charStates.every(charData =>
-            charData.isSpace || charData.isNonHangul || isCharComplete(charData)
-        );
-        if (allComplete) {
-            gameWon = true;
-            document.getElementById('winMessage').style.display = 'block';
-        }
-    } else {
-        wrongConsonants.add(consonant);
-        document.getElementById(`btn-${consonant}`).className = 'consonant-btn wrong';
-        if (wrongConsonants.size >= maxWrongAttempts) {
-            gameLost = true;
-            document.getElementById('loseMessage').style.display = 'block';
-            showAnswer();
-        }
-    }
-
-    updateStats();
-}
-
-function updateStats() {
-    document.getElementById('gameStats').innerHTML =
-        `맞춘 자음: ${guessedConsonants.size}개 | 틀린 자음: ${wrongConsonants.size}개`;
-}
-
-function startNewGame() {
-    const randomSentenceData = getNextSentence();
-    currentSentence = randomSentenceData.text;
-    currentHint = randomSentenceData.hint;
-    guessedConsonants = new Set();
-    wrongConsonants = new Set();
-    gameWon = false;
-    gameLost = false;
-    charStates = [];
-    document.getElementById('winMessage').style.display = 'none';
-    document.getElementById('loseMessage').style.display = 'none';
-    document.getElementById('hintText').textContent = currentHint;
-
-    for (let char of currentSentence) {
-        if (char === ' ') {
-            charStates.push({ isSpace: true });
-        } else {
-            const decomposed = decomposeHangul(char);
-            if (!decomposed) {
-                charStates.push({ isNonHangul: true, char });
-            } else {
-                charStates.push({
-                    char,
-                    cho: decomposed.cho,
-                    jung: decomposed.jung,
-                    jong: decomposed.jong,
-                    choFound: false,
-                    jongFound: false,
-                    foundJongComponents: new Set(),
-                    isSpace: false,
-                    isNonHangul: false
-                });
-            }
-        }
-    }
-
-    updateDisplay();
-    createConsonantButtons();
-    updateStats();
-}
-
-// 페이지 로드 시 워드풀 로딩 및 게임 시작
-window.onload = async function () {
-    const success = await loadWordpool();
-    if (success) {
-        hideLoadingAndShowGame();  // ← 이 줄이 꼭 필요해요!
-        
-        // 카테고리 제목 표시
-        document.getElementById('categoryTitle').textContent = categoryTitle;
-        
-        createConsonantButtons();
-        shuffleSentences();
-        startNewGame();
-    }
-};
-
-</script>
-</body>
-</html>
+## ⚠️ Copyright Notice | 저작권 안내 | کاپی رائٹ نوٹس  
+
+All games are registered copyrights. Unauthorized copying or redistribution is prohibited.  
+모든 게임은 저작권 등록된 창작물입니다. 무단 복제 및 배포를 금합니다.  
+تمام گیمز کاپی رائٹ محفوظ ہیں۔ غیر مجاز نقل ممنوع ہے۔
+## 👤 모음퀴즈 (Moeum Quiz) 
+
+모음이 공개된 상태에서 자음을 맞춰서 숨어있는 단어, 구절, 문장을 찾는 게임입니다.  
+This is a Korean language puzzle game where players guess the hidden consonants to complete sentences with only vowels revealed.
+
+### 게임 방법 / How to Play
+
+- 모음은 모두 공개된 상태에서 게임이 시작됩니다.  
+  The game starts with all vowels revealed.
+
+- 화면 아래 자음 버튼을 클릭해 해당 자음이 포함되어 있는지 추리합니다.  
+  Click the consonant buttons at the bottom to guess if the consonant is in the sentence.
+
+- 정답 자음은 해당 위치에 표시되고, 오답 자음은 시도 횟수가 차감됩니다.  
+  Correct consonants are revealed in their positions, while incorrect guesses reduce your attempt count.
+
+- 6번의 기회 안에 문장을 완성하면 승리!  
+  Complete the sentence within 6 tries to win!
+
+- 실패하면 정답 문장이 공개됩니다.  
+  If you fail, the correct sentence will be shown.
+
+- 모음퀴즈는 간단하게 설명하면 한글 행맨입니다.  
+  Moeum-quiz is essentially Korean Hangman.
+
+- 모음퀴즈에는 힌트가 있는 게임이 있고, 힌트가 없는 게임이 있습니다.  
+  Moeum-quiz has games with hints and games without hints.
+
+- 같은 주제일 때 힌트가 있으면  맞추기가 쉬워집니다.  
+  When the topic is the same, having hints makes it easier to guess the answer.
+
+- 같은 주제인데 힌트가 있는 것과 없는 것으로  두 가지 종류가 있는 것은 음식과 속담입니다.   
+  The topics that have both hint and no-hint versions are Food and Proverbs.
+
+- 현재 일상 대화, 한국의 여행지, 대륙과 나라와 수도, 노래와 가수, 음식,속담과 격언, 초등학교 국사, 중학교 국사, 동물과 식물, 저자와 저서, 고유어, 영화와 드라마 제목  등 다양한 주제가 있습니다. 
+  Current topics include: Daily Conversations, Korean Travel Destinations, Continents/Countries/Capitals, Songs and Singers, Food, Proverbs and Sayings, Elementary School Korean History, Middle School Korean History, Animals and Plants, Authors and Books, Pure Korean Words, Movie and Drama Titles, and more.  
+
+- 모든 자음을 다 찾을 때까지 계속되고, 다 찾으면 맞춘 자음 수에 따라 승패가 결정됩니다.  
+  The game continues until all consonants are found, and when all are found, the winner is determined based on the number of consonants each player guessed correctly.  
+
+- 하루모음은 하루 1문제씩 매일 새로운 문제가 출제됩니다.  
+- One new question is presented each day in Haroo Moeum.  
+  
+## 둘이 모음 (Doori Moeum)
+
+- 두 사용자가 대결하는 모음퀴즈로, 각 팀은 서로 다른 자기만의 문제 세트를 풉니다.   
+- 라운드마다 한 팀만 문제를 풀고, 다른 팀은 대기합니다. 대기 팀은 지루하지 않도록 자기 팀이 다음 라운드에 풀 문제를 미리 보면서 기다립니다.  
+- 풀이 순서는 라운드마다 교대됩니다. (1라운드: 1팀 풀이 / 2라운드: 2팀 풀이 / …)  
+- 문제마다 10점 만점에서 시작해서, 틀린 자음을 클릭할 때마다 1점씩 삭감됩니다.  
+- 10라운드가 끝나면 각 팀의 점수를 합산해 총점이 높은 팀(실수가 적은 팀)이 승리합니다.  
+
+## Doori Moeum
+
+- A two-player Moeum quiz battle where each team solves its own separate set of questions.  
+- Each round, only one team solves while the other waits. To keep the waiting team from getting bored, they get to preview the question their team will solve in the next round.  
+- The solving turn alternates by round (Round 1: Team 1 solves / Round 2: Team 2 solves / and so on).  
+- Each question starts at a maximum of 10 points, losing 1 point for every wrong consonant clicked.  
+- After 10 rounds, each team's points are totaled — the team with the higher score (fewer mistakes) wins.  
+
+## 모음 겨루기 (Moeum Battle)
+ 
+- 두 사용자가 대결하는 모음퀴즈로, 서로 다른 문제에 있는 자음을 동시에 공개하며 진행됩니다.  
+- 교대로 자음을 클릭하면, 그 자음이 두 사람의 문제에서 동시에 공개됩니다.  
+- 정답을 먼저 완성하면 2점, 동시에 완성하면 1점씩 받습니다.  
+- 10라운드 후 점수를 비교해 승패 또는 무승부가 결정됩니다.  
+- 내 문제와 상대방의 문제를 동시에 추리하면서, 내 문제에 있을 것 같은 자음을 클릭하도록 노력하세요.  
+
+## Moeum Battle
+
+- A two-player Moeum quiz battle where players take turns revealing consonants that appear in each other's separate word.  
+- Whenever a consonant is clicked, it's revealed simultaneously in both players' words if present.  
+- Completing your word first earns 2 points; completing it at the same time as your opponent earns 1 point each.  
+- After 10 rounds, scores are compared to determine a win, loss, or tie.  
+- Try to guess both your own word and your opponent's at the same time, and click consonants you think are likely to appear in your own word.  
+   
+## 모음 사전 (Moeum dict) / 모음 스쿨 (Moeum School)  
+
+- 모음사전과 모음 스쿨은 한국 초등학교 교과서에서 추출한 단어로 만든 학습 퀴즈입니다.  
+- 모음사전은 단어나 어휘를 보고 뜻을 맞춰야 하고, 모음 스쿨은 힌트를 보고 단어나 어휘를 맞춰야 합니다.  
+- 독일 심리학자 헤르만 에빙하우스가 발견한 과학적 학습법(망각곡선)을 적용했습니다. 외국어 학습과 장기기억에 매우 효과적입니다.  
+- 학습 1회 + 복습 4회(3일 후 → 7일 후 → 14일 후 → 28일 후), 총 5단계를 거치면 장기기억으로 저장됩니다.  
+- 첫 학습에서 틀린 문제는 그 자리에서 바로 다시 풀어 정답을 확인합니다. (당일 학습 완료)  
+- 이렇게 한 번이라도 틀렸던 문제만 복습 일정에 등록되어, 위 4단계 복습을 거칩니다.  
+- 날짜를 지켜서 반복하면 오래 기억됩니다.  
+
+## Moeum Dictionary (Moeum Dict) / Moeum School  
+
+- Both Moeum Dictionary and Moeum School are study quizzes built from vocabulary extracted from Korean elementary school textbooks.  
+- In Moeum Dictionary, you see a word and guess its meaning. In Moeum School, you see a hint and guess the word.  
+- The system applies the scientific learning method (the forgetting curve) discovered by German psychologist Hermann Ebbinghaus, which is highly effective for foreign language learning and long-term memory.  
+- One initial study session plus four review sessions (after 3, 7, 14, and 28 days) — five stages in total — move a word into long-term memory.  
+- Any question missed during the first study session is immediately retried on the spot to confirm the correct answer (completing that day's study).  
+- Only questions missed at least once are added to the review schedule and go through the four review stages above.  
+- Repeating on schedule is what makes the memory last.  
+
+| 사용자 user    | 👤혼자 하기 |👤혼자 하기   | 👤🆚👤 2인 대결 | 👤혼자 하기|
+|----|----|----|----|----|
+|  게임 Game| 모음퀴즈 <br>Moeum-quiz <br>하루모음<br> Haroo Moeum|모음 라운드<br>Moeum Round<br> |  둘이 모음<br> Doori-moeun <br> 모음 겨루기<br> Moeum Battle |모음 스쿨<br> Moeum School<br>모음 사전 <br> Moeum dict|
+|게임 종료|6회 틀리거나 정답을 맞추면 |10라운드 끝나면 | 한 팀의 정답을 맞출 때까지| 모두 맞출 때까지 틀리면 다시 풀기 |
+
+---
+## ⚠️ **Copyright Protection   
+
+이 저작물은 한국저작권위원회에 등록되어 법적 보호를 받습니다.    
+This project is registered with the Korea Copyright Commission.
+
+| 게임 | 등록번호 | 등록일 |
+|------|----------|--------|
+| 모음퀴즈(moeum-quiz)| C-2025-031801 | 2025.08.19 |
+
+---
+
+### ✨ 자유롭게 하실 수 있는 것
+
+✅ **무료 플레이** - 언제든 게임을 즐기세요  
+✅ **공유하기** - 친구들에게 수수랜드를 추천해주세요  
+✅ **링크 공유** - SNS에 soosooland.com을 올려주세요  
+✅ **피드백** - 의견을 보내주시면 반영하겠습니다
+
+### ✨ What You Can Do
+
+✅ **Play for free** - Enjoy all games anytime  
+✅ **Share** - Tell your friends about Soosooland  
+✅ **Link** - Share soosooland.com on social media  
+✅ **Feedback** - Help us improve with your suggestions
+
+---
+
+### 🤝 허락이 필요한 경우
+
+📧 **다음의 경우 연락 주세요:**
+- 상업적 이용
+- 2차 창작 또는 변형
+- 재배포 또는 재게시
+- 교육기관 또는 단체 이용
+
+💌 협업과 파트너십은 언제나 환영합니다!  
+[문의하기](https://soosooland.com/Contact.html)
+
+### 🤝 Need Permission For
+
+📧 **Please contact me for:**
+- Commercial use or monetization
+- Creating derivative works
+- Redistribution or republishing
+- Educational or institutional use
+
+💌 I'm open to collaborations and partnerships!  
+[Contact me](https://soosooland.com/Contact.html)
+
+---
+
+## 🎮  모음 퀴즈 주소 : https://soosooland.com/moeum-quiz/
+
+## 🌟 Soosooland - Puzzle Game Hub by Han Soosoo
+
+ "Learning through fun, and fun through learning."
+
+Explore more brain games and puzzles in **[Soosooland](https://soosooland.com/)**    
+— a digital playground designed to improve memory, logic, and creativity while having fun!
+
+---
+
+### 👤 만든 사람 | Credits
+
+- 기획·개발 : 한수수  
+ⓒ 2025 한수수. 이 게임의 모든 권리는 제작자인 한수수에게 있습니다.
+ 무단 복제, 배포, 2차 창작을 금합니다.
+
+- Created and Developed by Soosoo Han  
+ⓒ 2025 Soosoo Han. All rights reserved.
