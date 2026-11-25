@@ -230,21 +230,6 @@ margin-top: 30px;
         display: none;
     }
 
-    /* 반응형 레이아웃 */
-    @media (min-width: 800px) {
-      .game-buttons button {
-        flex: 0 0 calc(33.333% - 20px); /* 3줄 */
-        max-width: 200px;
-      }
-    }
-
-    @media (max-width: 799px) and (min-width: 500px) {
-      .game-buttons button {
-        flex: 0 0 calc(50% - 20px); /* 2줄 */
-        max-width: 200px;
-      }
-    
-    }
 
       @media (max-width: 480px) {
     
@@ -261,14 +246,7 @@ margin-top: 30px;
         white-space: nowrap; /* 텍스트 줄바꿈 방지 */
     }
      .back-button { top: max(30px, env(safe-area-inset-top) + 10px); left: 10px;  width: 40px; height: 40px; }
-     .game-buttons button {
-        flex: 0 0 calc(100% - 20px); /* 1줄 */
-        max-width: 280px;
-      }
       
-      .game_container {
-        width: 100%;
-      }
     }
 </style>
 </head>
